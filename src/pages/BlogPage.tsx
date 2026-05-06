@@ -73,7 +73,7 @@ const BlogPage = () => {
             animate={{ opacity: 1, scale: 1 }}
           >
             <h1 className="text-5xl md:text-6xl font-black text-white mb-6">Expert <span className="text-indigo-400">Insights</span></h1>
-            <p className="text-indigo-100/60 text-lg max-w-2xl mx-auto font-bold">Master your academics with our research-backed guides and student success stories.</p>
+            <p className="text-indigo-100/80 text-lg max-w-2xl mx-auto font-black">Master your academics with our research-backed guides and student success stories.</p>
           </motion.div>
         </div>
         
@@ -110,7 +110,7 @@ const BlogPage = () => {
                     <h2 className="text-2xl font-black text-indigo-950 mb-4 group-hover:text-indigo-600 transition-colors tracking-tight">
                       <Link to={`/blog/${post.slug}`}>{post.title}</Link>
                     </h2>
-                    <p className="text-indigo-800/60 mb-6 leading-relaxed line-clamp-2 md:line-clamp-3 font-semibold">
+                    <p className="text-indigo-950/80 mb-6 leading-relaxed line-clamp-2 md:line-clamp-3 font-bold">
                        {post.excerpt}
                     </p>
                     <div className="flex items-center justify-between">
@@ -154,10 +154,10 @@ const BlogPage = () => {
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-xs font-black text-indigo-300 uppercase tracking-widest px-4">Popular Tags</h4>
+              <h4 className="text-xs font-black text-indigo-900 uppercase tracking-widest px-4">Popular Tags</h4>
               <div className="flex flex-wrap gap-2">
                  {['GPA', 'StudyAbroad', 'Calculus', 'Motivation', 'ExamHacks', 'Psychology', 'CollegeLife'].map(tag => (
-                    <span key={tag} className="px-4 py-2 bg-white border border-indigo-100 rounded-xl text-xs font-black text-indigo-400 cursor-pointer hover:border-indigo-500 hover:text-indigo-600 transition-colors">
+                    <span key={tag} className="px-4 py-2 bg-white border border-indigo-100 rounded-xl text-xs font-black text-indigo-600 cursor-pointer hover:border-indigo-500 hover:text-indigo-700 transition-colors shadow-sm">
                       #{tag}
                     </span>
                  ))}

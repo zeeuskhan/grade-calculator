@@ -173,11 +173,11 @@ const GradePage = ({ title = "Grade Calculator" }) => {
         schema={schemaData}
       />
 
-      <div className="max-w-7xl mx-auto px-4 pt-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 bg-white p-6 rounded-3xl border border-indigo-100/50 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 pt-4 md:pt-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 bg-white p-6 md:p-8 rounded-3xl border border-indigo-100/50 shadow-sm">
           <div>
-            <h1 className="text-3xl font-black text-indigo-950 mb-2 tracking-tight">{title}</h1>
-            <p className="text-indigo-800/60 font-medium">Add your assignments below to see your real-time results.</p>
+            <h1 className="text-3xl md:text-4xl font-black text-indigo-950 mb-2 tracking-tight">{title}</h1>
+            <p className="text-indigo-950/70 font-bold text-sm md:text-base">Add your assignments below to see your real-time academic results.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Tooltip content="Switch between US 4.0 and Indian CBSE grading scales">
@@ -245,17 +245,17 @@ const GradePage = ({ title = "Grade Calculator" }) => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
                   <thead>
-                    <tr className="bg-indigo-50/50 text-[10px] uppercase tracking-[0.2em] font-black text-indigo-700 border-b border-indigo-100">
+                    <tr className="bg-indigo-50/50 text-[10px] uppercase tracking-[0.2em] font-black text-indigo-900 border-b border-indigo-100">
                       <th className="px-6 py-5">Assignment Name</th>
                       <th className="px-6 py-5">
                         <Tooltip content={inputMode === 'PERCENT' ? 'The percentage you earned on this assignment' : 'Received Points / Maximum Points possible'}>
-                          <span className="flex items-center gap-1">{inputMode === 'PERCENT' ? 'Grade (%)' : 'Points (R/M)'} <HelpCircle size={10} /></span>
+                          <span className="flex items-center gap-1">{inputMode === 'PERCENT' ? 'Grade (%)' : 'Points (R/M)'} <HelpCircle size={10} className="text-indigo-400" /></span>
                         </Tooltip>
                       </th>
                       {method === 'WEIGHTED' && (
                         <th className="px-6 py-5 text-center">
                           <Tooltip content="The weight of this assignment relative to 100% of your total grade">
-                            <span className="flex items-center justify-center gap-1 mx-auto">Weight (%) <HelpCircle size={10} /></span>
+                            <span className="flex items-center justify-center gap-1 mx-auto">Weight (%) <HelpCircle size={10} className="text-indigo-400" /></span>
                           </Tooltip>
                         </th>
                       )}
@@ -278,7 +278,7 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                                 type="text" 
                                 value={a.name}
                                 onChange={(e) => updateAssignment(a.id, 'name', e.target.value)}
-                                className="w-full bg-transparent border-none focus:ring-0 font-medium text-indigo-950 text-sm"
+                                className="w-full bg-transparent border-none focus:ring-0 font-black text-indigo-950 text-sm"
                               />
                             </Tooltip>
                           </td>
@@ -301,17 +301,17 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                                       value={a.receivedPoints}
                                       placeholder="Got"
                                       onChange={(e) => updateAssignment(a.id, 'receivedPoints', Number(e.target.value))}
-                                      className="w-16 px-2 py-2 bg-indigo-50/50 border-none rounded-xl text-sm font-mono font-bold focus:ring-2 focus:ring-indigo-500 text-indigo-950"
+                                      className="w-16 px-2 py-2 bg-indigo-50/50 border border-transparent focus:border-indigo-500 rounded-xl text-sm font-mono font-black focus:ring-0 text-indigo-950"
                                     />
                                   </Tooltip>
-                                  <span className="text-indigo-400 font-bold">/</span>
+                                  <span className="text-indigo-400 font-black">/</span>
                                   <Tooltip content="Total possible points">
                                     <input 
                                       type="number" 
                                       value={a.maxPoints}
                                       placeholder="Total"
                                       onChange={(e) => updateAssignment(a.id, 'maxPoints', Number(e.target.value))}
-                                      className="w-16 px-2 py-2 bg-indigo-50/50 border-none rounded-xl text-sm font-mono font-bold focus:ring-2 focus:ring-indigo-500 text-indigo-950"
+                                      className="w-16 px-2 py-2 bg-indigo-50/50 border border-transparent focus:border-indigo-500 rounded-xl text-sm font-mono font-black focus:ring-0 text-indigo-950"
                                     />
                                   </Tooltip>
                                 </>
@@ -372,7 +372,7 @@ const GradePage = ({ title = "Grade Calculator" }) => {
             <div className="bg-white rounded-[32px] border border-indigo-50 p-10 shadow-sm space-y-12">
                <div className="prose max-w-none">
                   <h2 className="text-4xl font-black tracking-tight text-indigo-950 mb-6">The Ultimate Online Calculator for Grading</h2>
-                  <p className="text-lg text-indigo-800/70 leading-relaxed font-medium">
+                  <p className="text-lg text-indigo-950/80 leading-relaxed font-black">
                     Are you a student or a teacher looking for the fastest **grading calculator**? Whether you're scoring a single test or managing an entire **online gradebook calculator**, our tool is engineered for precision. We handle everything from simple percentages like **18 out of 25 percentage** to complex weighted systems.
                   </p>
                   
@@ -430,9 +430,9 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                        { q: "How do I calculate 18 out of 25 as a percentage?", a: "18 divided by 25 equals 0.72, which is 72.0%. In most US schools, this is a C-." },
                        { q: "What is a 'calculator of grades' used for?", a: "It's used by teachers and students to track progress, predict final outcomes, and manage classroom scores." }
                      ].map((faq, i) => (
-                       <div key={i} className="p-6 bg-indigo-50/50 rounded-2xl border border-indigo-100/50">
-                          <h4 className="font-bold text-indigo-950 mb-2">{faq.q}</h4>
-                          <p className="text-sm text-indigo-800/60 font-semibold">{faq.a}</p>
+                       <div key={i} className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100 shadow-sm">
+                          <h4 className="font-black text-indigo-950 mb-3">{faq.q}</h4>
+                          <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">{faq.a}</p>
                        </div>
                      ))}
                   </div>
@@ -444,9 +444,9 @@ const GradePage = ({ title = "Grade Calculator" }) => {
           <div className="space-y-8">
             <div className="bg-white rounded-[32px] border border-indigo-100 p-8 shadow-2xl shadow-indigo-900/5 sticky top-24">
               <div className="text-center mb-8">
-                <div className="text-xs font-black text-indigo-300 uppercase tracking-[0.2em] mb-4">Current Results</div>
+                <div className="text-xs font-black text-indigo-400 uppercase tracking-[0.2em] mb-4">Current Results</div>
                 <div className="text-8xl font-black text-indigo-600 mb-4 leading-none tracking-tighter">
-                  {formatNum(currentGrade)}<span className="text-4xl opacity-30">%</span>
+                  {formatNum(currentGrade)}<span className="text-4xl opacity-40">%</span>
                 </div>
                 <div className="inline-flex items-center gap-2 px-8 py-3 bg-indigo-50 text-indigo-700 rounded-2xl text-2xl font-black shadow-inner">
                    GRADE: {letterGrade}

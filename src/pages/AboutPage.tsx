@@ -15,7 +15,7 @@ const AboutPage = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter">Precision <span className="text-indigo-400">Grading.</span></h1>
-           <p className="text-indigo-100/60 text-xl font-bold">Empowering the next generation of academic high-performers.</p>
+           <p className="text-indigo-100/80 text-xl font-black">Empowering the next generation of academic high-performers.</p>
         </div>
       </div>
 
@@ -24,10 +24,10 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-6">
               <h2 className="text-3xl font-black text-indigo-950 tracking-tight">Our Mission</h2>
-              <p className="text-indigo-800/70 leading-relaxed font-semibold">
+              <p className="text-indigo-950/80 leading-relaxed font-bold">
                 Calculator of Grades was founded with a simple goal: to eliminate the anxiety of "what do I need on my final?" and "what's my cumulative GPA?". We believe that academic clarity leads to academic success.
               </p>
-              <p className="text-indigo-800/70 leading-relaxed font-semibold">
+              <p className="text-indigo-950/80 leading-relaxed font-bold">
                 Our suite of tools is engineered to support global standards, including US 4.0 GPA scales and Indian CBSE percentages, making us the go-to resource for millions of international students.
               </p>
             </div>
@@ -56,7 +56,7 @@ const AboutPage = () => {
                 </div>
                 <div>
                   <h4 className="font-black text-lg mb-2 text-indigo-950">Surgical Precision</h4>
-                  <p className="text-sm text-indigo-800/80 leading-relaxed font-semibold">Our algorithms leverage the same logic used by university registrar systems, ensuring your GPA and grades are calculated exactly as your school would.</p>
+                  <p className="text-sm text-indigo-900 leading-relaxed font-bold">Our algorithms leverage the same logic used by university registrar systems, ensuring your GPA and grades are calculated exactly as your school would.</p>
                 </div>
               </div>
               <div className="flex gap-6">
@@ -65,7 +65,7 @@ const AboutPage = () => {
                 </div>
                 <div>
                   <h4 className="font-black text-lg mb-2 text-indigo-950">Student First</h4>
-                  <p className="text-sm text-indigo-800/80 leading-relaxed font-semibold">We don't just give you numbers; we provide actionable insights. From final grade targets to personalized study urgency alerts.</p>
+                  <p className="text-sm text-indigo-900 leading-relaxed font-bold">We don't just give you numbers; we provide actionable insights. From final grade targets to personalized study urgency alerts.</p>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'motion/react';
@@ -14,21 +14,34 @@ import {
   Home as HomeIcon,
   FileText,
   HelpCircle,
-  Mail
+  Mail,
+  Loader2
 } from 'lucide-react';
 import { cn } from './lib/utils';
 
-// Pages (will be created in separate files)
-import HomePage from './pages/HomePage';
-import GradePage from './pages/GradePage';
-import GPAPage from './pages/GPAPage';
-import FinalGradePage from './pages/FinalGradePage';
-import BlogPage from './pages/BlogPage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import PrivacyPage from './pages/PrivacyPage';
-import TermsPage from './pages/TermsPage';
-import FAQPage from './pages/FAQPage';
+// Lazy Loaded Pages
+const HomePage = lazy(() => import('./pages/HomePage'));
+const GradePage = lazy(() => import('./pages/GradePage'));
+const GPAPage = lazy(() => import('./pages/GPAPage'));
+const FinalGradePage = lazy(() => import('./pages/FinalGradePage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const TermsPage = lazy(() => import('./pages/TermsPage'));
+const FAQPage = lazy(() => import('./pages/FAQPage'));
+
+const PageLoader = () => (
+  <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4 text-indigo-600">
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+    >
+      <Loader2 size={48} />
+    </motion.div>
+    <p className="font-black text-sm uppercase tracking-widest animate-pulse">Calculating Excellence...</p>
+  </div>
+);
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +73,7 @@ const Navigation = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="flex gap-8 font-semibold text-indigo-800/80">
+            <div className="flex gap-8 font-black text-indigo-900">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
@@ -88,7 +101,7 @@ const Navigation = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-indigo-800"
+              className="p-2 text-indigo-950"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -131,60 +144,60 @@ const Navigation = () => {
 };
 
 const Footer = () => (
-  <footer className="bg-indigo-50/30 border-t border-indigo-100 py-12 px-4 shadow-inner">
-    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+  <footer className="bg-white border-t border-indigo-100 py-16 px-4">
+    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
       <div className="col-span-1 md:col-span-1">
-        <Link to="/" className="flex items-center gap-2 mb-4">
-          <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
-            <GraduationCap size={20} />
+        <Link to="/" className="flex items-center gap-2 mb-6">
+          <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
+            <GraduationCap size={24} />
           </div>
-          <span className="text-xl font-black tracking-tight text-indigo-950">CalculatorOfGrades</span>
+          <span className="text-2xl font-black tracking-tight text-indigo-950">CalculatorOfGrades</span>
         </Link>
-        <p className="text-sm text-indigo-800/80 leading-relaxed font-semibold">
-          The #1 tool for teachers and students worldwide. Precise, fast, and secure.
+        <p className="text-sm text-indigo-900/80 leading-relaxed font-bold">
+          The #1 tool for teachers and students worldwide. Precise, fast, and secure. Built for academic excellence.
         </p>
       </div>
       <div>
-        <h4 className="font-bold mb-6 text-indigo-950 uppercase tracking-widest text-[10px]">Calculators</h4>
-        <ul className="space-y-3 text-sm text-indigo-800 font-bold">
-          <li><Link to="/grade-calculator" className="hover:text-indigo-600 transition-colors">Grade Calculator</Link></li>
-          <li><Link to="/gpa-calculator" className="hover:text-indigo-600 transition-colors">GPA Calculator</Link></li>
-          <li><Link to="/final-grade-predictor" className="hover:text-indigo-600 transition-colors">Final Grade Predictor</Link></li>
-          <li><Link to="/percentage-calculator" className="hover:text-indigo-600 transition-colors">Percentage Calculator</Link></li>
+        <h4 className="font-black mb-8 text-indigo-950 uppercase tracking-[0.2em] text-[11px]">Calculators</h4>
+        <ul className="space-y-4 text-sm text-indigo-900 font-bold">
+          <li><Link to="/grade-calculator" className="hover:text-indigo-600 transition-all">Grade Calculator</Link></li>
+          <li><Link to="/gpa-calculator" className="hover:text-indigo-600 transition-all">GPA Calculator</Link></li>
+          <li><Link to="/final-grade-predictor" className="hover:text-indigo-600 transition-all">Final Grade Predictor</Link></li>
+          <li><Link to="/percentage-calculator" className="hover:text-indigo-600 transition-all">Percentage Calculator</Link></li>
         </ul>
       </div>
       <div>
-        <h4 className="font-bold mb-6 text-indigo-950 uppercase tracking-widest text-[10px]">Support</h4>
-        <ul className="space-y-3 text-sm text-indigo-800 font-bold">
-          <li><Link to="/about" className="hover:text-indigo-600 transition-colors">About Us</Link></li>
-          <li><Link to="/faq" className="hover:text-indigo-600 transition-colors">FAQ</Link></li>
-          <li><Link to="/privacy" className="hover:text-indigo-600 transition-colors">Privacy Policy</Link></li>
-          <li><Link to="/terms" className="hover:text-indigo-600 transition-colors">Terms of Service</Link></li>
-          <li><Link to="/contact" className="hover:text-indigo-600 transition-colors">Contact</Link></li>
+        <h4 className="font-black mb-8 text-indigo-950 uppercase tracking-[0.2em] text-[11px]">Support</h4>
+        <ul className="space-y-4 text-sm text-indigo-900 font-bold">
+          <li><Link to="/about" className="hover:text-indigo-600 transition-all">About Us</Link></li>
+          <li><Link to="/faq" className="hover:text-indigo-600 transition-all">FAQ</Link></li>
+          <li><Link to="/privacy" className="hover:text-indigo-600 transition-all">Privacy Policy</Link></li>
+          <li><Link to="/terms" className="hover:text-indigo-600 transition-all">Terms of Service</Link></li>
+          <li><Link to="/contact" className="hover:text-indigo-600 transition-all">Contact</Link></li>
         </ul>
       </div>
       <div>
-        <h4 className="font-bold mb-6 text-indigo-950 uppercase tracking-widest text-[10px]">Newsletter</h4>
-        <p className="text-[11px] text-indigo-800 mb-4 font-bold">Join 100k+ students getting study tips.</p>
+        <h4 className="font-black mb-8 text-indigo-950 uppercase tracking-[0.2em] text-[11px]">Newsletter</h4>
+        <p className="text-xs text-indigo-900 mb-6 font-bold">Join 100k+ students getting study tips delivered weekly.</p>
         <div className="flex gap-2">
           <input 
             type="email" 
             placeholder="Your Email" 
-            className="flex-1 px-4 py-2 rounded-xl bg-white border border-indigo-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-bold text-indigo-950"
+            className="flex-1 px-4 py-3 rounded-2xl bg-indigo-50/50 border-2 border-transparent focus:border-indigo-500 focus:bg-white text-sm outline-none transition-all font-bold text-indigo-950"
           />
-          <button className="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-black shadow-lg shadow-indigo-500/20 transition-all active:scale-95">
+          <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl text-sm font-black shadow-xl shadow-indigo-500/20 transition-all active:scale-95">
             Join
           </button>
         </div>
       </div>
     </div>
-    <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-indigo-100 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p className="text-[10px] text-indigo-500 font-black uppercase tracking-[0.2em]">
-        © {new Date().getFullYear()} CalculatorOfGrades.com. Precision Academic Engineering.
+    <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-indigo-50 flex flex-col md:flex-row justify-between items-center gap-6">
+      <p className="text-[11px] text-indigo-400 font-black uppercase tracking-[0.3em]">
+        © {new Date().getFullYear()} CalculatorOfGrades.com. All Rights Reserved.
       </p>
-      <div className="flex gap-6">
-         <Link to="/contact" className="text-indigo-400 hover:text-indigo-600 transition-colors"><Mail size={20} /></Link>
-         <Link to="/faq" className="text-indigo-400 hover:text-indigo-600 transition-colors"><HelpCircle size={20} /></Link>
+      <div className="flex gap-8">
+         <Link to="/contact" className="text-indigo-300 hover:text-indigo-600 transition-transform hover:scale-110"><Mail size={22} /></Link>
+         <Link to="/faq" className="text-indigo-300 hover:text-indigo-600 transition-transform hover:scale-110"><HelpCircle size={22} /></Link>
       </div>
     </div>
   </footer>
@@ -197,22 +210,24 @@ export default function App() {
         <div className="min-h-screen flex flex-col selection:bg-indigo-500/30 selection:text-indigo-900">
           <Navigation />
           <main className="flex-grow">
-            <AnimatePresence mode="wait">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/grade-calculator" element={<GradePage />} />
-                <Route path="/gpa-calculator" element={<GPAPage />} />
-                <Route path="/final-grade-predictor" element={<FinalGradePage />} />
-                <Route path="/percentage-calculator" element={<GradePage title="Percentage" />} />
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/faq" element={<FAQPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/privacy" element={<PrivacyPage />} />
-                <Route path="/terms" element={<TermsPage />} />
-                <Route path="*" element={<div className="flex items-center justify-center h-96">404 - Not Found</div>} />
-              </Routes>
-            </AnimatePresence>
+            <Suspense fallback={<PageLoader />}>
+              <AnimatePresence mode="wait">
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/grade-calculator" element={<GradePage />} />
+                  <Route path="/gpa-calculator" element={<GPAPage />} />
+                  <Route path="/final-grade-predictor" element={<FinalGradePage />} />
+                  <Route path="/percentage-calculator" element={<GradePage title="Percentage" />} />
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/faq" element={<FAQPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/privacy" element={<PrivacyPage />} />
+                  <Route path="/terms" element={<TermsPage />} />
+                  <Route path="*" element={<div className="flex items-center justify-center h-96">404 - Not Found</div>} />
+                </Routes>
+              </AnimatePresence>
+            </Suspense>
           </main>
           <Footer />
         </div>

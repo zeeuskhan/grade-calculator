@@ -28,7 +28,7 @@ const FinalGradePage = () => {
       />
 
       {/* Hero Header */}
-      <div className="bg-indigo-950 py-24 px-4 overflow-hidden relative">
+      <div className="bg-indigo-950 py-16 md:py-24 px-4 overflow-hidden relative">
         <div className="absolute inset-0 -z-0">
            <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
         </div>
@@ -36,25 +36,25 @@ const FinalGradePage = () => {
            <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="w-20 h-20 bg-indigo-600 rounded-[24px] flex items-center justify-center text-white mx-auto mb-8 shadow-2xl shadow-indigo-500/20"
+            className="w-16 h-16 md:w-20 md:h-20 bg-indigo-600 rounded-[24px] flex items-center justify-center text-white mx-auto mb-6 md:mb-8 shadow-2xl shadow-indigo-500/20"
            >
-             <Target size={40} />
+             <Target size={32} md:size={40} />
            </motion.div>
-           <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter">Final Grade <span className="text-indigo-400">Target.</span></h1>
-           <p className="text-indigo-100/60 text-xl font-bold">Precision calculation for your most critical exams.</p>
+           <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter">Final Grade <span className="text-indigo-400">Target.</span></h1>
+           <p className="text-indigo-100/80 text-lg md:text-xl font-black">Precision calculation for your most critical exams.</p>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 -mt-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="max-w-6xl mx-auto px-4 -mt-8 md:-mt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {/* Inputs */}
-          <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-2xl shadow-indigo-900/5 border border-indigo-50">
-            <div className="space-y-8">
+          <div className="bg-white p-6 md:p-12 rounded-[32px] md:rounded-[40px] shadow-2xl shadow-indigo-900/5 border border-indigo-50">
+            <div className="space-y-6 md:space-y-8">
               <div className="group">
-                <label className="block text-xs font-black text-indigo-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <label className="block text-[10px] md:text-xs font-black text-indigo-900 uppercase tracking-widest mb-4 flex items-center gap-2">
                    Current Class Grade (%)
                    <Tooltip content="Your current overall grade in the class before the final exam">
-                      <HelpCircle size={12} className="text-indigo-200 cursor-help" />
+                      <HelpCircle size={12} className="text-indigo-400 cursor-help" />
                    </Tooltip>
                    <div className="h-0.5 flex-1 bg-indigo-50" />
                 </label>
@@ -63,17 +63,17 @@ const FinalGradePage = () => {
                     type="number" 
                     value={currentGrade}
                     onChange={(e) => setCurrentGrade(Number(e.target.value))}
-                    className="w-full text-4xl font-black bg-indigo-50/50 p-8 rounded-[32px] border-2 border-indigo-50 focus:border-indigo-500 focus:bg-white transition-all outline-none text-indigo-950"
+                    className="w-full text-3xl md:text-4xl font-black bg-indigo-50 p-6 md:p-8 rounded-[24px] md:rounded-[32px] border-2 border-transparent focus:border-indigo-500 focus:bg-white transition-all outline-none text-indigo-950 shadow-sm"
                    />
-                   <span className="absolute right-8 top-1/2 -translate-y-1/2 text-3xl font-black text-indigo-200">%</span>
+                   <span className="absolute right-6 md:right-8 top-1/2 -translate-y-1/2 text-2xl md:text-3xl font-black text-indigo-300">%</span>
                 </div>
               </div>
 
               <div className="group">
-                <label className="block text-xs font-black text-indigo-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <label className="block text-[10px] md:text-xs font-black text-indigo-900 uppercase tracking-widest mb-4 flex items-center gap-2 text-wrap">
                    Target Overall Grade (%)
                    <Tooltip content="The final grade you want to achieve in this course">
-                      <HelpCircle size={12} className="text-indigo-200 cursor-help" />
+                      <HelpCircle size={12} className="text-indigo-400 cursor-help" />
                    </Tooltip>
                    <div className="h-0.5 flex-1 bg-indigo-50" />
                 </label>
@@ -82,9 +82,9 @@ const FinalGradePage = () => {
                     type="number" 
                     value={targetGrade}
                     onChange={(e) => setTargetGrade(Number(e.target.value))}
-                    className="w-full text-4xl font-black bg-indigo-50/50 p-8 rounded-[32px] border-2 border-indigo-50 focus:border-indigo-500 focus:bg-white transition-all outline-none text-indigo-950"
+                    className="w-full text-3xl md:text-4xl font-black bg-indigo-50 p-6 md:p-8 rounded-[24px] md:rounded-[32px] border-2 border-transparent focus:border-indigo-500 focus:bg-white transition-all outline-none text-indigo-950 shadow-sm"
                    />
-                   <span className="absolute right-8 top-1/2 -translate-y-1/2 text-3xl font-black text-indigo-200">%</span>
+                   <span className="absolute right-6 md:right-8 top-1/2 -translate-y-1/2 text-2xl md:text-3xl font-black text-indigo-300">%</span>
                 </div>
               </div>
 
@@ -175,13 +175,13 @@ const FinalGradePage = () => {
            
            <h3 className="text-2xl font-black mt-12 mb-4 text-indigo-950">Final Grade FAQ</h3>
            <div className="space-y-6">
-              <div className="p-6 bg-indigo-50/30 rounded-2xl border border-indigo-50">
+                     <div className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
                 <h4 className="font-black text-indigo-950 mb-2">Can I get more than 100%?</h4>
-                <p className="text-sm text-indigo-800/60 font-semibold leading-relaxed">Only if your teacher offers extra credit on the final exam. Otherwise, if our calculator says you need 105%, you might need to adjust your target grade.</p>
+                <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">Only if your teacher offers extra credit on the final exam. Otherwise, if our calculator says you need 105%, you might need to adjust your target grade.</p>
               </div>
-              <div className="p-6 bg-indigo-50/30 rounded-2xl border border-indigo-50">
+              <div className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
                 <h4 className="font-black text-indigo-950 mb-2">Is this accurate for weighted grades?</h4>
-                <p className="text-sm text-indigo-800/60 font-semibold leading-relaxed">Yes! This calculator assumes your final exam is a standalone weighted category. If your final counts as part of a larger 'Exams' category, the math is slightly different but this tool provides a very close estimation.</p>
+                <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">Yes! This calculator assumes your final exam is a standalone weighted category. If your final counts as part of a larger 'Exams' category, the math is slightly different but this tool provides a very close estimation.</p>
               </div>
            </div>
         </div>

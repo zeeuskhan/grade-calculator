@@ -66,27 +66,27 @@ const GPAPage = () => {
         description="Calculate your semester and cumulative GPA with our free GPA calculator. Supports weighted and unweighted scales."
       />
 
-      <div className="max-w-7xl mx-auto px-4 pt-8">
-        <div className="bg-white p-8 rounded-[40px] border border-indigo-100/50 shadow-sm mb-12">
+      <div className="max-w-7xl mx-auto px-4 pt-4 md:pt-8">
+        <div className="bg-white p-6 md:p-8 rounded-[40px] border border-indigo-100 shadow-sm mb-12">
           <div className="text-center max-w-2xl mx-auto pb-8 border-b border-indigo-50 mb-8">
-             <div className="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600 mx-auto mb-4 border border-indigo-200 shadow-sm transition-transform hover:rotate-6">
-                <GraduationCap size={32} />
+             <div className="w-12 h-12 md:w-16 md:h-16 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600 mx-auto mb-4 border border-indigo-200 shadow-sm transition-transform hover:rotate-6">
+                <GraduationCap size={28} />
              </div>
-             <h1 className="text-5xl font-black text-indigo-950 mb-4 tracking-tighter transition-all hover:scale-105 duration-300">GPA <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-8">Quest</span></h1>
-             <p className="text-indigo-800/60 font-black uppercase tracking-widest text-xs opacity-80">Join 50,000+ students tracking progress.</p>
+             <h1 className="text-4xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tighter transition-all hover:scale-105 duration-300">GPA <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-8">Quest</span></h1>
+             <p className="text-indigo-950 font-black uppercase tracking-widest text-[10px] md:text-xs">Join 50,000+ students tracking academic progress.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
               <div className="space-y-4">
                 <div className="flex items-center justify-between px-8">
-                   <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400">Course Name</h3>
+                   <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900">Course Name</h3>
                    <div className="flex gap-16">
                       <Tooltip content="Final letter grade received for the course">
-                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400 w-24 text-center">Grade</h3>
+                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 w-24 text-center">Grade</h3>
                       </Tooltip>
                       <Tooltip content="The credit weight/hours assigned to this course">
-                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400 w-16 text-center">Credits</h3>
+                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 w-16 text-center">Credits</h3>
                       </Tooltip>
                    </div>
                 </div>
@@ -109,7 +109,7 @@ const GPAPage = () => {
                           placeholder="e.g. Physics 101"
                           value={course.name}
                           onChange={(e) => updateCourse(course.id, 'name', e.target.value)}
-                          className="flex-1 bg-transparent border-none focus:ring-0 font-black text-indigo-950 placeholder:text-indigo-200"
+                          className="flex-1 bg-transparent border-none focus:ring-0 font-black text-indigo-950 placeholder:text-indigo-300"
                         />
                       </div>
                       
@@ -118,7 +118,7 @@ const GPAPage = () => {
                           <select 
                             value={course.grade}
                             onChange={(e) => updateCourse(course.id, 'grade', e.target.value)}
-                            className="w-full sm:w-24 bg-indigo-50/50 border-none rounded-xl p-3 text-sm font-black text-indigo-600 focus:ring-2 focus:ring-indigo-500 appearance-none text-center cursor-pointer shadow-inner"
+                            className="w-full sm:w-24 bg-indigo-50 border border-indigo-100 rounded-xl p-3 text-sm font-black text-indigo-600 focus:ring-2 focus:ring-indigo-500 appearance-none text-center cursor-pointer shadow-sm"
                           >
                             {Object.keys(gradeValues).map(g => (
                               <option key={g} value={g}>{g}</option>
@@ -154,22 +154,21 @@ const GPAPage = () => {
                   </button>
                 </Tooltip>
               </div>
-              
-              <div className="mt-12 p-8 bg-indigo-50/40 rounded-[32px] border border-indigo-100/50">
+                            <div className="mt-12 p-8 bg-indigo-50 rounded-[32px] border border-indigo-100">
                  <h3 className="text-xl font-black mb-6 flex items-center gap-3 tracking-tight text-indigo-950">
                     <Info className="text-indigo-600" size={24} /> Calculation Guide
                  </h3>
-                 <p className="text-indigo-800/70 text-sm leading-relaxed mb-8 font-semibold">
+                 <p className="text-indigo-900 text-sm leading-relaxed mb-8 font-bold">
                     GPA (Grade Point Average) represents the average value of accumulated grades. We calculate this by dividing total grade points by total credits attempted.
                  </p>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-6 bg-white rounded-3xl border border-indigo-100/50 shadow-sm transition-transform hover:scale-105">
+                    <div className="p-6 bg-white rounded-3xl border border-indigo-100 shadow-sm transition-transform hover:scale-105">
                        <h4 className="font-black text-indigo-950 mb-2 text-sm uppercase tracking-widest">Standard 4.0</h4>
-                       <p className="text-xs text-indigo-800/60 font-bold leading-relaxed">Used by most US schools. A = 4, B = 3, C = 2, D = 1, F = 0.</p>
+                       <p className="text-xs text-indigo-900 font-bold leading-relaxed">Used by most US schools. A = 4, B = 3, C = 2, D = 1, F = 0.</p>
                     </div>
-                    <div className="p-6 bg-white rounded-3xl border border-indigo-100/50 shadow-sm transition-transform hover:scale-105">
+                    <div className="p-6 bg-white rounded-3xl border border-indigo-100 shadow-sm transition-transform hover:scale-105">
                        <h4 className="font-black text-indigo-950 mb-2 text-sm uppercase tracking-widest">Weighted GPA</h4>
-                       <p className="text-xs text-indigo-800/60 font-bold leading-relaxed">AP/IB courses often add +1.0 point (A = 5.0) for difficulty.</p>
+                       <p className="text-xs text-indigo-900 font-bold leading-relaxed">AP/IB courses often add +1.0 point (A = 5.0) for difficulty.</p>
                     </div>
                  </div>
               </div>

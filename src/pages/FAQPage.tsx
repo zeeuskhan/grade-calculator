@@ -50,7 +50,7 @@ const FAQPage = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-indigo-500/5 animate-pulse" />
         <div className="relative z-10 max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter">Help <span className="text-indigo-400">Center.</span></h1>
-          <p className="text-indigo-100/60 text-xl font-bold mb-12">Everything you need to know about CalculatorOfGrades.</p>
+          <p className="text-indigo-100/80 text-xl font-black mb-12">Everything you need to know about CalculatorOfGrades.</p>
           
           <div className="max-w-xl mx-auto relative group">
             <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-indigo-300 group-focus-within:text-indigo-400 transition-colors" size={20} />
@@ -97,7 +97,7 @@ const FAQPage = () => {
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                   >
                     <div className="px-8 pb-8 pt-0 border-t border-indigo-50">
-                      <p className="mt-6 text-indigo-800/70 font-black leading-relaxed">
+                      <p className="mt-6 text-indigo-950 font-bold leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>

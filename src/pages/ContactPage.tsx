@@ -22,7 +22,7 @@ const ContactPage = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter">Get in <span className="text-indigo-400">Touch.</span></h1>
-           <p className="text-indigo-100/60 text-xl font-bold">Have a question or a feature request? We'd love to hear from you.</p>
+           <p className="text-indigo-100/80 text-xl font-black">Have a question or a feature request? We'd love to hear from you.</p>
         </div>
       </div>
 
@@ -34,8 +34,8 @@ const ContactPage = () => {
                   <Mail size={24} />
                </div>
                <h3 className="text-xl font-black mb-2 text-indigo-950">Email Us</h3>
-               <p className="text-sm text-indigo-800/60 mb-4 font-black">Our team typically responds within 24 hours.</p>
-               <a href="mailto:support@calculatorofgrades.com" className="text-indigo-600 font-black hover:underline">support@calculatorofgrades.com</a>
+               <p className="text-sm text-indigo-950/70 mb-4 font-black leading-relaxed">Our team typically responds within 24 hours.</p>
+               <a href="mailto:support@calculatorofgrades.com" className="text-indigo-600 font-bold hover:underline transition-all">support@calculatorofgrades.com</a>
             </div>
 
             <div className="bg-white rounded-[40px] border border-indigo-100 p-8 shadow-xl">
@@ -43,11 +43,11 @@ const ContactPage = () => {
                   <MessageSquare size={24} />
                </div>
                <h3 className="text-xl font-black mb-2 text-indigo-950">Community</h3>
-               <p className="text-sm text-indigo-800/60 mb-4 font-black">Join our student community on Reddit or Twitter.</p>
-               <div className="flex gap-4">
-                  <a href="#" className="text-indigo-600 font-bold hover:underline">Twitter/X</a>
-                  <a href="#" className="text-indigo-600 font-bold hover:underline">Discord</a>
-               </div>
+                <p className="text-sm text-indigo-950/70 mb-4 font-black leading-relaxed">Join our student community on Reddit or Twitter.</p>
+                <div className="flex gap-4">
+                   <a href="#" className="text-indigo-600 font-black hover:underline transition-all">Twitter/X</a>
+                   <a href="#" className="text-indigo-600 font-black hover:underline transition-all">Discord</a>
+                </div>
             </div>
           </div>
 
@@ -73,42 +73,42 @@ const ContactPage = () => {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-indigo-400 ml-2">Your Name</label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-indigo-900 ml-2">Your Name</label>
                       <input 
                         required
                         type="text" 
                         placeholder="John Doe"
-                        className="w-full px-6 py-4 rounded-2xl bg-indigo-50/50 border-none text-indigo-950 font-black focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                        className="w-full px-6 py-4 rounded-2xl bg-indigo-50 border-2 border-transparent focus:border-indigo-500 focus:bg-white text-indigo-950 font-black outline-none transition-all placeholder:text-indigo-300"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-indigo-400 ml-2">Email Address</label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-indigo-900 ml-2">Email Address</label>
                       <input 
                         required
                         type="email" 
                         placeholder="john@example.com"
-                        className="w-full px-6 py-4 rounded-2xl bg-indigo-50/50 border-none text-indigo-950 font-black focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                        className="w-full px-6 py-4 rounded-2xl bg-indigo-50 border-2 border-transparent focus:border-indigo-500 focus:bg-white text-indigo-950 font-black outline-none transition-all placeholder:text-indigo-300"
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-indigo-400 ml-2">Subject</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-indigo-900 ml-2">Subject</label>
                     <input 
                       required
                       type="text" 
                       placeholder="Feature Recommendation"
-                      className="w-full px-6 py-4 rounded-2xl bg-indigo-50/50 border-none text-indigo-950 font-black focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                      className="w-full px-6 py-4 rounded-2xl bg-indigo-50 border-2 border-transparent focus:border-indigo-500 focus:bg-white text-indigo-950 font-black outline-none transition-all placeholder:text-indigo-300"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-indigo-400 ml-2">Your Message</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-indigo-900 ml-2">Your Message</label>
                     <textarea 
                       required
                       rows={6}
                       placeholder="How can we help you?"
-                      className="w-full px-6 py-4 rounded-2xl bg-indigo-50/50 border-none text-indigo-950 font-black focus:ring-2 focus:ring-indigo-500 outline-none transition-all resize-none"
+                      className="w-full px-6 py-4 rounded-2xl bg-indigo-50 border-2 border-transparent focus:border-indigo-500 focus:bg-white text-indigo-950 font-black outline-none transition-all resize-none placeholder:text-indigo-300"
                     />
                   </div>
                   <button className="w-full py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[28px] font-black text-sm uppercase tracking-widest transition-all shadow-xl shadow-indigo-500/20 flex items-center justify-center gap-3 active:scale-95">
