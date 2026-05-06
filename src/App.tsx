@@ -30,6 +30,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
+import FAQPage from './pages/FAQPage';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -179,6 +180,7 @@ const Footer = () => (
         <h4 className="font-bold mb-6 text-slate-900 dark:text-white uppercase tracking-widest text-[10px]">Support</h4>
         <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-bold">
           <li><Link to="/about" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">About Us</Link></li>
+          <li><Link to="/faq" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">FAQ</Link></li>
           <li><Link to="/privacy" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Privacy Policy</Link></li>
           <li><Link to="/terms" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Terms of Service</Link></li>
           <li><Link to="/contact" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Contact</Link></li>
@@ -227,6 +229,7 @@ export default function App() {
                 <Route path="/percentage-calculator" element={<GradePage title="Percentage" />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/faq" element={<FAQPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms" element={<TermsPage />} />
