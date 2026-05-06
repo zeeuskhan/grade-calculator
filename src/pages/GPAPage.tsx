@@ -59,11 +59,27 @@ const GPAPage = () => {
     setCourses(courses.map(c => c.id === id ? { ...c, [field]: value } : c));
   };
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Professional College & High School GPA Calculator",
+    "url": "https://calculatorofgrades.vercel.app/gpa-calculator",
+    "description": "Calculate your semester and cumulative GPA with our free GPA calculator. Supports weighted and unweighted scales, custom credit hours, and more.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-indigo-50/20 pb-20">
       <SEO 
-        title="GPA Calculator - Free College & High School Tool"
-        description="Calculate your semester and cumulative GPA with our free GPA calculator. Supports weighted and unweighted scales."
+        title="GPA Calculator | College & High School Grade Point Average"
+        description="Calculate your semester and cumulative GPA with our free GPA calculator. Supports weighted and unweighted scales, custom credit hours, and historical tracking."
+        schema={schemaData}
       />
 
       <div className="max-w-7xl mx-auto px-4 pt-4 md:pt-8">

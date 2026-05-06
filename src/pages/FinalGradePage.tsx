@@ -20,11 +20,27 @@ const FinalGradePage = () => {
 
   const urgency = getUrgency();
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Precision Final Grade Calculator & Predictor",
+    "url": "https://calculatorofgrades.vercel.app/final-grade-predictor",
+    "description": "Calculate exactly what score you need on your final exam to achieve your target grade. Uses professional academic formulas for weighted and unweighted classes.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-indigo-50/20 pb-20">
       <SEO 
-        title="Final Grade Predictor - What score do I need on my final?"
-        description="Find out exactly what you need on your final exam to reach your target course grade. Easy and accurate final grade calculator."
+        title="Final Grade Calculator - What Score Do I Need on My Final?"
+        description="Calculate the score you need on your final exam. Our final grade predictor helps you reach your target grade easily and accurately with real math."
+        schema={schemaData}
       />
 
       {/* Hero Header */}
@@ -38,7 +54,7 @@ const FinalGradePage = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="w-16 h-16 md:w-20 md:h-20 bg-indigo-600 rounded-[24px] flex items-center justify-center text-white mx-auto mb-6 md:mb-8 shadow-2xl shadow-indigo-500/20"
            >
-             <Target size={32} md:size={40} />
+             <Target size={40} />
            </motion.div>
            <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter">Final Grade <span className="text-indigo-400">Target.</span></h1>
            <p className="text-indigo-100/80 text-lg md:text-xl font-black">Precision calculation for your most critical exams.</p>

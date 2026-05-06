@@ -40,15 +40,21 @@ const HomePage = () => {
   return (
     <div className="overflow-hidden">
       <SEO 
-        title="CalculatorOfGrades - The Best Free Grade & GPA Calculator for Students"
-        description="Calculate your grades, GPA, and final exam targets with ease. Supports US 4.0 and Indian CBSE/University scales. Free, fast, and precise tool for students."
+        title="Calculator of Grades | #1 Free Grade, GPA & Final Exam Tool"
+        description="The ultimate calculator of grades for students & teachers. Calculate class grades, weighted GPA, and final exam targets instantly. Supports US 4.0 & CBSE scales."
         schema={{
           "@context": "https://schema.org",
           "@type": "WebApplication",
           "name": "CalculatorOfGrades",
+          "url": "https://calculatorofgrades.vercel.app",
           "applicationCategory": "EducationalApplication",
           "operatingSystem": "All",
-          "description": "Advanced academic grade and GPA calculation suite."
+          "description": "Professional academic suite featuring a grade calculator, gpa tracker, and final grade predictor for all education levels.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
         }}
       />
 

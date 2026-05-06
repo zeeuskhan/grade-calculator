@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { 
   Plus, 
   Trash2, 
@@ -52,9 +53,9 @@ const GradePage = ({ title = "Grade Calculator" }) => {
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Calculator for Grading - Online Gradebook",
-        "url": "https://smartgrades.io/grade-calculator",
-        "description": "Free online grading calculator and gradebook. Supports weighted averages, points systems, US letter grades, and Indian CBSE scales.",
+        "name": "Professional Grade Calculator & Weighted Average Tool",
+        "url": "https://calculatorofgrades.vercel.app/grade-calculator",
+        "description": "Calculate your grades with surgical precision using our free online grade calculator. Features include- weighted grade calculations, test score percentage tools, and detailed gradebook management for students and teachers.",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "All",
         "offers": {
@@ -68,10 +69,18 @@ const GradePage = ({ title = "Grade Calculator" }) => {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How do I use a calculator for grading?",
+            "name": "How to calculate grades manually?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "1. Enter your assignment name. 2. Input your grade (percent or points). 3. If using weighted grading, enter weights. The calculator shows your overall grade automatically."
+              "text": "To calculate your grade, divide the total points earned by the total points possible. Then, multiply by 100 to get a percentage. For weighted grades, multiply each grade by its weight percentage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a test grade calculator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A test grade calculator is a tool used to determine the percentage score on an exam based on the number of correct answers and the total number of questions. It helps students understand their standing instantly."
             }
           },
           {
@@ -84,10 +93,10 @@ const GradePage = ({ title = "Grade Calculator" }) => {
           },
           {
             "@type": "Question",
-            "name": "How to calculate weighted grades?",
+            "name": "How to calculate weighted average grade?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Multiply each assignment's percentage by its weight, sum them up, and divide by the total weight."
+              "text": "Multiply each assignment's percentage by its weight (as a decimal), sum these products together, and then divide by the total weight (usually 1 or 100%)."
             }
           }
         ]
@@ -168,8 +177,8 @@ const GradePage = ({ title = "Grade Calculator" }) => {
   return (
     <div className="min-h-screen bg-indigo-50/20 pb-20">
       <SEO 
-        title="Calculator for Grading - Free Online Grading Calculator & Gradebook"
-        description="Calculate your grades instantly with our online grading calculator. Supports weighted assignments, points-based systems, and US/India grading scales. Perfect for teachers and students."
+        title="Grade Calculator | Final Grade & Weighted Average Calculator"
+        description="The #1 Grade Calculator for students. Calculate test scores, weighted averages, and class grades. Support for 18 out of 25 percentage and college grading scales."
         schema={schemaData}
       />
 
@@ -371,52 +380,58 @@ const GradePage = ({ title = "Grade Calculator" }) => {
             {/* Detailed SEO Long-form Content Section */}
             <div className="bg-white rounded-[32px] border border-indigo-50 p-10 shadow-sm space-y-12">
                <div className="prose max-w-none">
-                  <h2 className="text-4xl font-black tracking-tight text-indigo-950 mb-6">The Ultimate Online Calculator for Grading</h2>
+                  <h2 className="text-4xl font-black tracking-tight text-indigo-950 mb-6">Expert Grade Calculator & Test Scoring Tool</h2>
                   <p className="text-lg text-indigo-950/80 leading-relaxed font-black">
-                    Are you a student or a teacher looking for the fastest **grading calculator**? Whether you're scoring a single test or managing an entire **online gradebook calculator**, our tool is engineered for precision. We handle everything from simple percentages like **18 out of 25 percentage** to complex weighted systems.
+                    Searching for a reliable **grade calculator** to track your academic performance? Whether you need a **test grade calculator** for a single exam or a comprehensive **class grade calculator** for the entire semester, our platform provides professional-grade accuracy. We simplify complex math like **weighted averages** and **percentage conversions** so you can focus on studying.
                   </p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
-                     <div className="p-8 bg-indigo-50/50 rounded-3xl border border-indigo-100/50">
-                        <h3 className="text-xl font-black mb-4 text-indigo-950">Quick Percentages</h3>
+                     <div className="not-prose p-8 bg-indigo-50/50 rounded-3xl border border-indigo-100/50">
+                        <h3 className="text-xl font-black mb-4 text-indigo-950">Test Score Percentage</h3>
                         <ul className="space-y-4 text-sm font-bold text-indigo-800/60">
                            <li className="flex justify-between"><span>18 out of 25:</span> <span className="text-indigo-600">72.0% (C-)</span></li>
+                           <li className="flex justify-between"><span>45 out of 50:</span> <span className="text-indigo-600">90.0% (A-)</span></li>
                            <li className="flex justify-between"><span>12 out of 15:</span> <span className="text-indigo-600">80.0% (B-)</span></li>
                            <li className="flex justify-between"><span>13 out of 20:</span> <span className="text-indigo-600">65.0% (D)</span></li>
                            <li className="flex justify-between"><span>29 out of 35:</span> <span className="text-indigo-600">82.9% (B)</span></li>
                         </ul>
                      </div>
-                     <div className="p-8 bg-indigo-50/50 rounded-3xl border border-indigo-100/50">
-                        <h3 className="text-xl font-black mb-4 text-indigo-950">Scoring a Test</h3>
+                     <div className="not-prose p-8 bg-indigo-50/50 rounded-3xl border border-indigo-100/50">
+                        <h3 className="text-xl font-black mb-4 text-indigo-950">Why Use Our Marker Calculator?</h3>
                         <p className="text-sm font-semibold leading-relaxed text-indigo-800/60">
-                           Our **scoring a test calculator** allows you to input raw scores and instantly see the equivalent letter grade. This is essential for **marking calculators** used in classrooms worldwide.
+                           Our **marking calculator** is used by teachers and students alike to verify scores. Unlike basic **online grade calculators**, we support multiple grading systems (US 4.0 and CBSE) and provide an **online gradebook calculator** experience that tracks your progress in real-time.
                         </p>
                      </div>
                   </div>
 
-                  <h3 className="text-2xl font-black text-indigo-950 mt-12 mb-6">How to Use the Grading Calculator</h3>
+                  <h3 className="text-2xl font-black text-indigo-950 mt-12 mb-6">How to Calculate a Weighted Grade</h3>
+                  <p className="text-indigo-950/70 leading-relaxed font-bold mb-6">
+                    Calculating a weighted grade manually can be tricky. Here is the formula our **weighted grade calculator** uses:
+                  </p>
+                  <div className="not-prose bg-indigo-950 p-6 rounded-2xl text-indigo-100 font-mono text-sm shadow-xl mb-6 text-center">
+                    (Score 1 × Weight 1) + (Score 2 × Weight 2) + ... [Divide by Total Weight]
+                  </div>
+
+                  <h3 className="text-2xl font-black text-indigo-950 mt-12 mb-6">The Best Free Calculator for Grading</h3>
                   <p className="text-indigo-800/60 leading-relaxed font-semibold">
-                    1. **Enter Your Scores**: For a quick check, use the "Points" mode. If you scored **12 out of 15**, simply enter those values. <br/>
-                    2. **Set Weights**: If your class uses a weighted system (e.g., Exams are 40%), toggle to Weighted mode and enter the percentages. <br/>
-                    3. **Choose Your Scale**: We support US GPA systems and Indian CBSE scales. <br/>
-                    4. **Export & Save**: Use our **online gradebook calculator** features to save your history or export as a PDF.
+                    1. **Simple Grade Average**: Use this mode if all assignments have the same weight. Just enter your scores. <br/>
+                    2. **Weighted Assignment Calculator**: Best for college courses where finals and labs carry more weight. <br/>
+                    3. **Test Grade & Easy Grader**: Quickly find out your score by entering raw points. <br/>
+                    4. **PDF Export**: Generate a report to share with parents or teachers.
                   </p>
 
-                  <h3 className="text-2xl font-black text-indigo-950 mt-12 mb-6">Common Percentage Conversions</h3>
-                  <table className="w-full border-collapse border border-indigo-100 rounded-2xl overflow-hidden mt-6">
-                    <thead className="bg-indigo-50 text-xs uppercase font-black text-indigo-700">
-                      <tr>
-                        <th className="p-4 border border-indigo-100">Score</th>
-                        <th className="p-4 border border-indigo-100">Percentage</th>
-                        <th className="p-4 border border-indigo-100">Letter Grade</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-sm font-black text-indigo-900/70">
-                      <tr><td className="p-4 border border-indigo-100">12 out of 20</td><td className="p-4 border border-indigo-100 text-center">60%</td><td className="p-4 border border-indigo-100 text-center">D-</td></tr>
-                      <tr><td className="p-4 border border-indigo-100">16 out of 20</td><td className="p-4 border border-indigo-100 text-center">80%</td><td className="p-4 border border-indigo-100 text-center">B-</td></tr>
-                      <tr><td className="p-4 border border-indigo-100">14 out of 20</td><td className="p-4 border border-indigo-100 text-center">70%</td><td className="p-4 border border-indigo-100 text-center">C-</td></tr>
-                    </tbody>
-                  </table>
+                  <div className="not-prose mt-12 p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">
+                    <h4 className="font-black text-indigo-950 mb-4">Related Academic Tools:</h4>
+                    <div className="flex flex-wrap gap-4 text-sm font-black">
+                      <Link to="/gpa-calculator" className="text-indigo-600 hover:underline">GPA Calculator</Link>
+                      <span className="text-indigo-300">•</span>
+                      <Link to="/final-grade-predictor" className="text-indigo-600 hover:underline">Final Grade Predictor</Link>
+                      <span className="text-indigo-300">•</span>
+                      <Link to="/percentage-calculator" className="text-indigo-600 hover:underline">Percentage Tool</Link>
+                      <span className="text-indigo-300">•</span>
+                      <Link to="/faq" className="text-indigo-600 hover:underline">Grading FAQ</Link>
+                    </div>
+                  </div>
                </div>
 
                <div className="pt-12 border-t border-indigo-50">
