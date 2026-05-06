@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Target, ArrowRight, Info, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Target, ArrowRight, Info, AlertCircle, CheckCircle2, HelpCircle } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { Tooltip } from '../components/Tooltip';
 import { cn, formatNum } from '../lib/utils';
 
 const FinalGradePage = () => {
@@ -52,6 +53,9 @@ const FinalGradePage = () => {
               <div className="group">
                 <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                    Current Class Grade (%)
+                   <Tooltip content="Your current overall grade in the class before the final exam">
+                      <HelpCircle size={12} className="text-slate-300 cursor-help" />
+                   </Tooltip>
                    <div className="h-0.5 flex-1 bg-slate-100 dark:bg-slate-800" />
                 </label>
                 <div className="relative">
@@ -68,6 +72,9 @@ const FinalGradePage = () => {
               <div className="group">
                 <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                    Target Overall Grade (%)
+                   <Tooltip content="The final grade you want to achieve in this course">
+                      <HelpCircle size={12} className="text-slate-300 cursor-help" />
+                   </Tooltip>
                    <div className="h-0.5 flex-1 bg-slate-100 dark:bg-slate-800" />
                 </label>
                 <div className="relative">
@@ -84,6 +91,9 @@ const FinalGradePage = () => {
               <div className="group">
                 <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                    Final Exam Weight (%)
+                   <Tooltip content="The percentage of your total grade that the final exam represents">
+                      <HelpCircle size={12} className="text-slate-300 cursor-help" />
+                   </Tooltip>
                    <div className="h-0.5 flex-1 bg-slate-100 dark:bg-slate-800" />
                 </label>
                 <div className="flex items-center gap-4">

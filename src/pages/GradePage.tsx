@@ -26,6 +26,7 @@ import {
   YAxis
 } from 'recharts';
 import { SEO } from '../components/SEO';
+import { Tooltip } from '../components/Tooltip';
 import { cn, getLetterGrade, formatNum, GRADES_US, GRADES_INDIA_CBSE } from '../lib/utils';
 
 interface Assignment {
@@ -146,7 +147,7 @@ const GradePage = ({ title = "Grade Calculator" }) => {
   const exportPDF = () => {
     const doc = new jsPDF();
     doc.setFontSize(22);
-    doc.text('SmartGrader Report Card', 20, 20);
+    doc.text('CalculatorOfGrades Report Card', 20, 20);
     doc.setFontSize(14);
     doc.text(`Result: ${formatNum(currentGrade)}% (${letterGrade})`, 20, 35);
     doc.text(`Grading System: ${system === 'US' ? 'US 4.0' : 'Indian CBSE'}`, 20, 45);
@@ -161,7 +162,7 @@ const GradePage = ({ title = "Grade Calculator" }) => {
       y += 10;
     });
     
-    doc.save('SmartGrader_Report.pdf');
+    doc.save('Calculator_Report.pdf');
   };
 
   return (
@@ -179,18 +180,22 @@ const GradePage = ({ title = "Grade Calculator" }) => {
             <p className="text-slate-600 dark:text-slate-300 font-medium">Add your assignments below to see your real-time results.</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <button 
-              onClick={() => setSystem(system === 'US' ? 'INDIA' : 'US')}
-              className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 rounded-xl text-sm font-bold flex items-center gap-2 transition-colors border border-slate-200 dark:border-slate-700"
-            >
-              <Scale size={16} /> {system === 'US' ? 'US Scale' : 'India Scale'}
-            </button>
-            <button 
-              onClick={exportPDF}
-              className="px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-slate-950 rounded-xl text-sm font-black flex items-center gap-2 transition-all shadow-lg shadow-cyan-500/20 active:scale-95"
-            >
-              <Download size={16} /> Export PDF
-            </button>
+            <Tooltip content="Switch between US 4.0 and Indian CBSE grading scales">
+              <button 
+                onClick={() => setSystem(system === 'US' ? 'INDIA' : 'US')}
+                className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 rounded-xl text-sm font-bold flex items-center gap-2 transition-colors border border-slate-200 dark:border-slate-700"
+              >
+                <Scale size={16} /> {system === 'US' ? 'US Scale' : 'India Scale'}
+              </button>
+            </Tooltip>
+            <Tooltip content="Download your progress as a professional PDF report">
+              <button 
+                onClick={exportPDF}
+                className="px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-slate-950 rounded-xl text-sm font-black flex items-center gap-2 transition-all shadow-lg shadow-cyan-500/20 active:scale-95"
+              >
+                <Download size={16} /> Export PDF
+              </button>
+            </Tooltip>
           </div>
         </div>
 
@@ -200,32 +205,40 @@ const GradePage = ({ title = "Grade Calculator" }) => {
             <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
               <div className="px-6 py-4 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
                 <div className="flex gap-4">
-                   <button 
-                    onClick={() => setMethod('WEIGHTED')}
-                    className={cn("text-sm font-black px-4 py-2 rounded-xl transition-all", method === 'WEIGHTED' ? "bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400" : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white")}
-                   >
-                     Weighted
-                   </button>
-                   <button 
-                    onClick={() => setMethod('SIMPLE')}
-                    className={cn("text-sm font-black px-4 py-2 rounded-xl transition-all", method === 'SIMPLE' ? "bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400" : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white")}
-                   >
-                     Simple Avg
-                   </button>
+                   <Tooltip content="Calculate grade based on assignment weightage">
+                    <button 
+                      onClick={() => setMethod('WEIGHTED')}
+                      className={cn("text-sm font-black px-4 py-2 rounded-xl transition-all", method === 'WEIGHTED' ? "bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400" : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white")}
+                    >
+                      Weighted
+                    </button>
+                   </Tooltip>
+                   <Tooltip content="Calculate grade as simple mathematical average">
+                    <button 
+                      onClick={() => setMethod('SIMPLE')}
+                      className={cn("text-sm font-black px-4 py-2 rounded-xl transition-all", method === 'SIMPLE' ? "bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400" : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white")}
+                    >
+                      Simple Avg
+                    </button>
+                   </Tooltip>
                 </div>
                 <div className="hidden sm:flex bg-slate-50 dark:bg-slate-800 p-1 rounded-xl border border-slate-100 dark:border-slate-700">
-                   <button 
-                    onClick={() => setInputMode('PERCENT')}
-                    className={cn("px-4 py-1.5 rounded-lg text-xs font-black transition-all", inputMode === 'PERCENT' ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white")}
-                   >
-                     Percent (%)
-                   </button>
-                   <button 
-                    onClick={() => setInputMode('POINTS')}
-                    className={cn("px-4 py-1.5 rounded-lg text-xs font-black transition-all", inputMode === 'POINTS' ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white")}
-                   >
-                     Points
-                   </button>
+                   <Tooltip content="Enter grades as direct percentages (0-100)">
+                    <button 
+                      onClick={() => setInputMode('PERCENT')}
+                      className={cn("px-4 py-1.5 rounded-lg text-xs font-black transition-all", inputMode === 'PERCENT' ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white")}
+                    >
+                      Percent (%)
+                    </button>
+                   </Tooltip>
+                   <Tooltip content="Enter raw scores (e.g. 18 out of 25)">
+                    <button 
+                      onClick={() => setInputMode('POINTS')}
+                      className={cn("px-4 py-1.5 rounded-lg text-xs font-black transition-all", inputMode === 'POINTS' ? "bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white")}
+                    >
+                      Points
+                    </button>
+                   </Tooltip>
                 </div>
               </div>
 
@@ -234,8 +247,18 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                   <thead>
                     <tr className="bg-slate-100/50 dark:bg-slate-800 text-[10px] uppercase tracking-[0.2em] font-black text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700">
                       <th className="px-6 py-5">Assignment Name</th>
-                      <th className="px-6 py-5">{inputMode === 'PERCENT' ? 'Grade (%)' : 'Points (R/M)'}</th>
-                      {method === 'WEIGHTED' && <th className="px-6 py-5 text-center">Weight (%)</th>}
+                      <th className="px-6 py-5">
+                        <Tooltip content={inputMode === 'PERCENT' ? 'The percentage you earned on this assignment' : 'Received Points / Maximum Points possible'}>
+                          <span className="flex items-center gap-1">{inputMode === 'PERCENT' ? 'Grade (%)' : 'Points (R/M)'} <HelpCircle size={10} /></span>
+                        </Tooltip>
+                      </th>
+                      {method === 'WEIGHTED' && (
+                        <th className="px-6 py-5 text-center">
+                          <Tooltip content="The weight of this assignment relative to 100% of your total grade">
+                            <span className="flex items-center justify-center gap-1 mx-auto">Weight (%) <HelpCircle size={10} /></span>
+                          </Tooltip>
+                        </th>
+                      )}
                       <th className="px-6 py-5 text-right">Actions</th>
                     </tr>
                   </thead>
@@ -250,53 +273,64 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                           className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors"
                         >
                           <td className="px-6 py-4">
-                            <input 
-                              type="text" 
-                              value={a.name}
-                              onChange={(e) => updateAssignment(a.id, 'name', e.target.value)}
-                              className="w-full bg-transparent border-none focus:ring-0 font-medium text-slate-900 dark:text-white text-sm"
-                            />
+                            <Tooltip content="Assignment or Exam title" className="w-full">
+                              <input 
+                                type="text" 
+                                value={a.name}
+                                onChange={(e) => updateAssignment(a.id, 'name', e.target.value)}
+                                className="w-full bg-transparent border-none focus:ring-0 font-medium text-slate-900 dark:text-white text-sm"
+                              />
+                            </Tooltip>
                           </td>
                           <td className="px-6 py-4">
                             <div className="flex items-center gap-2">
                               {inputMode === 'PERCENT' ? (
-                                <input 
-                                  type="number" 
-                                  value={a.grade}
-                                  onChange={(e) => updateAssignment(a.id, 'grade', Number(e.target.value))}
-                                  className="w-20 px-3 py-2 bg-slate-100 dark:bg-[#0f172a] border-none rounded-xl text-sm font-mono font-bold focus:ring-2 focus:ring-cyan-500 dark:text-white"
-                                />
+                                <Tooltip content="Enter your grade as a percentage (0-100)">
+                                  <input 
+                                    type="number" 
+                                    value={a.grade}
+                                    onChange={(e) => updateAssignment(a.id, 'grade', Number(e.target.value))}
+                                    className="w-20 px-3 py-2 bg-slate-100 dark:bg-[#0f172a] border-none rounded-xl text-sm font-mono font-bold focus:ring-2 focus:ring-cyan-500 dark:text-white"
+                                  />
+                                </Tooltip>
                               ) : (
                                 <>
-                                  <input 
-                                    type="number" 
-                                    value={a.receivedPoints}
-                                    placeholder="Got"
-                                    onChange={(e) => updateAssignment(a.id, 'receivedPoints', Number(e.target.value))}
-                                    className="w-16 px-2 py-2 bg-slate-100 dark:bg-[#0f172a] border-none rounded-xl text-sm font-mono font-bold focus:ring-2 focus:ring-cyan-500 dark:text-white"
-                                  />
+                                  <Tooltip content="Points earned">
+                                    <input 
+                                      type="number" 
+                                      value={a.receivedPoints}
+                                      placeholder="Got"
+                                      onChange={(e) => updateAssignment(a.id, 'receivedPoints', Number(e.target.value))}
+                                      className="w-16 px-2 py-2 bg-slate-100 dark:bg-[#0f172a] border-none rounded-xl text-sm font-mono font-bold focus:ring-2 focus:ring-cyan-500 dark:text-white"
+                                    />
+                                  </Tooltip>
                                   <span className="text-slate-700 dark:text-slate-300 font-bold">/</span>
-                                  <input 
-                                    type="number" 
-                                    value={a.maxPoints}
-                                    placeholder="Total"
-                                    onChange={(e) => updateAssignment(a.id, 'maxPoints', Number(e.target.value))}
-                                    className="w-16 px-2 py-2 bg-slate-100 dark:bg-[#0f172a] border-none rounded-xl text-sm font-mono font-bold focus:ring-2 focus:ring-cyan-500 dark:text-white"
-                                  />
+                                  <Tooltip content="Total possible points">
+                                    <input 
+                                      type="number" 
+                                      value={a.maxPoints}
+                                      placeholder="Total"
+                                      onChange={(e) => updateAssignment(a.id, 'maxPoints', Number(e.target.value))}
+                                      className="w-16 px-2 py-2 bg-slate-100 dark:bg-[#0f172a] border-none rounded-xl text-sm font-mono font-bold focus:ring-2 focus:ring-cyan-500 dark:text-white"
+                                    />
+                                  </Tooltip>
                                 </>
                               )}
                             </div>
                           </td>
                           {method === 'WEIGHTED' && (
                             <td className="px-6 py-4 text-center">
-                              <input 
-                                type="number" 
-                                value={a.weight}
-                                className={cn(
-                                  "w-20 px-3 py-2 bg-slate-100 dark:bg-[#0f172a] border-none rounded-xl text-sm font-mono font-bold focus:ring-2 dark:text-white",
-                                  totalPossibleWeight > 100 ? "text-red-500 focus:ring-red-500" : "focus:ring-cyan-500"
-                                )}
-                              />
+                              <Tooltip content="Contribution to total grade (0-100)">
+                                <input 
+                                  type="number" 
+                                  value={a.weight}
+                                  onChange={(e) => updateAssignment(a.id, 'weight', Number(e.target.value))}
+                                  className={cn(
+                                    "w-20 px-3 py-2 bg-slate-100 dark:bg-[#0f172a] border-none rounded-xl text-sm font-mono font-bold focus:ring-2 dark:text-white",
+                                    totalPossibleWeight > 100 ? "text-red-500 focus:ring-red-500" : "focus:ring-cyan-500"
+                                  )}
+                                />
+                              </Tooltip>
                             </td>
                           )}
                           <td className="px-6 py-4 text-right">
@@ -315,12 +349,14 @@ const GradePage = ({ title = "Grade Calculator" }) => {
               </div>
 
               <div className="p-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <button 
-                  onClick={addAssignment}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-slate-950 rounded-2xl font-black text-sm transition-all shadow-lg shadow-cyan-500/20 active:scale-95"
-                >
-                  <Plus size={18} /> Add Assignment
-                </button>
+                <Tooltip content="Add a new row for your assignments or exams" className="w-full sm:w-auto">
+                  <button 
+                    onClick={addAssignment}
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-slate-950 rounded-2xl font-black text-sm transition-all shadow-lg shadow-cyan-500/20 active:scale-95"
+                  >
+                    <Plus size={18} /> Add Assignment
+                  </button>
+                </Tooltip>
                 {method === 'WEIGHTED' && (
                   <div className={cn(
                     "text-xs font-black px-6 py-3 rounded-2xl shadow-sm border",
@@ -472,7 +508,7 @@ const GradePage = ({ title = "Grade Calculator" }) => {
             {/* Pro Sidebar */}
             <div className="bg-gradient-to-br from-cyan-600 to-slate-900 rounded-[40px] p-10 text-white shadow-2xl relative overflow-hidden group">
                <div className="relative z-10">
-                 <h4 className="font-black text-2xl mb-3 tracking-tight">Go SmartGrader Pro</h4>
+                 <h4 className="font-black text-2xl mb-3 tracking-tight">Go Pro</h4>
                  <p className="text-cyan-50 text-sm mb-8 font-medium leading-relaxed">Save reports to cloud, track multiple semesters, and get AI grade predictions.</p>
                  <button className="w-full py-4 bg-white text-cyan-900 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-cyan-50 transition-all shadow-xl active:scale-95">
                     Unlock Premium

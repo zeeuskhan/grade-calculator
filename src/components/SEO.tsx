@@ -9,14 +9,16 @@ interface SEOProps {
 }
 
 export const SEO: React.FC<SEOProps> = ({ title, description, canonical, schema }) => {
-  const siteName = 'SmartGrader';
+  const siteName = 'CalculatorOfGrades.com';
+  const baseUrl = 'https://calculatorofgrades.vercel.app';
   const fullTitle = `${title} | ${siteName}`;
+  const canonicalUrl = canonical || `${baseUrl}${window.location.pathname}`;
 
   return (
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      {canonical && <link rel="canonical" href={canonical} />}
+      <link rel="canonical" href={canonicalUrl} />
       
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />

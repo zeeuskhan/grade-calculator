@@ -13,6 +13,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { Tooltip } from '../components/Tooltip';
 import { cn, formatNum, GRADES_US } from '../lib/utils';
 
 interface Course {
@@ -81,8 +82,12 @@ const GPAPage = () => {
                 <div className="flex items-center justify-between px-8">
                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Course Name</h3>
                    <div className="flex gap-16">
-                      <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 w-24">Grade</h3>
-                      <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 w-16">Credits</h3>
+                      <Tooltip content="Final letter grade received for the course">
+                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 w-24">Grade</h3>
+                      </Tooltip>
+                      <Tooltip content="The credit weight/hours assigned to this course">
+                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 w-16">Credits</h3>
+                      </Tooltip>
                    </div>
                 </div>
 
@@ -109,21 +114,25 @@ const GPAPage = () => {
                       </div>
                       
                       <div className="flex items-center gap-4 w-full sm:w-auto">
-                        <select 
-                          value={course.grade}
-                          onChange={(e) => updateCourse(course.id, 'grade', e.target.value)}
-                          className="w-full sm:w-24 bg-slate-50 dark:bg-slate-700 border-none rounded-xl p-3 text-sm font-black text-cyan-600 dark:text-cyan-400 focus:ring-2 focus:ring-cyan-500 appearance-none text-center cursor-pointer shadow-inner"
-                        >
-                          {Object.keys(gradeValues).map(g => (
-                            <option key={g} value={g}>{g}</option>
-                          ))}
-                        </select>
-                        <input 
-                          type="number" 
-                          value={course.credits}
-                          onChange={(e) => updateCourse(course.id, 'credits', Math.max(0, Number(e.target.value)))}
-                          className="w-20 bg-slate-50 dark:bg-slate-700 border-none rounded-xl p-3 text-sm font-black text-slate-900 dark:text-white text-center focus:ring-2 focus:ring-cyan-500 shadow-inner"
-                        />
+                        <Tooltip content="Select your letter grade">
+                          <select 
+                            value={course.grade}
+                            onChange={(e) => updateCourse(course.id, 'grade', e.target.value)}
+                            className="w-full sm:w-24 bg-slate-50 dark:bg-slate-700 border-none rounded-xl p-3 text-sm font-black text-cyan-600 dark:text-cyan-400 focus:ring-2 focus:ring-cyan-500 appearance-none text-center cursor-pointer shadow-inner"
+                          >
+                            {Object.keys(gradeValues).map(g => (
+                              <option key={g} value={g}>{g}</option>
+                            ))}
+                          </select>
+                        </Tooltip>
+                        <Tooltip content="Credit hours (e.g. 3.0)">
+                          <input 
+                            type="number" 
+                            value={course.credits}
+                            onChange={(e) => updateCourse(course.id, 'credits', Math.max(0, Number(e.target.value)))}
+                            className="w-20 bg-slate-50 dark:bg-slate-700 border-none rounded-xl p-3 text-sm font-black text-slate-900 dark:text-white text-center focus:ring-2 focus:ring-cyan-500 shadow-inner"
+                          />
+                        </Tooltip>
                         <button 
                           onClick={() => removeCourse(course.id)}
                           className="p-3 text-slate-400 hover:text-red-500 transition-colors bg-slate-50 dark:bg-slate-700 rounded-xl"
@@ -135,13 +144,15 @@ const GPAPage = () => {
                   ))}
                 </AnimatePresence>
 
-                <button 
-                  onClick={addCourse}
-                  className="w-full flex items-center justify-center gap-3 p-8 border-2 border-dashed border-slate-200 dark:border-slate-700 hover:border-cyan-500/50 hover:bg-cyan-50/10 rounded-[32px] text-slate-500 font-black transition-all group active:scale-95 shadow-sm"
-                >
-                  <Plus size={24} className="group-hover:text-cyan-600 dark:group-hover:text-cyan-400" /> 
-                  <span className="group-hover:text-slate-900 dark:group-hover:text-white uppercase tracking-widest text-xs">Add New Course Row</span>
-                </button>
+                <Tooltip content="Add another course to your GPA calculation" className="w-full">
+                  <button 
+                    onClick={addCourse}
+                    className="w-full flex items-center justify-center gap-3 p-8 border-2 border-dashed border-slate-200 dark:border-slate-700 hover:border-cyan-500/50 hover:bg-cyan-50/10 rounded-[32px] text-slate-500 font-black transition-all group active:scale-95 shadow-sm"
+                  >
+                    <Plus size={24} className="group-hover:text-cyan-600 dark:group-hover:text-cyan-400" /> 
+                    <span className="group-hover:text-slate-900 dark:group-hover:text-white uppercase tracking-widest text-xs">Add New Course Row</span>
+                  </button>
+                </Tooltip>
               </div>
               
               <div className="mt-12 p-8 bg-slate-50 dark:bg-slate-800/80 rounded-[32px] border border-slate-200 dark:border-slate-700">
@@ -182,12 +193,16 @@ const GPAPage = () => {
                 </div>
 
                 <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-800 p-8 space-y-4 shadow-sm">
-                   <button className="w-full py-5 bg-slate-900 dark:bg-cyan-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl transition-all hover:scale-[1.02] active:scale-95">
-                      Save to History
-                   </button>
-                   <button className="w-full py-5 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 text-slate-900 dark:text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-50 transition-all flex items-center justify-center gap-3 group">
-                      <Download size={20} className="group-hover:text-cyan-600 dark:group-hover:text-cyan-400" /> Export Sheet
-                   </button>
+                   <Tooltip content="Cloud storage for your academic record (Pro)" className="w-full">
+                     <button className="w-full py-5 bg-slate-900 dark:bg-cyan-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl transition-all hover:scale-[1.02] active:scale-95">
+                        Save to History
+                     </button>
+                   </Tooltip>
+                   <Tooltip content="Export your GPA sheet to CSV or PDF" className="w-full">
+                     <button className="w-full py-5 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 text-slate-900 dark:text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-50 transition-all flex items-center justify-center gap-3 group">
+                        <Download size={20} className="group-hover:text-cyan-600 dark:group-hover:text-cyan-400" /> Export Sheet
+                     </button>
+                   </Tooltip>
                 </div>
 
                 <div className="bg-cyan-50 dark:bg-cyan-950/20 border border-cyan-100 dark:border-cyan-900/50 rounded-[32px] p-6">

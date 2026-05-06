@@ -26,15 +26,10 @@ import GradePage from './pages/GradePage';
 import GPAPage from './pages/GPAPage';
 import FinalGradePage from './pages/FinalGradePage';
 import BlogPage from './pages/BlogPage';
-
-const SimplePage = ({ title }: { title: string }) => (
-  <div className="py-24 px-4 max-w-4xl mx-auto">
-    <h1 className="text-4xl font-black mb-8">{title}</h1>
-    <div className="prose dark:prose-invert">
-      <p className="text-slate-600 dark:text-slate-400">This is the {title.toLowerCase()} page for SmartGrader. We are dedicated to providing the best tools for students.</p>
-    </div>
-  </div>
-);
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,7 +63,7 @@ const Navigation = () => {
                 S+
               </div>
               <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                SmartGrades<span className="text-cyan-500 font-black">.io</span>
+                CalculatorOfGrades<span className="text-cyan-500 font-black">.com</span>
               </span>
             </Link>
           </div>
@@ -165,7 +160,7 @@ const Footer = () => (
           <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center text-slate-950">
             <GraduationCap size={20} />
           </div>
-          <span className="text-xl font-black tracking-tight">SmartGrades</span>
+          <span className="text-xl font-black tracking-tight">CalculatorOfGrades</span>
         </Link>
         <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
           The #1 tool for teachers and students worldwide. Precise, fast, and secure.
@@ -185,8 +180,8 @@ const Footer = () => (
         <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-bold">
           <li><Link to="/about" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">About Us</Link></li>
           <li><Link to="/privacy" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Privacy Policy</Link></li>
+          <li><Link to="/terms" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Terms of Service</Link></li>
           <li><Link to="/contact" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Contact</Link></li>
-          <li><Link to="/sitemap" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Sitemap</Link></li>
         </ul>
       </div>
       <div>
@@ -206,7 +201,7 @@ const Footer = () => (
     </div>
     <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
       <p className="text-[10px] text-slate-500 dark:text-slate-500 font-black uppercase tracking-[0.2em]">
-        © {new Date().getFullYear()} SmartGrades.io. Precision Academic Engineering.
+        © {new Date().getFullYear()} CalculatorOfGrades.com. Precision Academic Engineering.
       </p>
       <div className="flex gap-6">
          <Link to="/contact" className="text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"><Mail size={20} /></Link>
@@ -231,9 +226,10 @@ export default function App() {
                 <Route path="/final-grade-predictor" element={<FinalGradePage />} />
                 <Route path="/percentage-calculator" element={<GradePage title="Percentage" />} />
                 <Route path="/blog" element={<BlogPage />} />
-                <Route path="/about" element={<SimplePage title="About Us" />} />
-                <Route path="/contact" element={<SimplePage title="Contact Us" />} />
-                <Route path="/privacy" element={<SimplePage title="Privacy Policy" />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="/terms" element={<TermsPage />} />
                 <Route path="*" element={<div className="flex items-center justify-center h-96">404 - Not Found</div>} />
               </Routes>
             </AnimatePresence>

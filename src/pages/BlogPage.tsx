@@ -62,7 +62,7 @@ const BlogPage = () => {
     <div className="min-h-screen bg-white dark:bg-slate-950 pb-24">
       <SEO 
         title="Student Success Blog - Study Tips, Grade Hacks & More"
-        description="Read the latest articles on grade calculation, study strategies, and academic success from SmartGrader editors."
+        description="Read the latest articles on grade calculation, study strategies, and academic success from our academic editors."
       />
 
       {/* Header */}

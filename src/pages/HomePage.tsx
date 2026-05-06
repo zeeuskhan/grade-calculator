@@ -40,12 +40,12 @@ const HomePage = () => {
   return (
     <div className="overflow-hidden">
       <SEO 
-        title="SmartGrader - The Best Free Grade & GPA Calculator for Students"
+        title="CalculatorOfGrades - The Best Free Grade & GPA Calculator for Students"
         description="Calculate your grades, GPA, and final exam targets with ease. Supports US 4.0 and Indian CBSE/University scales. Free, fast, and precise tool for students."
         schema={{
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          "name": "SmartGrader",
+          "name": "CalculatorOfGrades",
           "applicationCategory": "EducationalApplication",
           "operatingSystem": "All",
           "description": "Advanced academic grade and GPA calculation suite."
