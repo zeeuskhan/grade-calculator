@@ -44,31 +44,31 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full border-b border-indigo-100 bg-white/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 bg-cyan-600 rounded-xl flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shadow-cyan-500/20 dark:shadow-none group-hover:scale-105 transition-transform">
+              <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
                 S+
               </div>
-              <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                CalculatorOfGrades<span className="text-cyan-500 font-black">.com</span>
+              <span className="text-2xl font-black text-indigo-950 tracking-tight">
+                CalculatorOfGrades<span className="text-indigo-600 font-black">.com</span>
               </span>
             </Link>
           </div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="flex gap-8 font-semibold text-slate-600 dark:text-slate-400">
+            <div className="flex gap-8 font-semibold text-indigo-800/80">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   className={cn(
-                    "relative py-2 transition-colors hover:text-cyan-600",
+                    "relative py-2 transition-colors hover:text-indigo-600",
                     location.pathname === item.path
-                      ? "text-cyan-600 dark:text-cyan-400 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-cyan-600 after:rounded-full"
+                      ? "text-indigo-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-indigo-600 after:rounded-full"
                       : ""
                   )}
                 >
@@ -78,7 +78,7 @@ const Navigation = () => {
             </div>
             
             <div className="flex items-center gap-4 ml-4">
-              <button className="hidden lg:block bg-cyan-600 hover:bg-cyan-700 text-slate-950 px-6 py-2 rounded-xl font-bold shadow-lg shadow-cyan-500/10 dark:shadow-none transition-all active:scale-95">
+              <button className="hidden lg:block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-bold shadow-lg shadow-indigo-500/20 transition-all active:scale-95">
                 Install
               </button>
             </div>
@@ -88,7 +88,7 @@ const Navigation = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-slate-500 dark:text-slate-400"
+              className="p-2 text-indigo-800"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -103,7 +103,7 @@ const Navigation = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 overflow-hidden"
+            className="md:hidden bg-white border-b border-indigo-100 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
               {navItems.map((item) => (
@@ -114,8 +114,8 @@ const Navigation = () => {
                   className={cn(
                     "flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium",
                     location.pathname === item.path
-                    ? "bg-cyan-50 text-cyan-600 dark:bg-cyan-900/30 dark:text-cyan-400"
-                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                    ? "bg-indigo-50 text-indigo-600"
+                    : "text-indigo-900 hover:bg-indigo-50/50"
                   )}
                 >
                   <item.icon size={20} />
@@ -131,60 +131,60 @@ const Navigation = () => {
 };
 
 const Footer = () => (
-  <footer className="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-12 px-4 shadow-inner">
+  <footer className="bg-indigo-50/30 border-t border-indigo-100 py-12 px-4 shadow-inner">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
       <div className="col-span-1 md:col-span-1">
         <Link to="/" className="flex items-center gap-2 mb-4">
-          <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center text-slate-950">
+          <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
             <GraduationCap size={20} />
           </div>
-          <span className="text-xl font-black tracking-tight">CalculatorOfGrades</span>
+          <span className="text-xl font-black tracking-tight text-indigo-950">CalculatorOfGrades</span>
         </Link>
-        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
+        <p className="text-sm text-indigo-800/80 leading-relaxed font-semibold">
           The #1 tool for teachers and students worldwide. Precise, fast, and secure.
         </p>
       </div>
       <div>
-        <h4 className="font-bold mb-6 text-slate-900 dark:text-white uppercase tracking-widest text-[10px]">Calculators</h4>
-        <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-bold">
-          <li><Link to="/grade-calculator" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Grade Calculator</Link></li>
-          <li><Link to="/gpa-calculator" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">GPA Calculator</Link></li>
-          <li><Link to="/final-grade-predictor" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Final Grade Predictor</Link></li>
-          <li><Link to="/percentage-calculator" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Percentage Calculator</Link></li>
+        <h4 className="font-bold mb-6 text-indigo-950 uppercase tracking-widest text-[10px]">Calculators</h4>
+        <ul className="space-y-3 text-sm text-indigo-800 font-bold">
+          <li><Link to="/grade-calculator" className="hover:text-indigo-600 transition-colors">Grade Calculator</Link></li>
+          <li><Link to="/gpa-calculator" className="hover:text-indigo-600 transition-colors">GPA Calculator</Link></li>
+          <li><Link to="/final-grade-predictor" className="hover:text-indigo-600 transition-colors">Final Grade Predictor</Link></li>
+          <li><Link to="/percentage-calculator" className="hover:text-indigo-600 transition-colors">Percentage Calculator</Link></li>
         </ul>
       </div>
       <div>
-        <h4 className="font-bold mb-6 text-slate-900 dark:text-white uppercase tracking-widest text-[10px]">Support</h4>
-        <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-bold">
-          <li><Link to="/about" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">About Us</Link></li>
-          <li><Link to="/faq" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">FAQ</Link></li>
-          <li><Link to="/privacy" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Privacy Policy</Link></li>
-          <li><Link to="/terms" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Terms of Service</Link></li>
-          <li><Link to="/contact" className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">Contact</Link></li>
+        <h4 className="font-bold mb-6 text-indigo-950 uppercase tracking-widest text-[10px]">Support</h4>
+        <ul className="space-y-3 text-sm text-indigo-800 font-bold">
+          <li><Link to="/about" className="hover:text-indigo-600 transition-colors">About Us</Link></li>
+          <li><Link to="/faq" className="hover:text-indigo-600 transition-colors">FAQ</Link></li>
+          <li><Link to="/privacy" className="hover:text-indigo-600 transition-colors">Privacy Policy</Link></li>
+          <li><Link to="/terms" className="hover:text-indigo-600 transition-colors">Terms of Service</Link></li>
+          <li><Link to="/contact" className="hover:text-indigo-600 transition-colors">Contact</Link></li>
         </ul>
       </div>
       <div>
-        <h4 className="font-bold mb-6 text-slate-900 dark:text-white uppercase tracking-widest text-[10px]">Newsletter</h4>
-        <p className="text-[11px] text-slate-600 dark:text-slate-400 mb-4 font-bold">Join 100k+ students getting study tips.</p>
+        <h4 className="font-bold mb-6 text-indigo-950 uppercase tracking-widest text-[10px]">Newsletter</h4>
+        <p className="text-[11px] text-indigo-800 mb-4 font-bold">Join 100k+ students getting study tips.</p>
         <div className="flex gap-2">
           <input 
             type="email" 
             placeholder="Your Email" 
-            className="flex-1 px-4 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all font-bold text-slate-900 dark:text-white"
+            className="flex-1 px-4 py-2 rounded-xl bg-white border border-indigo-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-bold text-indigo-950"
           />
-          <button className="px-5 py-2 bg-cyan-500 hover:bg-cyan-600 text-slate-950 rounded-xl text-sm font-black shadow-lg shadow-cyan-500/20 transition-all active:scale-95">
+          <button className="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-black shadow-lg shadow-indigo-500/20 transition-all active:scale-95">
             Join
           </button>
         </div>
       </div>
     </div>
-    <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p className="text-[10px] text-slate-500 dark:text-slate-500 font-black uppercase tracking-[0.2em]">
+    <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-indigo-100 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p className="text-[10px] text-indigo-500 font-black uppercase tracking-[0.2em]">
         © {new Date().getFullYear()} CalculatorOfGrades.com. Precision Academic Engineering.
       </p>
       <div className="flex gap-6">
-         <Link to="/contact" className="text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"><Mail size={20} /></Link>
-         <Link to="/help" className="text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"><HelpCircle size={20} /></Link>
+         <Link to="/contact" className="text-indigo-400 hover:text-indigo-600 transition-colors"><Mail size={20} /></Link>
+         <Link to="/faq" className="text-indigo-400 hover:text-indigo-600 transition-colors"><HelpCircle size={20} /></Link>
       </div>
     </div>
   </footer>
@@ -194,7 +194,7 @@ export default function App() {
   return (
     <HelmetProvider>
       <Router>
-        <div className="min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-cyan-800 dark:selection:text-cyan-300">
+        <div className="min-h-screen flex flex-col selection:bg-indigo-500/30 selection:text-indigo-900">
           <Navigation />
           <main className="flex-grow">
             <AnimatePresence mode="wait">
