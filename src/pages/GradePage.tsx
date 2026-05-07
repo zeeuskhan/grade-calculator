@@ -184,8 +184,10 @@ const GradePage = ({ title = "Grade Calculator" }) => {
       <div className="max-w-7xl mx-auto px-4 pt-4 md:pt-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 bg-white p-6 md:p-8 rounded-3xl border border-indigo-100/50 shadow-sm">
           <div>
-            <h1 className="text-3xl md:text-4xl font-black text-indigo-950 mb-2 tracking-tight">{title}</h1>
-            <p className="text-indigo-950/70 font-bold text-sm md:text-base">Add your assignments below to see your real-time academic results.</p>
+            <h1 className="text-3xl md:text-4xl font-black text-indigo-950 mb-2 tracking-tight group flex items-center gap-3">
+              {title} <span className="text-indigo-600">Calculatorofgrade</span>
+            </h1>
+            <p className="text-indigo-950/70 font-bold text-sm md:text-base italic">Ultimate professional calculatorofgrade for precise score tracking.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Tooltip content="Switch between US 4.0 and Indian CBSE grading scales">
@@ -434,6 +436,8 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                     <h4 className="font-black text-indigo-950 mb-4">Related Academic Tools:</h4>
                     <div className="flex flex-wrap gap-4 text-sm font-black">
                       <Link to="/gpa-calculator" className="text-indigo-600 hover:underline">GPA Calculator</Link>
+                      <span className="text-indigo-300">•</span>
+                      <Link to="/gpa-calculator" className="text-indigo-600 hover:underline">Calculator of CGPA</Link>
                       <span className="text-indigo-300">•</span>
                       <Link to="/final-grade-predictor" className="text-indigo-600 hover:underline">Final Grade Predictor</Link>
                       <span className="text-indigo-300">•</span>

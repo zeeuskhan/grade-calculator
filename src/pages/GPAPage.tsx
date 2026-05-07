@@ -81,9 +81,9 @@ const GPAPage = () => {
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Professional College & High School GPA Calculator",
+        "name": "Professional College & High School GPA Calculator & CGPA Tool",
         "url": "https://calculatorofgrades.vercel.app/gpa-calculator",
-        "description": "Calculate your semester and cumulative GPA with our free GPA calculator. Supports weighted and unweighted scales, custom credit hours, and more.",
+        "description": "Calculate your semester and cumulative GPA with our free GPA calculator and calculator of cgpa. Supports weighted and unweighted scales, custom credit hours, and more.",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "All",
         "offers": {
@@ -127,8 +127,8 @@ const GPAPage = () => {
   return (
     <div className="min-h-screen bg-indigo-50/20 pb-20">
       <SEO 
-        title="GPA Calculator | Professional Calculatorofgrade Tool"
-        description="Calculate your semester and cumulative GPA with our free calculatorofgrade tool. Supports weighted scales, custom credit hours, and historical tracking."
+        title="GPA Calculator | Professional Calculator of CGPA & GPA"
+        description="Calculate your semester GPA and cumulative CGPA with our free academic suite. The most accurate calculator of cgpa for college and school students."
         schema={schemaData}
       />
 
@@ -138,8 +138,8 @@ const GPAPage = () => {
              <div className="w-12 h-12 md:w-16 md:h-16 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600 mx-auto mb-4 border border-indigo-200 shadow-sm transition-transform hover:rotate-6">
                 <GraduationCap size={28} />
              </div>
-             <h1 className="text-4xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tighter transition-all hover:scale-105 duration-300">GPA <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-8">Quest</span></h1>
-             <p className="text-indigo-950 font-black uppercase tracking-widest text-[10px] md:text-xs mb-8">Join 50,000+ students tracking academic progress.</p>
+             <h1 className="text-4xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tighter transition-all hover:scale-105 duration-300">The Ultimate <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-8">Calculator of CGPA</span></h1>
+             <p className="text-indigo-950 font-black uppercase tracking-widest text-[10px] md:text-xs">Professional calculator of cgpa suite for academic tracking.</p>
              
              {/* Scale Toggle */}
              <div className="inline-flex bg-indigo-50 p-1 rounded-2xl border border-indigo-100">
@@ -265,9 +265,9 @@ const GPAPage = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-3xl font-black text-indigo-950 mt-16 mb-8">Professional Calculator of Grades for Global Students</h3>
+                  <h3 className="text-3xl font-black text-indigo-950 mt-16 mb-8">Professional Calculator of CGPA for Global Students</h3>
                   <p>
-                    Our **GPA Calculator** is the most versatile **calculator for grades** online. Whether you are looking for a **my grades calculator** to check your current standing or an **online gradebook calculator** for your entire degree, we provide the tools you need.
+                    Our GPA tools are designed to be the most accurate <strong>calculator of cgpa</strong> available online. Whether you are tracking a single term or your entire degree, our platform offers:
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
                     <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">

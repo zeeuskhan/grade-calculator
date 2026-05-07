@@ -45,11 +45,11 @@ const HomePage = () => {
         schema={{
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          "name": "Calculator of Grades - Grading Calculator Online",
+          "name": "Calculator of Grades - Grading Calculator & CGPA Tool",
           "url": "https://calculatorofgrades.vercel.app",
           "applicationCategory": "EducationalApplication",
           "operatingSystem": "All",
-          "description": "Professional academic suite featuring a gradebook calculator, grades calculator, and final grade predictor. The best calculator for grades online.",
+          "description": "Professional academic suite featuring a gradebook calculator, calculator of cgpa, and final grade predictor. The best calculator for grades online.",
           "offers": {
             "@type": "Offer",
             "price": "0",
@@ -78,12 +78,12 @@ const HomePage = () => {
             </div>
             
             <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-indigo-950 mb-6 md:mb-8 leading-[0.9] transition-all">
-              CalculatorOf<br />
-              <span className="text-indigo-600">Grade.</span>
+              Top-Rated<br />
+              <span className="text-indigo-600">Calculator of CGPA.</span>
             </h1>
             
             <p className="max-w-xl text-lg md:text-xl text-indigo-950/80 mb-8 md:mb-12 leading-relaxed font-bold">
-              The internet's most precise <strong>calculatorofgrade</strong> suite. Calculate grades, GPA, and exam strategies with expert accuracy.
+              The world's most trusted <strong>calculatorofgrade</strong> suite. Calculate grades, GPA, and exam strategies with surgical precision.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -197,8 +197,8 @@ const HomePage = () => {
       <section className="py-24 px-4 bg-indigo-50/10 border-y border-indigo-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tighter">Instant <span className="text-indigo-600">Percentage Master.</span></h2>
-            <p className="text-indigo-900/60 font-bold max-w-2xl mx-auto">Find common test scores instantly. Our marking calculator provides precise letter grades for every point combination.</p>
+            <h2 className="text-3xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tighter">Your Expert <span className="text-indigo-600">Calculatorofgrade.</span></h2>
+            <p className="text-indigo-900/60 font-bold max-w-2xl mx-auto">Find common test scores instantly. Our <strong>calculatorofgrade</strong> engine provides precise letter grades for every point combination.</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
@@ -236,8 +236,8 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-5xl font-black text-indigo-950 mb-10 leading-[1.1] tracking-tighter">
-              World Class <br />
-              <span className="text-indigo-600 font-black">Infrastructure.</span>
+              The Professional <br />
+              <span className="text-indigo-600 font-black">Calculator of CGPA.</span>
             </h2>
             
             <div className="space-y-8">
@@ -293,7 +293,7 @@ const HomePage = () => {
           <h2 className="text-4xl font-black text-indigo-950 mb-10 tracking-tight text-center">The Professional Choice for Calculatorofgrade Online</h2>
           <div className="space-y-10 font-bold text-indigo-900/70 leading-relaxed">
             <p className="text-lg">
-              Calculatorofgrade (and CalculatorOfGrades.com) is the web's leading <strong>gradebook calculator online</strong> for students seeking performance tracking. Our suite of tools helps you navigate modern grading systems with our <strong>calculatorofgrade</strong> engine.
+              Calculatorofgrade (and CalculatorOfGrades.com) is the web's leading <strong>gradebook calculator online</strong> for students seeking performance tracking. Our suite of tools helps you navigate modern grading systems with our <strong>calculator of cgpa</strong> and grading engine.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 not-prose mt-16">
@@ -330,6 +330,7 @@ const HomePage = () => {
               {[
                 { name: "Calculator for Grading", path: "/grade-calculator" },
                 { name: "Grading Calculator Online", path: "/grade-calculator" },
+                { name: "Calculator of CGPA", path: "/gpa-calculator" },
                 { name: "Calculator for Grades", path: "/grade-calculator" },
                 { name: "Online Gradebook Calculator", path: "/grade-calculator" },
                 { name: "Gradebook Calculator Online", path: "/grade-calculator" },

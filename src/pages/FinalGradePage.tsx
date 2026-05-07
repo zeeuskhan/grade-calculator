@@ -63,8 +63,8 @@ const FinalGradePage = () => {
   return (
     <div className="min-h-screen bg-indigo-50/20 pb-20">
       <SEO 
-        title="Final Grade Calculator - What Score Do I Need on My Final?"
-        description="Calculate the score you need on your final exam. Our final grade predictor helps you reach your target grade easily and accurately with real math."
+        title="Final Grade Calculatorofgrade - What Score Do I Need on My Final?"
+        description="The expert calculatorofgrade for your final exam targets. Our final grade predictor helps you reach your target grade with real math and professional accuracy."
         schema={schemaData}
       />
 
@@ -81,8 +81,8 @@ const FinalGradePage = () => {
            >
              <Target size={40} />
            </motion.div>
-           <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter">Final Grade <span className="text-indigo-400">Target.</span></h1>
-           <p className="text-indigo-100/80 text-lg md:text-xl font-black">Precision calculation for your most critical exams.</p>
+           <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter">CGPA <span className="text-indigo-400">Calculator.</span></h1>
+           <p className="text-indigo-100/80 text-lg md:text-xl font-black">The internet's most accurate calculator of cgpa for students.</p>
         </div>
       </div>
 
