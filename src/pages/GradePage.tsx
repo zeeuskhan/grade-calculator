@@ -40,12 +40,12 @@ interface Assignment {
 }
 
 const GradePage = ({ title = "Grade Calculator" }) => {
-  const [method, setMethod] = useState<'WEIGHTED' | 'SIMPLE'>('WEIGHTED');
-  const [inputMode, setInputMode] = useState<'PERCENT' | 'POINTS'>('PERCENT');
+  const isPercentageMode = title.toLowerCase().includes('percentage');
+  const [method, setMethod] = useState<'WEIGHTED' | 'SIMPLE'>(isPercentageMode ? 'SIMPLE' : 'WEIGHTED');
+  const [inputMode, setInputMode] = useState<'PERCENT' | 'POINTS'>(isPercentageMode ? 'POINTS' : 'PERCENT');
   const [system, setSystem] = useState<'US' | 'INDIA'>('US');
   const [assignments, setAssignments] = useState<Assignment[]>([
-    { id: '1', name: 'Quiz 1', grade: 85, weight: 20, maxPoints: 100, receivedPoints: 85 },
-    { id: '2', name: 'Midterm', grade: 92, weight: 30, maxPoints: 100, receivedPoints: 92 },
+    { id: '1', name: isPercentageMode ? 'Quiz 1' : 'Quiz 1', grade: 85, weight: isPercentageMode ? 0 : 20, maxPoints: 100, receivedPoints: 85 },
   ]);
 
   const schemaData = {
@@ -53,9 +53,11 @@ const GradePage = ({ title = "Grade Calculator" }) => {
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "Professional Grade Calculator & Weighted Average Tool",
-        "url": "https://calculatorofgrades.vercel.app/grade-calculator",
-        "description": "Calculate your grades with surgical precision using our free online grade calculator. Features include- weighted grade calculations, test score percentage tools, and detailed gradebook management for students and teachers.",
+        "name": isPercentageMode ? "Free Test Grade & Percentage Calculator" : "Professional Grade Calculator & Weighted Average Tool",
+        "url": isPercentageMode ? "https://calculatorofgrades.vercel.app/percentage-calculator" : "https://calculatorofgrades.vercel.app/grade-calculator",
+        "description": isPercentageMode 
+          ? "Calculate your test score as a percentage instantly. Enter raw points to see your percentage grade and letter grade. Perfect for students and teachers."
+          : "Calculate your grades with surgical precision using our free online grade calculator. Features include- weighted grade calculations, test score percentage tools, and detailed gradebook management for students and teachers.",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "All",
         "offers": {
@@ -69,34 +71,22 @@ const GradePage = ({ title = "Grade Calculator" }) => {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How to calculate grades manually?",
+            "name": isPercentageMode ? "What is 18 out of 25 as a percentage?" : "How to calculate grades manually?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "To calculate your grade, divide the total points earned by the total points possible. Then, multiply by 100 to get a percentage. For weighted grades, multiply each grade by its weight percentage."
+              "text": isPercentageMode 
+                ? "18 out of 25 is exactly 72%. To calculate this, divide 18 by 25 and multiply by 100."
+                : "To calculate your grade, divide the total points earned by the total points possible. Then, multiply by 100 to get a percentage. For weighted grades, multiply each grade by its weight percentage."
             }
           },
           {
             "@type": "Question",
-            "name": "What is a test grade calculator?",
+            "name": isPercentageMode ? "How to calculate test percentage?" : "What is a test grade calculator?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A test grade calculator is a tool used to determine the percentage score on an exam based on the number of correct answers and the total number of questions. It helps students understand their standing instantly."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is 18 out of 25 as a percentage?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "18 out of 25 is exactly 72%. In the standard US grading scale, this is a C-."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How to calculate weighted average grade?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Multiply each assignment's percentage by its weight (as a decimal), sum these products together, and then divide by the total weight (usually 1 or 100%)."
+              "text": isPercentageMode 
+                ? "Divide your score by the maximum points possible and multiply by 100. Our tool automates this for you."
+                : "A test grade calculator is a tool used to determine the percentage score on an exam based on the number of correct answers and the total number of questions. It helps students understand their standing instantly."
             }
           }
         ]
@@ -111,13 +101,13 @@ const GradePage = ({ title = "Grade Calculator" }) => {
     
     if (method === 'WEIGHTED') {
       const weightedSum = assignments.reduce((acc, curr) => {
-        const score = inputMode === 'PERCENT' ? curr.grade : (curr.receivedPoints / curr.maxPoints) * 100;
-        return acc + (score * curr.weight);
+        const score = inputMode === 'PERCENT' ? curr.grade : (curr.maxPoints > 0 ? (curr.receivedPoints / curr.maxPoints) * 100 : 0);
+        return acc + (score * (curr.weight || 0));
       }, 0);
       return totalPossibleWeight > 0 ? weightedSum / totalPossibleWeight : 0;
     } else {
       const avg = assignments.reduce((acc, curr) => {
-        const score = inputMode === 'PERCENT' ? curr.grade : (curr.receivedPoints / curr.maxPoints) * 100;
+        const score = inputMode === 'PERCENT' ? curr.grade : (curr.maxPoints > 0 ? (curr.receivedPoints / curr.maxPoints) * 100 : 0);
         return acc + score;
       }, 0);
       return avg / assignments.length;
@@ -150,7 +140,16 @@ const GradePage = ({ title = "Grade Calculator" }) => {
   };
 
   const updateAssignment = (id: string, field: keyof Assignment, value: any) => {
-    setAssignments(assignments.map(a => a.id === id ? { ...a, [field]: value } : a));
+    let sanitizedValue = value;
+    if (typeof value === 'number') {
+      if (field === 'grade' || field === 'weight' || field === 'receivedPoints') {
+        sanitizedValue = Math.max(0, value);
+      }
+      if (field === 'maxPoints') {
+        sanitizedValue = Math.max(1, value);
+      }
+    }
+    setAssignments(assignments.map(a => a.id === id ? { ...a, [field]: sanitizedValue } : a));
   };
 
   const exportPDF = () => {
@@ -380,44 +379,55 @@ const GradePage = ({ title = "Grade Calculator" }) => {
             {/* Detailed SEO Long-form Content Section */}
             <div className="bg-white rounded-[32px] border border-indigo-50 p-10 shadow-sm space-y-12">
                <div className="prose max-w-none">
-                  <h2 className="text-4xl font-black tracking-tight text-indigo-950 mb-6">Expert Grade Calculator & Test Scoring Tool</h2>
+                  <h2 className="text-4xl font-black tracking-tight text-indigo-950 mb-6">
+                    {isPercentageMode ? "Expert Percentage Calculator for Grading" : "Professional Grade Calculator & Online Gradebook"}
+                  </h2>
                   <p className="text-lg text-indigo-950/80 leading-relaxed font-black">
-                    Searching for a reliable **grade calculator** to track your academic performance? Whether you need a **test grade calculator** for a single exam or a comprehensive **class grade calculator** for the entire semester, our platform provides professional-grade accuracy. We simplify complex math like **weighted averages** and **percentage conversions** so you can focus on studying.
+                    {isPercentageMode 
+                      ? "Need to find your test score fast? Our **percentage grades calculator** is the ultimate tool for students and teachers. Whether you're calculating **18 out of 25 percentage** or **12 out of 15 percentage**, our **grading calculator percentage** engine provides instant results."
+                      : "Searching for a reliable **grade calculator** to track your academic performance? Whether you need a **test grade calculator** for a single exam or a comprehensive **class grade calculator** for the entire semester, our platform provides professional-grade accuracy."}
                   </p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
                      <div className="not-prose p-8 bg-indigo-50/50 rounded-3xl border border-indigo-100/50">
-                        <h3 className="text-xl font-black mb-4 text-indigo-950">Test Score Percentage</h3>
+                        <h3 className="text-xl font-black mb-4 text-indigo-950">Common Test Percentage Results</h3>
                         <ul className="space-y-4 text-sm font-bold text-indigo-800/60">
-                           <li className="flex justify-between"><span>18 out of 25:</span> <span className="text-indigo-600">72.0% (C-)</span></li>
-                           <li className="flex justify-between"><span>45 out of 50:</span> <span className="text-indigo-600">90.0% (A-)</span></li>
-                           <li className="flex justify-between"><span>12 out of 15:</span> <span className="text-indigo-600">80.0% (B-)</span></li>
-                           <li className="flex justify-between"><span>13 out of 20:</span> <span className="text-indigo-600">65.0% (D)</span></li>
-                           <li className="flex justify-between"><span>29 out of 35:</span> <span className="text-indigo-600">82.9% (B)</span></li>
+                           <li className="flex justify-between"><span>18 out of 25 percentage:</span> <span className="text-indigo-600 font-black">72.0% (C-)</span></li>
+                           <li className="flex justify-between"><span>12 out of 15 percentage:</span> <span className="text-indigo-600 font-black">80.0% (B-)</span></li>
+                           <li className="flex justify-between"><span>13 out of 20 percentage:</span> <span className="text-indigo-600 font-black">65.0% (D)</span></li>
+                           <li className="flex justify-between"><span>14 out of 20 percentage:</span> <span className="text-indigo-600 font-black">70.0% (C-)</span></li>
+                           <li className="flex justify-between"><span>29 out of 35 as a percentage:</span> <span className="text-indigo-600 font-black">82.9% (B)</span></li>
+                           <li className="flex justify-between"><span>12 out of 20:</span> <span className="text-indigo-600 font-black">60.0% (D-)</span></li>
+                           <li className="flex justify-between"><span>16 out of 20 percentage:</span> <span className="text-indigo-600 font-black">80.0% (B-)</span></li>
                         </ul>
                      </div>
                      <div className="not-prose p-8 bg-indigo-50/50 rounded-3xl border border-indigo-100/50">
-                        <h3 className="text-xl font-black mb-4 text-indigo-950">Why Use Our Marker Calculator?</h3>
+                        <h3 className="text-xl font-black mb-4 text-indigo-950">The Best Marking Calculator Online</h3>
                         <p className="text-sm font-semibold leading-relaxed text-indigo-800/60">
-                           Our **marking calculator** is used by teachers and students alike to verify scores. Unlike basic **online grade calculators**, we support multiple grading systems (US 4.0 and CBSE) and provide an **online gradebook calculator** experience that tracks your progress in real-time.
+                           Our **marking calculator** and **scoring a test calculator** are used worldwide. This **grading percentage calculator** supports both simple and weighted averages, giving you a full **my grades calculator** experience.
                         </p>
                      </div>
                   </div>
 
-                  <h3 className="text-2xl font-black text-indigo-950 mt-12 mb-6">How to Calculate a Weighted Grade</h3>
-                  <p className="text-indigo-950/70 leading-relaxed font-bold mb-6">
-                    Calculating a weighted grade manually can be tricky. Here is the formula our **weighted grade calculator** uses:
-                  </p>
-                  <div className="not-prose bg-indigo-950 p-6 rounded-2xl text-indigo-100 font-mono text-sm shadow-xl mb-6 text-center">
-                    (Score 1 × Weight 1) + (Score 2 × Weight 2) + ... [Divide by Total Weight]
-                  </div>
-
-                  <h3 className="text-2xl font-black text-indigo-950 mt-12 mb-6">The Best Free Calculator for Grading</h3>
+                  <h3 className="text-2xl font-black text-indigo-950 mt-12 mb-6">Expert Grading Cal & Calculator of Grades</h3>
                   <p className="text-indigo-800/60 leading-relaxed font-semibold">
-                    1. **Simple Grade Average**: Use this mode if all assignments have the same weight. Just enter your scores. <br/>
-                    2. **Weighted Assignment Calculator**: Best for college courses where finals and labs carry more weight. <br/>
-                    3. **Test Grade & Easy Grader**: Quickly find out your score by entering raw points. <br/>
-                    4. **PDF Export**: Generate a report to share with parents or teachers.
+                    Our platform is more than just a **calculator for grades**; it is a full **online gradebook calculator**. Designed for flexibility, it supports multiple input modes. If you are a teacher looking for an **easy grader**, simply switch to the "Points" mode to calculate test score percentages instantly.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+                    <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">
+                      <h4 className="font-black text-indigo-950 mb-2">1. Grading Calculator Online</h4>
+                      <p className="text-xs text-indigo-900/70 font-bold leading-relaxed">Calculate class grades where certain items have different weights.</p>
+                    </div>
+                    <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">
+                      <h4 className="font-black text-indigo-950 mb-2">2. Gradebook Calculator Online</h4>
+                      <p className="text-xs text-indigo-900/70 font-bold leading-relaxed">Convert raw points (e.g. 18/25) into percentages and letter grades for quick feedback.</p>
+                    </div>
+                  </div>
+                  <p className="text-indigo-800/60 leading-relaxed font-semibold leading-[1.8]">
+                    1. **Grades Calculator**: Use this if all assignments have the same weight. <br/>
+                    2. **Grading Cal**: Best for college courses where finals carry more weight. <br/>
+                    3. **Scoring a Test Calculator**: Quickly find out your score by entering raw points. <br/>
+                    4. **PDF Gradebook**: Generate a report to share with parents or teachers.
                   </p>
 
                   <div className="not-prose mt-12 p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">

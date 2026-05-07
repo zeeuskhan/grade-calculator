@@ -40,16 +40,16 @@ const HomePage = () => {
   return (
     <div className="overflow-hidden">
       <SEO 
-        title="Calculator of Grades | #1 Free Grade, GPA & Final Exam Tool"
-        description="The ultimate calculator of grades for students & teachers. Calculate class grades, weighted GPA, and final exam targets instantly. Supports US 4.0 & CBSE scales."
+        title="Calculator of Grades | #1 Free Grading Calculator & GPA Tool Online"
+        description="The ultimate calculator for grading and online gradebook. Calculate class grades, weighted GPA, and scoring a test percentage instantly. Trusted marking calculator for students & teachers."
         schema={{
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          "name": "CalculatorOfGrades",
+          "name": "Calculator of Grades - Grading Calculator Online",
           "url": "https://calculatorofgrades.vercel.app",
           "applicationCategory": "EducationalApplication",
           "operatingSystem": "All",
-          "description": "Professional academic suite featuring a grade calculator, gpa tracker, and final grade predictor for all education levels.",
+          "description": "Professional academic suite featuring a gradebook calculator, grades calculator, and final grade predictor. The best calculator for grades online.",
           "offers": {
             "@type": "Offer",
             "price": "0",
@@ -193,6 +193,40 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Percentage Search Section */}
+      <section className="py-24 px-4 bg-indigo-50/10 border-y border-indigo-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tighter">Instant <span className="text-indigo-600">Percentage Master.</span></h2>
+            <p className="text-indigo-900/60 font-bold max-w-2xl mx-auto">Find common test scores instantly. Our marking calculator provides precise letter grades for every point combination.</p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            {[
+              { score: "18 out of 25", pct: "72.0%", grade: "C-" },
+              { score: "12 out of 15", pct: "80.0%", grade: "B-" },
+              { score: "13 out of 20", pct: "65.0%", grade: "D" },
+              { score: "14 out of 20", pct: "70.0%", grade: "C-" },
+              { score: "29 out of 35", pct: "82.9%", grade: "B" },
+              { score: "12 out of 20", pct: "60.0%", grade: "D-" },
+              { score: "16 out of 20", pct: "80.0%", grade: "B-" },
+            ].map((item, i) => (
+              <div key={i} className="p-6 bg-white rounded-3xl border border-indigo-100 shadow-sm text-center transition-transform hover:scale-105">
+                <div className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-1">{item.score}</div>
+                <div className="text-2xl font-black text-indigo-600 mb-1">{item.pct}</div>
+                <div className="text-xs font-bold text-indigo-900/60">{item.grade} Grade</div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Link to="/percentage-calculator" className="text-indigo-600 font-black text-xs uppercase tracking-widest hover:underline flex items-center justify-center gap-2">
+              Use Full Percentage Calculator for Grading <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Features List */}
       <section className="py-32 px-4 bg-indigo-50/20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
@@ -250,6 +284,40 @@ const HomePage = () => {
                 <div className="text-indigo-400 text-[10px] font-black uppercase tracking-widest">Global Rating</div>
              </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* SEO Content Section */}
+      <section className="py-24 md:py-32 px-4 bg-white border-t border-indigo-50">
+        <div className="max-w-4xl mx-auto prose prose-indigo">
+          <h2 className="text-4xl font-black text-indigo-950 mb-10 tracking-tight text-center">The Professional Choice for Grading Calculator Online</h2>
+          <div className="space-y-10 font-bold text-indigo-900/70 leading-relaxed">
+            <p className="text-lg">
+              CalculatorOfGrades.com is the web's leading <strong>gradebook calculator online</strong> for students and educators seeking precision. Our suite of tools helps you navigate the complexities of modern grading systems, from <strong>weighted average grading calculator online</strong> to <strong>scoring a test calculator</strong> features.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 not-prose mt-16">
+               <div className="p-8 bg-indigo-50/50 rounded-[40px] border border-indigo-100">
+                  <h3 className="text-xl font-black text-indigo-950 mb-4">Leading My Grades Calculator</h3>
+                  <p className="text-sm">We provide an intuitive <strong>grading cal</strong> environment used by registrar offices at top universities. Whether you need a <strong>calculator for grading</strong> or a complex 8-semester CGPA tracker, our engine handles it with surgical accuracy.</p>
+               </div>
+               <div className="p-8 bg-indigo-50/50 rounded-[40px] border border-indigo-100">
+                  <h3 className="text-xl font-black text-indigo-950 mb-4">Grading Percentage Calculator Online</h3>
+                  <p className="text-sm">Need to know what <strong>16 out of 20 percentage</strong> is? Our <strong>percentage grades calculator</strong> handles every scoring scenario, providing instant feedback for teachers and students alike.</p>
+               </div>
+            </div>
+
+            <h3 className="text-2xl font-black text-indigo-950 mt-16">Why Students Choose Our Online Gradebook Calculator?</h3>
+            <p>
+              In today's competitive academic landscape, every point counts. Using a <strong>grading calculator percentage</strong> tool allows you to identify which subjects need more focus before finals week. Our <strong>calculator for grades</strong> is designed to be the only <strong>gradebook calculator</strong> you'll ever need.
+            </p>
+            
+            <ul className="space-y-4 text-sm mt-8">
+              <li className="flex items-center gap-3"><CheckCircle2 className="text-indigo-600" size={18} /> <strong>Grading Calculator Free:</strong> No hidden costs or subscriptions for basic tracking.</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="text-indigo-600" size={18} /> <strong>Instant Marking Calculator Reports:</strong> Download your grade sheets for sharing or archiving.</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="text-indigo-600" size={18} /> <strong>Privacy First Online Gradebook:</strong> Your data never leaves your browser.</li>
+            </ul>
+          </div>
         </div>
       </section>
 

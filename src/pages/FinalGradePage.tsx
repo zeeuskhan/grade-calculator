@@ -22,17 +22,42 @@ const FinalGradePage = () => {
 
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Precision Final Grade Calculator & Predictor",
-    "url": "https://calculatorofgrades.vercel.app/final-grade-predictor",
-    "description": "Calculate exactly what score you need on your final exam to achieve your target grade. Uses professional academic formulas for weighted and unweighted classes.",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Target Final Grade Calculator & Predictor",
+        "url": "https://calculatorofgrades.vercel.app/final-grade-predictor",
+        "description": "Calculate exactly what score you need on your final exam to achieve your target overall grade. Used by millions of students during finals season.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What score do I need on my final to get an A?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The score depends on your current grade and the weight of the final. For example, if you have an 85% and the final is 20%, you need an 110% on the final to reach a 90% overall (which is impossible without extra credit)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is final grade calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Final Grade = (Current Grade × (100% - Final Weight)) + (Final Exam Score × Final Weight)."
+            }
+          }
+        ]
+      }
+    ]
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Plus, 
@@ -14,7 +14,9 @@ import {
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { Tooltip } from '../components/Tooltip';
-import { cn, formatNum, GRADES_US } from '../lib/utils';
+import { cn, formatNum, GRADES_US, GRADES_INDIA_CBSE } from '../lib/utils';
+
+type ScaleSystem = 'US' | 'INDIA';
 
 interface Course {
   id: string;
@@ -24,18 +26,28 @@ interface Course {
 }
 
 const GPAPage = () => {
+  const [scale, setScale] = useState<ScaleSystem>('US');
   const [courses, setCourses] = useState<Course[]>([
     { id: '1', name: 'Mathematics', grade: 'A', credits: 4 },
     { id: '2', name: 'History', grade: 'B+', credits: 3 },
   ]);
 
-  const gradeValues: Record<string, number> = {
-    'A+': 4.0, 'A': 4.0, 'A-': 3.7,
-    'B+': 3.3, 'B': 3.0, 'B-': 2.7,
-    'C+': 2.3, 'C': 2.0, 'C-': 1.7,
-    'D+': 1.3, 'D': 1.0, 'D-': 0.7,
-    'F': 0.0
-  };
+  const gradeValues = useMemo(() => {
+    if (scale === 'US') {
+      return GRADES_US.reduce((acc, curr) => ({ ...acc, [curr.label]: curr.gpa }), {} as Record<string, number>);
+    } else {
+      return GRADES_INDIA_CBSE.reduce((acc, curr) => ({ ...acc, [curr.label]: curr.gp! }), {} as Record<string, number>);
+    }
+  }, [scale]);
+
+  // Adjust default grades when scale changes
+  useEffect(() => {
+    const defaultGrade = scale === 'US' ? 'A' : 'A1';
+    setCourses(prev => prev.map(c => ({
+      ...c,
+      grade: gradeValues[c.grade] !== undefined ? c.grade : defaultGrade
+    })));
+  }, [scale, gradeValues]);
 
   const gpa = useMemo(() => {
     let totalPoints = 0;
@@ -45,10 +57,11 @@ const GPAPage = () => {
       totalCredits += c.credits;
     });
     return totalCredits > 0 ? totalPoints / totalCredits : 0;
-  }, [courses]);
+  }, [courses, gradeValues]);
 
   const addCourse = () => {
-    setCourses([...courses, { id: crypto.randomUUID(), name: '', grade: 'A', credits: 3 }]);
+    const defaultGrade = scale === 'US' ? 'A' : 'A1';
+    setCourses([...courses, { id: crypto.randomUUID(), name: '', grade: defaultGrade, credits: 3 }]);
   };
 
   const removeCourse = (id: string) => {
@@ -56,22 +69,59 @@ const GPAPage = () => {
   };
 
   const updateCourse = (id: string, field: keyof Course, value: any) => {
-    setCourses(courses.map(c => c.id === id ? { ...c, [field]: value } : c));
+    let sanitizedValue = value;
+    if (field === 'credits') {
+      sanitizedValue = Math.max(0, Number(value));
+    }
+    setCourses(courses.map(c => c.id === id ? { ...c, [field]: sanitizedValue } : c));
   };
 
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Professional College & High School GPA Calculator",
-    "url": "https://calculatorofgrades.vercel.app/gpa-calculator",
-    "description": "Calculate your semester and cumulative GPA with our free GPA calculator. Supports weighted and unweighted scales, custom credit hours, and more.",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Professional College & High School GPA Calculator",
+        "url": "https://calculatorofgrades.vercel.app/gpa-calculator",
+        "description": "Calculate your semester and cumulative GPA with our free GPA calculator. Supports weighted and unweighted scales, custom credit hours, and more.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How to calculate GPA manually?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "To calculate GPA, multiply your grade points for each course by its credit hours. Sum these products and then divide by the total number of credits attempted."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a 4.0 GPA scale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A 4.0 scale is the standard US grading system where an A is 4.0, B is 3.0, C is 2.0, D is 1.0, and F is 0.0. AP or IB courses may add weight (up to 5.0)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is CGPA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CGPA stands for Cumulative Grade Point Average. It is the mean of the GPA obtained in all subjects over multiple semesters or years."
+            }
+          }
+        ]
+      }
+    ]
   };
 
   return (
@@ -89,11 +139,33 @@ const GPAPage = () => {
                 <GraduationCap size={28} />
              </div>
              <h1 className="text-4xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tighter transition-all hover:scale-105 duration-300">GPA <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-8">Quest</span></h1>
-             <p className="text-indigo-950 font-black uppercase tracking-widest text-[10px] md:text-xs">Join 50,000+ students tracking academic progress.</p>
+             <p className="text-indigo-950 font-black uppercase tracking-widest text-[10px] md:text-xs mb-8">Join 50,000+ students tracking academic progress.</p>
+             
+             {/* Scale Toggle */}
+             <div className="inline-flex bg-indigo-50 p-1 rounded-2xl border border-indigo-100">
+               <button
+                 onClick={() => setScale('US')}
+                 className={cn(
+                   "px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all",
+                   scale === 'US' ? "bg-white text-indigo-600 shadow-sm shadow-indigo-200" : "text-indigo-400 hover:text-indigo-600"
+                 )}
+               >
+                 US 4.0 Scale
+               </button>
+               <button
+                 onClick={() => setScale('INDIA')}
+                 className={cn(
+                   "px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all",
+                   scale === 'INDIA' ? "bg-white text-indigo-600 shadow-sm shadow-indigo-200" : "text-indigo-400 hover:text-indigo-600"
+                 )}
+               >
+                 Indian CBSE
+               </button>
+             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 space-y-12">
               <div className="space-y-4">
                 <div className="flex items-center justify-between px-8">
                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900">Course Name</h3>
@@ -170,23 +242,69 @@ const GPAPage = () => {
                   </button>
                 </Tooltip>
               </div>
-                            <div className="mt-12 p-8 bg-indigo-50 rounded-[32px] border border-indigo-100">
-                 <h3 className="text-xl font-black mb-6 flex items-center gap-3 tracking-tight text-indigo-950">
-                    <Info className="text-indigo-600" size={24} /> Calculation Guide
-                 </h3>
-                 <p className="text-indigo-900 text-sm leading-relaxed mb-8 font-bold">
-                    GPA (Grade Point Average) represents the average value of accumulated grades. We calculate this by dividing total grade points by total credits attempted.
-                 </p>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-6 bg-white rounded-3xl border border-indigo-100 shadow-sm transition-transform hover:scale-105">
-                       <h4 className="font-black text-indigo-950 mb-2 text-sm uppercase tracking-widest">Standard 4.0</h4>
-                       <p className="text-xs text-indigo-900 font-bold leading-relaxed">Used by most US schools. A = 4, B = 3, C = 2, D = 1, F = 0.</p>
+                              <div className="bg-white rounded-[48px] border border-indigo-50 p-10 md:p-16 shadow-sm space-y-16">
+                <div className="prose prose-indigo max-w-none font-bold text-indigo-950/80 leading-relaxed">
+                  <h2 className="text-4xl font-black text-indigo-950 tracking-tight mb-8">Ultimate GPA Calculator & Academic Success Guide</h2>
+                  <p className="text-lg">
+                    Whether you are a college student aiming for the Dean's List or a high schooler planning your college applications, understanding your **GPA (Grade Point Average)** is critical. Our **free GPA calculator** uses the standard academic formulas to help you track your progress with surgical precision. Unlike other tools, we support both the **US 4.0 scale** and the **Indian CBSE/ICSE CGPA** system.
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-16">
+                    <div className="not-prose p-8 bg-indigo-50/50 rounded-[40px] border border-indigo-100/50">
+                       <h3 className="text-2xl font-black mb-4 text-indigo-950">How to Calculate GPA</h3>
+                       <p className="text-sm font-semibold mb-6">The basic formula for calculating GPA is simple but requires attention to detail:</p>
+                       <div className="bg-indigo-950 p-6 rounded-3xl text-indigo-100 font-mono text-xs shadow-xl flex items-center justify-center text-center">
+                          GPA = (Points × Credits) / Total Credits
+                       </div>
                     </div>
-                    <div className="p-6 bg-white rounded-3xl border border-indigo-100 shadow-sm transition-transform hover:scale-105">
-                       <h4 className="font-black text-indigo-950 mb-2 text-sm uppercase tracking-widest">Weighted GPA</h4>
-                       <p className="text-xs text-indigo-900 font-bold leading-relaxed">AP/IB courses often add +1.0 point (A = 5.0) for difficulty.</p>
+                    <div className="not-prose p-8 bg-indigo-50/50 rounded-[40px] border border-indigo-100/50">
+                       <h3 className="text-2xl font-black mb-4 text-indigo-950">Why Accuracy Matters</h3>
+                       <p className="text-sm font-semibold leading-relaxed">
+                         A difference of 0.1 on your **college GPA** can be the deciding factor for scholarships or graduate school admissions. Our **semester GPA calculator** ensures every credit hour is accounted for accurately.
+                       </p>
                     </div>
-                 </div>
+                  </div>
+
+                  <h3 className="text-3xl font-black text-indigo-950 mt-16 mb-8">Professional Calculator of Grades for Global Students</h3>
+                  <p>
+                    Our **GPA Calculator** is the most versatile **calculator for grades** online. Whether you are looking for a **my grades calculator** to check your current standing or an **online gradebook calculator** for your entire degree, we provide the tools you need.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+                    <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">
+                      <h4 className="font-black text-indigo-950 mb-2">My Grades Calculator</h4>
+                      <p className="text-xs text-indigo-900/70 font-bold leading-relaxed">Keep track of your individual semester performance with our clean and fast interface.</p>
+                    </div>
+                    <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">
+                      <h4 className="font-black text-indigo-950 mb-2">Calculator of Grades</h4>
+                      <p className="text-xs text-indigo-900/70 font-bold leading-relaxed">The ultimate suite for all your scoring needs, including test percentages and final exam predictions.</p>
+                    </div>
+                  </div>
+                  <p className="mt-8">
+                    Our tool works as both a **semester GPA calculator** and a **cumulative GPA tool**. Simply group your courses by year and input them to see your overall standing.
+                  </p>
+
+                  <h3 className="text-3xl font-black text-indigo-950 mt-16 mb-8">Frequently Asked Questions</h3>
+                  <div className="not-prose space-y-6">
+                    {[
+                      { q: "What is a 4.0 GPA in percentage?", a: "Generally, a 4.0 GPA correlates to a 93-100% average. A 3.7 is typically 90-92% (A-)." },
+                      { q: "Does a 0-credit course affect my GPA?", a: "No. Courses with 0 credits (like some labs or seminars) are not factored into the mathematical calculation, even if you receive a letter grade." },
+                      { q: "What is weighted GPA vs unweighted?", a: "Unweighted GPA calculates all courses on a 4.0 scale regardless of difficulty. Weighted GPA adds extra points (e.g., 5.0) for AP, IB, or Honors classes." }
+                    ].map((faq, i) => (
+                      <div key={i} className="p-8 bg-white border border-indigo-100 rounded-[32px] shadow-sm">
+                        <h4 className="font-black text-indigo-950 mb-3">{faq.q}</h4>
+                        <p className="text-sm text-indigo-800 font-bold leading-relaxed">{faq.a}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-16 p-10 bg-indigo-600 rounded-[40px] text-white shadow-2xl shadow-indigo-500/20">
+                    <h3 className="text-2xl font-black mb-4">Ready to reach your target GPA?</h3>
+                    <p className="text-indigo-100 mb-8 font-medium">Use our Final Grade Predictor to see what scores you need on your remaining exams to hit your goal.</p>
+                    <Link to="/final-grade-predictor" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-indigo-50 transition-all">
+                      Try Final Grade Predictor
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -194,7 +312,9 @@ const GPAPage = () => {
               <div className="sticky top-24 space-y-6">
                 <div className="bg-indigo-600 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-[48px] p-12 text-white text-center shadow-2xl shadow-indigo-500/20 relative overflow-hidden group">
                   <div className="relative z-10">
-                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-100 mb-6 font-mono">ESTIMATED GPA</div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-100 mb-6 font-mono">
+                      {scale === 'US' ? 'ESTIMATED GPA' : 'ESTIMATED CGPA'}
+                    </div>
                     <div className="text-9xl font-black mb-6 tracking-tighter transition-transform group-hover:scale-110 duration-700">
                       {formatNum(gpa)}
                     </div>
