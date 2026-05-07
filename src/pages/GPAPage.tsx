@@ -244,30 +244,66 @@ const GPAPage = () => {
               </div>
                               <div className="bg-white rounded-[48px] border border-indigo-50 p-10 md:p-16 shadow-sm space-y-16">
                 <div className="prose prose-indigo max-w-none font-bold text-indigo-950/80 leading-relaxed">
-                  <h2 className="text-4xl font-black text-indigo-950 tracking-tight mb-8">Ultimate Calculatorofgrade & Academic Success Guide</h2>
+                  <h2 className="text-4xl font-black text-indigo-950 tracking-tight mb-8">Ultimate Calculator of CGPA & Academic Success Guide</h2>
                   <p className="text-lg">
-                    Whether you are a college student aiming for the Dean's List or a high schooler planning your college applications, understanding your <strong>calculatorofgrade</strong> performance is critical. Our <strong>free GPA calculator</strong> uses the standard academic formulas to help you track your progress with surgical precision. Unlike other tools, we support both the **US 4.0 scale** and the **Indian CBSE/ICSE CGPA** system.
+                    Whether you are a college student aiming for the Dean's List or a high schooler planning your college applications, understanding your <strong>calculator of cgpa</strong> performance is critical. Our <strong>free GPA calculator</strong> handles complex conversions including <strong>calculate cgpa cbse</strong> and <strong>calculate cgpa ktu</strong> with professional accuracy.
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-16">
                     <div className="not-prose p-8 bg-indigo-50/50 rounded-[40px] border border-indigo-100/50">
-                       <h3 className="text-2xl font-black mb-4 text-indigo-950">How to Calculate GPA</h3>
-                       <p className="text-sm font-semibold mb-6">The basic formula for calculating GPA is simple but requires attention to detail:</p>
+                       <h3 className="text-2xl font-black mb-4 text-indigo-950">Calculate CGPA Formula</h3>
+                       <p className="text-sm font-semibold mb-6">The basic formula for <strong>calculate cgpa from marks</strong> or grades is:</p>
                        <div className="bg-indigo-950 p-6 rounded-3xl text-indigo-100 font-mono text-xs shadow-xl flex items-center justify-center text-center">
-                          GPA = (Points × Credits) / Total Credits
+                          CGPA = (Sum of Grade Points) / Total Subjects
                        </div>
                     </div>
                     <div className="not-prose p-8 bg-indigo-50/50 rounded-[40px] border border-indigo-100/50">
-                       <h3 className="text-2xl font-black mb-4 text-indigo-950">Why Accuracy Matters</h3>
+                       <h3 className="text-2xl font-black mb-4 text-indigo-950">CGPA to Percentage Calculator</h3>
                        <p className="text-sm font-semibold leading-relaxed">
-                         A difference of 0.1 on your **college GPA** can be the deciding factor for scholarships or graduate school admissions. Our **semester GPA calculator** ensures every credit hour is accounted for accurately.
+                         Need to find <strong>8 cgpa in percentage</strong>? In CBSE, the formula is (CGPA × 9.5). This means 8 CGPA is 76%, and <strong>8.2cgpa in percentage</strong> is 77.9%.
                        </p>
                     </div>
                   </div>
 
-                  <h3 className="text-3xl font-black text-indigo-950 mt-16 mb-8">Professional Calculator of CGPA for Global Students</h3>
+                  <h3 className="text-3xl font-black text-indigo-950 mt-16 mb-8">Professional Calculator of CGPA for Engineering & Global Students</h3>
                   <p>
-                    Our GPA tools are designed to be the most accurate <strong>calculator of cgpa</strong> available online. Whether you are tracking a single term or your entire degree, our platform offers:
+                    Our tools are designed to be the leading <strong>calculate cgpa online</strong> resource for various boards and universities:
+                  </p>
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 my-8">
+                    <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">
+                      <h4 className="font-black text-indigo-950 mb-2">Engineering & Tech</h4>
+                      <p className="text-[10px] text-indigo-900/70 font-bold leading-relaxed">Specific support for KTU, SPPU, and standard 10-pointer engineering scales.</p>
+                    </div>
+                    <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">
+                      <h4 className="font-black text-indigo-950 mb-2">Calculate CGPA from Grades</h4>
+                      <p className="text-[10px] text-indigo-900/70 font-bold leading-relaxed">Instantly convert letter grades (A+, A, B) into a cumulative pointer.</p>
+                    </div>
+                    <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">
+                      <h4 className="font-black text-indigo-950 mb-2">CGPA Table Online</h4>
+                      <p className="text-[10px] text-indigo-900/70 font-bold leading-relaxed">View common values like <strong>6 cgpa in percentage</strong> (57%) or <strong>5 cgpa in percentage</strong> (47.5%).</p>
+                    </div>
+                  </div>
+
+                  <div className="not-prose mt-12 p-10 bg-indigo-950 rounded-[40px] text-white">
+                    <h3 className="text-2xl font-black mb-6">CGPA to Percentage Quick Conversion Table</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                        <div className="space-y-4">
+                            <div className="flex justify-between border-b border-indigo-800 pb-2"><span>9.8 CGPA to Percentage</span> <span className="font-mono text-indigo-400">93.1%</span></div>
+                            <div className="flex justify-between border-b border-indigo-800 pb-2"><span>9.5 CGPA in Percentage</span> <span className="font-mono text-indigo-400">90.25%</span></div>
+                            <div className="flex justify-between border-b border-indigo-800 pb-2"><span>9.0 CGPA in Percentage</span> <span className="font-mono text-indigo-400">85.5%</span></div>
+                            <div className="flex justify-between border-b border-indigo-800 pb-2"><span>85 to CGPA</span> <span className="font-mono text-indigo-400">8.95</span></div>
+                        </div>
+                        <div className="space-y-4">
+                            <div className="flex justify-between border-b border-indigo-800 pb-2"><span>8.2 CGPA to Percentage</span> <span className="font-mono text-indigo-400">77.9%</span></div>
+                            <div className="flex justify-between border-b border-indigo-800 pb-2"><span>8.0 CGPA to Percentage</span> <span className="font-mono text-indigo-400">76.0%</span></div>
+                            <div className="flex justify-between border-b border-indigo-800 pb-2"><span>6.0 CGPA in Percentage</span> <span className="font-mono text-indigo-400">57.0%</span></div>
+                            <div className="flex justify-between border-b border-indigo-800 pb-2"><span>84 Percent in CGPA</span> <span className="font-mono text-indigo-400">8.84</span></div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <p className="mt-8">
+                    Our <strong>calculate cgpa cbse</strong> engine uses the official 9.5 multiplier for percentage conversion. For engineering students (KTU, SPPU), please use our credit-weighted mode to ensure accuracy for each semester.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
                     <div className="p-6 bg-indigo-50 border border-indigo-100 rounded-2xl">

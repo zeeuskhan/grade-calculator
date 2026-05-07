@@ -197,31 +197,31 @@ const HomePage = () => {
       <section className="py-24 px-4 bg-indigo-50/10 border-y border-indigo-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tighter">Your Expert <span className="text-indigo-600">Calculatorofgrade.</span></h2>
-            <p className="text-indigo-900/60 font-bold max-w-2xl mx-auto">Find common test scores instantly. Our <strong>calculatorofgrade</strong> engine provides precise letter grades for every point combination.</p>
+            <h2 className="text-3xl md:text-5xl font-black text-indigo-950 mb-4 tracking-tighter">Instant <span className="text-indigo-600">Calculator of CGPA.</span></h2>
+            <p className="text-indigo-900/60 font-bold max-w-2xl mx-auto">Convert CGPA to percentage instantly. Our <strong>calculate cgpa formula</strong> helps you find precise conversions for CBSE and Engineering.</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
             {[
-              { score: "18 out of 25", pct: "72.0%", grade: "C-" },
-              { score: "12 out of 15", pct: "80.0%", grade: "B-" },
-              { score: "13 out of 20", pct: "65.0%", grade: "D" },
-              { score: "14 out of 20", pct: "70.0%", grade: "C-" },
-              { score: "29 out of 35", pct: "82.9%", grade: "B" },
-              { score: "12 out of 20", pct: "60.0%", grade: "D-" },
-              { score: "16 out of 20", pct: "80.0%", grade: "B-" },
+              { score: "9.5 CGPA", pct: "90.25%", term: "9.5 to percentage" },
+              { score: "9.0 CGPA", pct: "85.5%", term: "9 cgpa in percentage" },
+              { score: "8.5 CGPA", pct: "80.75%", term: "8.5 cgpa to percentage" },
+              { score: "8.2 CGPA", pct: "77.9%", term: "8.2cgpa in percentage" },
+              { score: "8.0 CGPA", pct: "76.0%", term: "8 cgpa in percentage" },
+              { score: "7.0 CGPA", pct: "66.5%", term: "7 cgpa to percentage" },
+              { score: "6.0 CGPA", pct: "57.0%", term: "6 cgpa in percentage" },
             ].map((item, i) => (
               <div key={i} className="p-6 bg-white rounded-3xl border border-indigo-100 shadow-sm text-center transition-transform hover:scale-105">
                 <div className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-1">{item.score}</div>
                 <div className="text-2xl font-black text-indigo-600 mb-1">{item.pct}</div>
-                <div className="text-xs font-bold text-indigo-900/60">{item.grade} Grade</div>
+                <div className="text-[10px] font-bold text-indigo-900/60">{item.term}</div>
               </div>
             ))}
           </div>
           
           <div className="mt-12 text-center">
-            <Link to="/percentage-calculator" className="text-indigo-600 font-black text-xs uppercase tracking-widest hover:underline flex items-center justify-center gap-2">
-              Use Full Percentage Calculator for Grading <ArrowRight size={14} />
+            <Link to="/gpa-calculator" className="text-indigo-600 font-black text-xs uppercase tracking-widest hover:underline flex items-center justify-center gap-2">
+              Use Full Calculator CGPA to Percentage <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -331,11 +331,10 @@ const HomePage = () => {
                 { name: "Calculator for Grading", path: "/grade-calculator" },
                 { name: "Grading Calculator Online", path: "/grade-calculator" },
                 { name: "Calculator of CGPA", path: "/gpa-calculator" },
-                { name: "Calculator for Grades", path: "/grade-calculator" },
-                { name: "Online Gradebook Calculator", path: "/grade-calculator" },
-                { name: "Gradebook Calculator Online", path: "/grade-calculator" },
-                { name: "My Grades Calculator", path: "/grade-calculator" },
-                { name: "Grading Cal", path: "/grade-calculator" }
+                { name: "CGPA Calculator Online", path: "/gpa-calculator" },
+                { name: "Calculator of 7th CPC", path: "/grade-calculator" },
+                { name: "KTU CGPA Calculator", path: "/gpa-calculator" },
+                { name: "SPPU CGPA Calculator", path: "/gpa-calculator" }
               ].map((link, j) => (
                 <li key={j}>
                   <Link to={link.path} className="hover:text-indigo-400 transition-colors">{link.name}</Link>
@@ -345,37 +344,37 @@ const HomePage = () => {
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-black text-white uppercase tracking-widest text-sm mb-6">Percentage Shortcuts</h4>
+            <h4 className="font-black text-white uppercase tracking-widest text-sm mb-6">CGPA to Percentage</h4>
             <ul className="space-y-2">
               {[
-                "18 out of 25 percentage",
-                "12 out of 15 percentage",
-                "13 out of 20 percentage",
-                "14 out of 20 percentage",
-                "29 out of 35 as a percentage",
-                "12 out of 20 score",
-                "16 out of 20 percentage"
+                "8 cgpa in percentage",
+                "8.2cgpa in percentage",
+                "6 cgpa in percentage",
+                "9 cgpa in percentage",
+                "CGPA of percentage",
+                "3 cgpa in percentage",
+                "4 cgpa to percentage"
               ].map((term, j) => (
                 <li key={j}>
-                  <Link to="/percentage-calculator" className="hover:text-indigo-400 transition-colors uppercase tracking-tight">{term}</Link>
+                  <Link to="/gpa-calculator" className="hover:text-indigo-400 transition-colors uppercase tracking-tight">{term}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-black text-white uppercase tracking-widest text-sm mb-6">Global Academic Standards</h4>
+            <h4 className="font-black text-white uppercase tracking-widest text-sm mb-6">Conversions & Formulas</h4>
             <ul className="space-y-2">
               {[
-                "Calculator of Grades US 4.0",
-                "Marking Calculator CBSE",
-                "Scoring a Test Calculator",
-                "Grades Calculator Indian Scale",
-                "Calculatorofgrade Expert Mode",
-                "Percentage Calculator for Grading",
-                "Grading Percentage Calculator"
+                "Calculate CGPA Formula",
+                "Calculate CGPA from Marks",
+                "Calculate CGPA CBSE",
+                "84 percent in cgpa",
+                "CGPA Calculator out of 4",
+                "Calculate CGPA for Engineering",
+                "Calculate overall CGPA all semesters"
               ].map((term, j) => (
-                <li key={j} className="hover:text-indigo-400 cursor-default">{term}</li>
+                <li key={j} className="hover:text-indigo-400 cursor-default uppercase tracking-tight">{term}</li>
               ))}
             </ul>
           </div>
