@@ -321,6 +321,80 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Comprehensive SEO Footer Content */}
+      <section className="py-24 px-4 bg-indigo-950 text-indigo-100/60 text-xs border-t border-indigo-900/50">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="space-y-4">
+            <h4 className="font-black text-white uppercase tracking-widest text-sm mb-6">Popular Grading Tools</h4>
+            <ul className="space-y-2">
+              {[
+                { name: "Calculator for Grading", path: "/grade-calculator" },
+                { name: "Grading Calculator Online", path: "/grade-calculator" },
+                { name: "Calculator for Grades", path: "/grade-calculator" },
+                { name: "Online Gradebook Calculator", path: "/grade-calculator" },
+                { name: "Gradebook Calculator Online", path: "/grade-calculator" },
+                { name: "My Grades Calculator", path: "/grade-calculator" },
+                { name: "Grading Cal", path: "/grade-calculator" }
+              ].map((link, j) => (
+                <li key={j}>
+                  <Link to={link.path} className="hover:text-indigo-400 transition-colors">{link.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-black text-white uppercase tracking-widest text-sm mb-6">Percentage Shortcuts</h4>
+            <ul className="space-y-2">
+              {[
+                "18 out of 25 percentage",
+                "12 out of 15 percentage",
+                "13 out of 20 percentage",
+                "14 out of 20 percentage",
+                "29 out of 35 as a percentage",
+                "12 out of 20 score",
+                "16 out of 20 percentage"
+              ].map((term, j) => (
+                <li key={j}>
+                  <Link to="/percentage-calculator" className="hover:text-indigo-400 transition-colors uppercase tracking-tight">{term}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-black text-white uppercase tracking-widest text-sm mb-6">Global Academic Standards</h4>
+            <ul className="space-y-2">
+              {[
+                "Calculator of Grades US 4.0",
+                "Marking Calculator CBSE",
+                "Scoring a Test Calculator",
+                "Grades Calculator Indian Scale",
+                "Calculatorofgrade Expert Mode",
+                "Percentage Calculator for Grading",
+                "Grading Percentage Calculator"
+              ].map((term, j) => (
+                <li key={j} className="hover:text-indigo-400 cursor-default">{term}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-6">
+            <div className="p-6 bg-indigo-900/30 rounded-3xl border border-indigo-800/50">
+              <h4 className="font-black text-white uppercase tracking-widest text-xs mb-3">About Calculatorofgrade</h4>
+              <p className="leading-relaxed opacity-80">
+                Calculatorofgrade is the web's premier destination for academic score tracking. Our algorithms follow standard pedagogical weighted averaging protocols ensuring 100% accuracy for all <strong>grades calculator</strong> needs.
+              </p>
+            </div>
+            <div className="flex gap-4">
+               <div className="w-10 h-10 rounded-xl bg-indigo-900/50 flex items-center justify-center font-black text-white text-xs">A+</div>
+               <div className="w-10 h-10 rounded-xl bg-indigo-900/50 flex items-center justify-center font-black text-white text-xs">10.0</div>
+               <div className="w-10 h-10 rounded-xl bg-indigo-900/50 flex items-center justify-center font-black text-white text-xs">100%</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-32 px-4">
         <div className="max-w-6xl mx-auto rounded-[60px] bg-indigo-950 p-20 text-center text-white relative overflow-hidden shadow-2xl">

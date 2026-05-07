@@ -146,7 +146,7 @@ const Navigation = () => {
 const Footer = () => (
   <footer className="bg-white border-t border-indigo-100 py-16 px-4">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-      <div className="col-span-1 md:col-span-1">
+          <div className="col-span-1 md:col-span-1">
         <Link to="/" className="flex items-center gap-2 mb-6">
           <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
             <GraduationCap size={24} />
@@ -154,7 +154,7 @@ const Footer = () => (
           <span className="text-2xl font-black tracking-tight text-indigo-950">CalculatorOfGrades</span>
         </Link>
         <p className="text-sm text-indigo-900/80 leading-relaxed font-bold">
-          The #1 tool for teachers and students worldwide. Precise, fast, and secure. Built for academic excellence.
+          The #1 <strong>calculatorofgrade</strong> tool for teachers and students worldwide. Precise, fast, and secure. Built for academic excellence.
         </p>
       </div>
       <div>
