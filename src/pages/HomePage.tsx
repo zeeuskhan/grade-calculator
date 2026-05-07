@@ -40,8 +40,8 @@ const HomePage = () => {
   return (
     <div className="overflow-hidden">
       <SEO 
-        title="Calculator of Grades | #1 Free Grading Calculator & GPA Tool Online"
-        description="The ultimate calculator for grading and online gradebook. Calculate class grades, weighted GPA, and scoring a test percentage instantly. Trusted marking calculator for students & teachers."
+        title="Calculatorofgrade | #1 Free Grading Calculator & GPA Tool Online"
+        description="The ultimate calculatorofgrade for students & teachers. Use our professional grading calculator online for precise class grades and GPA tracking."
         schema={{
           "@context": "https://schema.org",
           "@type": "WebApplication",
@@ -78,12 +78,12 @@ const HomePage = () => {
             </div>
             
             <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-indigo-950 mb-6 md:mb-8 leading-[0.9] transition-all">
-              Academic <br />
-              <span className="text-indigo-600">Engineering.</span>
+              CalculatorOf<br />
+              <span className="text-indigo-600">Grade.</span>
             </h1>
             
             <p className="max-w-xl text-lg md:text-xl text-indigo-950/80 mb-8 md:mb-12 leading-relaxed font-bold">
-              The world's most precise academic calculator suite. Calculate grades, GPA, and exam strategies with expert accuracy.
+              The internet's most precise <strong>calculatorofgrade</strong> suite. Calculate grades, GPA, and exam strategies with expert accuracy.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -290,10 +290,10 @@ const HomePage = () => {
       {/* SEO Content Section */}
       <section className="py-24 md:py-32 px-4 bg-white border-t border-indigo-50">
         <div className="max-w-4xl mx-auto prose prose-indigo">
-          <h2 className="text-4xl font-black text-indigo-950 mb-10 tracking-tight text-center">The Professional Choice for Grading Calculator Online</h2>
+          <h2 className="text-4xl font-black text-indigo-950 mb-10 tracking-tight text-center">The Professional Choice for Calculatorofgrade Online</h2>
           <div className="space-y-10 font-bold text-indigo-900/70 leading-relaxed">
             <p className="text-lg">
-              CalculatorOfGrades.com is the web's leading <strong>gradebook calculator online</strong> for students and educators seeking precision. Our suite of tools helps you navigate the complexities of modern grading systems, from <strong>weighted average grading calculator online</strong> to <strong>scoring a test calculator</strong> features.
+              Calculatorofgrade (and CalculatorOfGrades.com) is the web's leading <strong>gradebook calculator online</strong> for students seeking performance tracking. Our suite of tools helps you navigate modern grading systems with our <strong>calculatorofgrade</strong> engine.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 not-prose mt-16">

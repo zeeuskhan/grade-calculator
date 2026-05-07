@@ -127,8 +127,8 @@ const GPAPage = () => {
   return (
     <div className="min-h-screen bg-indigo-50/20 pb-20">
       <SEO 
-        title="GPA Calculator | College & High School Grade Point Average"
-        description="Calculate your semester and cumulative GPA with our free GPA calculator. Supports weighted and unweighted scales, custom credit hours, and historical tracking."
+        title="GPA Calculator | Professional Calculatorofgrade Tool"
+        description="Calculate your semester and cumulative GPA with our free calculatorofgrade tool. Supports weighted scales, custom credit hours, and historical tracking."
         schema={schemaData}
       />
 
@@ -244,9 +244,9 @@ const GPAPage = () => {
               </div>
                               <div className="bg-white rounded-[48px] border border-indigo-50 p-10 md:p-16 shadow-sm space-y-16">
                 <div className="prose prose-indigo max-w-none font-bold text-indigo-950/80 leading-relaxed">
-                  <h2 className="text-4xl font-black text-indigo-950 tracking-tight mb-8">Ultimate GPA Calculator & Academic Success Guide</h2>
+                  <h2 className="text-4xl font-black text-indigo-950 tracking-tight mb-8">Ultimate Calculatorofgrade & Academic Success Guide</h2>
                   <p className="text-lg">
-                    Whether you are a college student aiming for the Dean's List or a high schooler planning your college applications, understanding your **GPA (Grade Point Average)** is critical. Our **free GPA calculator** uses the standard academic formulas to help you track your progress with surgical precision. Unlike other tools, we support both the **US 4.0 scale** and the **Indian CBSE/ICSE CGPA** system.
+                    Whether you are a college student aiming for the Dean's List or a high schooler planning your college applications, understanding your <strong>calculatorofgrade</strong> performance is critical. Our <strong>free GPA calculator</strong> uses the standard academic formulas to help you track your progress with surgical precision. Unlike other tools, we support both the **US 4.0 scale** and the **Indian CBSE/ICSE CGPA** system.
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-16">

@@ -176,8 +176,8 @@ const GradePage = ({ title = "Grade Calculator" }) => {
   return (
     <div className="min-h-screen bg-indigo-50/20 pb-20">
       <SEO 
-        title="Grade Calculator | Final Grade & Weighted Average Calculator"
-        description="The #1 Grade Calculator for students. Calculate test scores, weighted averages, and class grades. Support for 18 out of 25 percentage and college grading scales."
+        title={`${title} | Professional Calculatorofgrade Tool`}
+        description={`Calculate your grades with our free calculatorofgrade tool. Supports ${isPercentageMode ? '18 out of 25 percentage' : 'weighted averages'} and detailed gradebook management.`}
         schema={schemaData}
       />
 
