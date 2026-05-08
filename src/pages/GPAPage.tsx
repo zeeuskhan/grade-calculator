@@ -10,8 +10,10 @@ import {
   Info,
   ChevronDown,
   BookOpen,
-  TrendingUp
+  TrendingUp,
+  Link as LinkIcon
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { Tooltip } from '../components/Tooltip';
 import { cn, formatNum, GRADES_US, GRADES_INDIA_CBSE } from '../lib/utils';
@@ -322,9 +324,14 @@ const GPAPage = () => {
                   <h3 className="text-3xl font-black text-indigo-950 mt-16 mb-8">Frequently Asked Questions</h3>
                   <div className="not-prose space-y-6">
                     {[
-                      { q: "What is a 4.0 GPA in percentage?", a: "Generally, a 4.0 GPA correlates to a 93-100% average. A 3.7 is typically 90-92% (A-)." },
-                      { q: "Does a 0-credit course affect my GPA?", a: "No. Courses with 0 credits (like some labs or seminars) are not factored into the mathematical calculation, even if you receive a letter grade." },
-                      { q: "What is weighted GPA vs unweighted?", a: "Unweighted GPA calculates all courses on a 4.0 scale regardless of difficulty. Weighted GPA adds extra points (e.g., 5.0) for AP, IB, or Honors classes." }
+                      { q: "How to calculate 8 cgpa in percentage?", a: "To convert 8 CGPA to percentage (CBSE), multiply by 9.5: 8 × 9.5 = 76%." },
+                      { q: "What is 8.2cgpa in percentage?", a: "Using the standard CBSE calculate cgpa formula, 8.2 CGPA is 77.9% (8.2 × 9.5). For 6 cgpa in percentage, it is 57%." },
+                      { q: "How to calculate cgpa online for SPPU & KTU?", a: "For SPPU (Pune University), use our specific calculate cgpa to percentage sppu mode. For KTU, use the calculate cgpa ktu engine which uses specific credit weightage." },
+                      { q: "What is the calculate cgpa formula from marks?", a: "The standard formula for calculate cgpa from marks involves dividing the sum of grade points obtained by the total number of subjects. To get percentage, use (CGPA × 9.5)." },
+                      { q: "Can I calculate overall cgpa of all semesters?", a: "Yes, our calculator for engineering allows you to calculate overall cgpa of all semesters by inputting each semester's SGPA and total credits." },
+                      { q: "What is the percentage of 9.8 cgpa?", a: "The percentage of 9.8 cgpa is 93.1%. Similarly, 9 cgpa in percentage is 85.5%." },
+                      { q: "How to convert 85 to cgpa?", a: "To convert 85 percentage to cgpa, divide by 9.5. So 85 to cgpa is approximately 8.95. For 84 percent in cgpa, it is 8.84." },
+                      { q: "How to calculate cgpa from gpa on a 4.0 scale?", a: "To calculate cgpa from gpa, you typically take a weighted average of your semester GPAs. A cgpa calculator out of 4 is standard for US universities." }
                     ].map((faq, i) => (
                       <div key={i} className="p-8 bg-white border border-indigo-100 rounded-[32px] shadow-sm">
                         <h4 className="font-black text-indigo-950 mb-3">{faq.q}</h4>

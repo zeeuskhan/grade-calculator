@@ -352,6 +352,11 @@ const HomePage = () => {
                 "6 cgpa in percentage",
                 "9 cgpa in percentage",
                 "CGPA of percentage",
+                "what is 9.8 cgpa in percentage",
+                "77 percentage to cgpa",
+                "53 percentage to cgpa",
+                "69 percentage to cgpa",
+                "7 point cgpa to percentage",
                 "3 cgpa in percentage",
                 "4 cgpa to percentage"
               ].map((term, j) => (
@@ -370,6 +375,8 @@ const HomePage = () => {
                 "Calculate CGPA from Marks",
                 "Calculate CGPA CBSE",
                 "84 percent in cgpa",
+                "69 to cgpa",
+                "84 to cgpa",
                 "CGPA Calculator out of 4",
                 "Calculate CGPA for Engineering",
                 "Calculate overall CGPA all semesters"
