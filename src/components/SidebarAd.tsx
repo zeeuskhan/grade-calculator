@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 
 interface SidebarAdProps {
   side: 'left' | 'right';
@@ -7,7 +7,7 @@ interface SidebarAdProps {
 export const SidebarAd = ({ side }: SidebarAdProps) => {
   const adContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (adContainerRef.current) {
       adContainerRef.current.innerHTML = '';
       
@@ -34,7 +34,12 @@ export const SidebarAd = ({ side }: SidebarAdProps) => {
 
   return (
     <div className={`hidden xl:block sticky top-24 h-[600px] w-[160px] ${side === 'left' ? 'mr-4' : 'ml-4'} shrink-0`}>
-      <div ref={adContainerRef} className="w-[160px] h-[600px] bg-white/10 rounded-lg overflow-hidden border border-indigo-50" />
+      <div 
+        ref={adContainerRef} 
+        className="w-[160px] h-[600px] bg-indigo-50/30 rounded-lg overflow-hidden border border-indigo-100 flex items-center justify-center relative"
+      >
+        <span className="text-[10px] font-black text-indigo-200 uppercase tracking-widest absolute top-2">Advertisement</span>
+      </div>
     </div>
   );
 };

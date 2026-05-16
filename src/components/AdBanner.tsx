@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 
 export const AdBanner = () => {
   const adContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (adContainerRef.current) {
       // Clear container
       adContainerRef.current.innerHTML = '';
@@ -30,8 +30,13 @@ export const AdBanner = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center w-full min-h-[90px] py-6 overflow-hidden bg-white/30">
-      <div ref={adContainerRef} className="ad-wrapper w-full max-w-[728px]" />
+    <div className="flex justify-center items-center w-full min-h-[90px] py-6 overflow-hidden bg-white/30 print:hidden px-4">
+      <div 
+        ref={adContainerRef} 
+        className="ad-wrapper w-full max-w-[728px] min-h-[90px] bg-indigo-50/20 rounded-xl flex items-center justify-center relative border border-indigo-50/50"
+      >
+        <span className="text-[10px] font-black text-indigo-200 uppercase tracking-widest absolute top-1">Advertisement</span>
+      </div>
     </div>
   );
 };
