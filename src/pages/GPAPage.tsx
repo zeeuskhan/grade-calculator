@@ -78,6 +78,15 @@ const GPAPage = () => {
     setCourses(courses.map(c => c.id === id ? { ...c, [field]: sanitizedValue } : c));
   };
 
+  const faqsData = [
+    { q: "How is my US GPA actually calculated?", a: "We use the weighted average method: (Grade Points × Credits) / Total Credits. An 'A' in a 4-credit course has more impact than an 'A' in a 1-credit lab. Our tool handles this weightage automatically!" },
+    { q: "What's the difference between Weighted and Unweighted?", a: "Unweighted GPA scales everyone on a 4.0 max. Weighted GPA (often up to 5.0) rewards you for taking tougher classes like AP, IB, or Honors. You can simulate both by adjusting your grade values here." },
+    { q: "How do I calculate my cumulative GPA (all semesters)?", a: "To find your overall CGPA, simply add all your courses from every semester into the list. The tool will calculate the total weighted average across your entire academic history." },
+    { q: "Is a 3.5 GPA good for US college admissions?", a: "A 3.5 is a solid 'B+/A-' average. While 'good' depends on your target school, most selective US universities look for a 3.5 or higher. Use our tool to see how one more 'A' can boost your standing!" },
+    { q: "Does this support the Indian CBSE 9.5 multiplier?", a: "Yes! If you switch to the India Scale, we use the official (CGPA × 9.5) formula to give you your percentage equivalent, perfect for study abroad applications." },
+    { q: "Can I export this for my common app or resume?", a: "Definitely. Click 'Export Sheet' to get a clean PDF or CSV. It's a great way to double-check the 'Self-Reported Academic Record' (SRAR) section of your college applications." }
+  ];
+
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -96,32 +105,14 @@ const GPAPage = () => {
       },
       {
         "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "How to calculate GPA manually?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "To calculate GPA, multiply your grade points for each course by its credit hours. Sum these products and then divide by the total number of credits attempted."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is a 4.0 GPA scale?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "A 4.0 scale is the standard US grading system where an A is 4.0, B is 3.0, C is 2.0, D is 1.0, and F is 0.0. AP or IB courses may add weight (up to 5.0)."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is CGPA?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "CGPA stands for Cumulative Grade Point Average. It is the mean of the GPA obtained in all subjects over multiple semesters or years."
-            }
+        "mainEntity": faqsData.map(faq => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a
           }
-        ]
+        }))
       }
     ]
   };
@@ -323,14 +314,7 @@ const GPAPage = () => {
 
                   <h3 className="text-3xl font-black text-indigo-950 mt-16 mb-8">Frequently Asked Questions</h3>
                   <div className="not-prose space-y-6">
-                    {[
-                      { q: "How is my US GPA actually calculated?", a: "We use the weighted average method: (Grade Points × Credits) / Total Credits. An 'A' in a 4-credit course has more impact than an 'A' in a 1-credit lab. Our tool handles this weightage automatically!" },
-                      { q: "What's the difference between Weighted and Unweighted?", a: "Unweighted GPA scales everyone on a 4.0 max. Weighted GPA (often up to 5.0) rewards you for taking tougher classes like AP, IB, or Honors. You can simulate both by adjusting your grade values here." },
-                      { q: "How do I calculate my cumulative GPA (all semesters)?", a: "To find your overall CGPA, simply add all your courses from every semester into the list. The tool will calculate the total weighted average across your entire academic history." },
-                      { q: "Is a 3.5 GPA good for US college admissions?", a: "A 3.5 is a solid 'B+/A-' average. While 'good' depends on your target school, most selective US universities look for a 3.5 or higher. Use our tool to see how one more 'A' can boost your standing!" },
-                      { q: "Does this support the Indian CBSE 9.5 multiplier?", a: "Yes! If you switch to the India Scale, we use the official (CGPA × 9.5) formula to give you your percentage equivalent, perfect for study abroad applications." },
-                      { q: "Can I export this for my common app or resume?", a: "Definitely. Click 'Export Sheet' to get a clean PDF or CSV. It's a great way to double-check the 'Self-Reported Academic Record' (SRAR) section of your college applications." }
-                    ].map((faq, i) => (
+                    {faqsData.map((faq, i) => (
                       <div key={i} className="p-8 bg-white border border-indigo-100 rounded-[32px] shadow-sm">
                         <h4 className="font-black text-indigo-950 mb-3">{faq.q}</h4>
                         <p className="text-sm text-indigo-800 font-bold leading-relaxed">{faq.a}</p>

@@ -97,13 +97,22 @@ Calculated at CalculatorOfGrades.com`;
     }
   };
 
+  const faqsData = [
+    { q: "Is this AP Gov calculator officially from College Board?", a: "No, we are an independent academic tool. However, we use the official scoring rubrics and historical curves used by College Board to ensure our predictions are as accurate as possible for the 2025 exam." },
+    { q: "What constitutes a 'good' score in AP Gov?", a: "A 3 is a passing score and widely respected. However, if you're aiming for credit at top-tier US universities, you should target a 4 or a 5. Use our predictor to see how many MCQs you can safely miss to stay in that range!" },
+    { q: "Does the 2025 curve differ from previous years?", a: "Curves shift slightly every year based on global student performance. Our 2025 model factors in recent trends from 2023 and 2024 to give you the most reliable 'Safe Zone' for your target score." },
+    { q: "How much do the FRQs actually matter?", a: "They are 50% of your grade! You could get a perfect score on the Multiple Choice, but if you struggle with the Argumentative Essay or SCOTUS Comparison, it's very hard to earn a 5." },
+    { q: "Tips for the Argumentative Essay (FRQ 4)?", a: "Focus on your thesis statement and explicitly linking your evidence to your claim. This section is worth 6 raw points—missing a single point here is more costly than missing an MCQ." },
+    { q: "Can I use this for other AP exams?", a: "This specific tool is tuned for AP Government's 50/50 weighting and 24-point FRQ scale. Check our home page for other specialized AP calculators!" }
+  ];
+
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
         "name": "AP GOV Score Calculator 2025",
-        "url": "https://calculatorofgrades.com/ap-gov-calculator",
+        "url": "https://calculatorofgrades.vercel.app/ap-gov-calculator",
         "description": "Calculate and predict your AP Government exam score for 2025. Instantly estimate your composite score and AP 1-5 grade based on MCQ and FRQ performance. Includes historical curves from 2024, 2023, and 2021.",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "All",
@@ -115,24 +124,14 @@ Calculated at CalculatorOfGrades.com`;
       },
       {
         "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "How accurate is this AP GOV score calculator 2025 edition?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our AP Gov score predictor uses the modern weighted formula (50% MCQ, 50% FRQ) and verified curves from the ap gov score calculator 2024 and 2023 data sets to provide an estimate that closely mirrors official College Board results for 2025."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Should I use Albert AP Gov score calculator or this tool?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "While the albert ap gov score calculator is a popular choice, our tool offers a faster, mobile-first experience without required log-ins, making it easier to run quick simulations during practice tests."
-            }
+        "mainEntity": faqsData.map(faq => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a
           }
-        ]
+        }))
       }
     ]
   };
@@ -526,14 +525,7 @@ Calculated at CalculatorOfGrades.com`;
             <h2 className="text-4xl md:text-5xl font-black mb-16 tracking-tight text-center">Frequently Asked <span className="text-indigo-400">Questions</span></h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-              {[
-                { q: "Is this AP Gov calculator officially from College Board?", a: "No, we are an independent academic tool. However, we use the official scoring rubrics and historical curves used by College Board to ensure our predictions are as accurate as possible for the 2025 exam." },
-                { q: "What constitutes a 'good' score in AP Gov?", a: "A 3 is a passing score and widely respected. However, if you're aiming for credit at top-tier US universities, you should target a 4 or a 5. Use our predictor to see how many MCQs you can safely miss to stay in that range!" },
-                { q: "Does the 2025 curve differ from previous years?", a: "Curves shift slightly every year based on global student performance. Our 2025 model factors in recent trends from 2023 and 2024 to give you the most reliable 'Safe Zone' for your target score." },
-                { q: "How much do the FRQs actually matter?", a: "They are 50% of your grade! You could get a perfect score on the Multiple Choice, but if you struggle with the Argumentative Essay or SCOTUS Comparison, it's very hard to earn a 5." },
-                { q: "Tips for the Argumentative Essay (FRQ 4)?", a: "Focus on your thesis statement and explicitly linking your evidence to your claim. This section is worth 6 raw points—missing a single point here is more costly than missing an MCQ." },
-                { q: "Can I use this for other AP exams?", a: "This specific tool is tuned for AP Government's 50/50 weighting and 24-point FRQ scale. Check our home page for other specialized AP calculators!" }
-              ].map((faq, i) => (
+              {faqsData.map((faq, i) => (
                 <div key={i} className="p-8 bg-white/5 border border-white/10 rounded-[32px] backdrop-blur-sm group hover:bg-white/10 transition-colors">
                   <h4 className="font-black text-indigo-400 mb-3 flex items-center gap-2 group-hover:text-white transition-colors text-lg">
                     <HelpCircle size={20} className="shrink-0" />

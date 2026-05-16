@@ -43,11 +43,25 @@ const FAQPage = () => {
     faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <div className="bg-indigo-50/20 min-h-screen pb-20">
       <SEO 
         title="Frequently Asked Questions - Support Center"
         description="Find answers to common questions about GPA calculation, grading scales, and how to use our academic tools."
+        schema={schemaData}
       />
 
       <div className="bg-indigo-950 py-24 px-4 relative overflow-hidden text-center">

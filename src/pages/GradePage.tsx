@@ -48,6 +48,18 @@ const GradePage = ({ title = "Grade Calculator" }) => {
     { id: '1', name: isPercentageMode ? 'Quiz 1' : 'Quiz 1', grade: 85, weight: isPercentageMode ? 0 : 20, maxPoints: 100, receivedPoints: 85 },
   ]);
 
+  const faqsData = isPercentageMode ? [
+    { q: "How do I calculate 18 out of 25 as a percentage?", a: "To calculate 18 out of 25 as a percentage, divide 18 by 25 to get 0.72, then multiply by 100 to get 72.0%. It's a standard simple percentage calculation." },
+    { q: "What is 12 out of 15 as a percentage?", a: "12 divided by 15 is 0.8, which is exactly 80.0%. In most US schools, this results in a B- grade." },
+    { q: "How to calculate test percentage?", a: "Divide your earned points by the maximum possible points and multiply the result by 100. Our tool automates this for any test or quiz score." },
+    { q: "What grade is 14 out of 20?", a: "14 out of 20 is 70.0%, which is typically a C- on the standard US grading scale." }
+  ] : [
+    { q: "Is this class grade calculator accurate for finals?", a: "Yes. Use the 'Weighted' mode to set your final exam's specific weight (e.g., 20%). It will calculate exactly how your final performance impacts your overall grade." },
+    { q: "What's the difference between Simple and Weighted Average?", a: "Simple Average treats every assignment as equal. Weighted Average respects that a 'Midterm' usually counts for more than a 'Quiz'. Most US universities use Weighted Average." },
+    { q: "How do I calculate 'points' grades (e.g. 18/25)?", a: "Switch the input mode to 'Points'. Enter your score and the max points possible. We'll instantly convert it to a percentage (72% in this case) and factor it into your grade." },
+    { q: "Can I save my gradebook for multiple classes?", a: "By default, your data is saved in your browser. For tracking multiple classes or syncing across devices, stay tuned for our 'Academic Dashboard' update!" }
+  ];
+
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -68,28 +80,14 @@ const GradePage = ({ title = "Grade Calculator" }) => {
       },
       {
         "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": isPercentageMode ? "What is 18 out of 25 as a percentage?" : "How to calculate grades manually?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": isPercentageMode 
-                ? "18 out of 25 is exactly 72%. To calculate this, divide 18 by 25 and multiply by 100."
-                : "To calculate your grade, divide the total points earned by the total points possible. Then, multiply by 100 to get a percentage. For weighted grades, multiply each grade by its weight percentage."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": isPercentageMode ? "How to calculate test percentage?" : "What is a test grade calculator?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": isPercentageMode 
-                ? "Divide your score by the maximum points possible and multiply by 100. Our tool automates this for you."
-                : "A test grade calculator is a tool used to determine the percentage score on an exam based on the number of correct answers and the total number of questions. It helps students understand their standing instantly."
-            }
+        "mainEntity": faqsData.map(faq => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a
           }
-        ]
+        }))
       }
     ]
   };
@@ -452,16 +450,11 @@ const GradePage = ({ title = "Grade Calculator" }) => {
 
                <div className="pt-12 border-t border-indigo-50">
                   <h3 className="text-2xl font-black mb-8 flex items-center gap-3 text-indigo-950">
-                     <HelpCircle className="text-indigo-600" /> Frequently Asked Questions
+                    <HelpCircle className="text-indigo-600" /> Frequently Asked Questions
                   </h3>
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {[
-                        { q: "Is this class grade calculator accurate for finals?", a: "Yes. Use the 'Weighted' mode to set your final exam's specific weight (e.g., 20%). It will calculate exactly how your final performance impacts your overall grade." },
-                        { q: "What's the difference between Simple and Weighted Average?", a: "Simple Average treats every assignment as equal. Weighted Average respects that a 'Midterm' usually counts for more than a 'Quiz'. Most US universities use Weighted Average." },
-                        { q: "How do I calculate 'points' grades (e.g. 18/25)?", a: "Switch the input mode to 'Points'. Enter your score and the max points possible. We'll instantly convert it to a percentage (72% in this case) and factor it into your grade." },
-                        { q: "Can I save my gradebook for multiple classes?", a: "By default, your data is saved in your browser. For tracking multiple classes or syncing across devices, stay tuned for our 'Academic Dashboard' update!" }
-                      ].map((faq, i) => (
-                       <div key={i} className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100 shadow-sm">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {faqsData.map((faq, i) => (
+                        <div key={i} className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100 shadow-sm">
                           <h4 className="font-black text-indigo-950 mb-3">{faq.q}</h4>
                           <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">{faq.a}</p>
                        </div>

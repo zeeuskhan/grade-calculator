@@ -20,6 +20,11 @@ const FinalGradePage = () => {
 
   const urgency = getUrgency();
 
+  const faqsData = [
+    { q: "What if the calculator says I need 110%?", a: "It happens to the best of us. This usually means your target grade is mathematically out of reach based on your current standing and the final exam's weight. Ask your professor if they offer bonus points or extra credit assignments to bridge the gap." },
+    { q: "How accurate is the 2025 final grade formula?", a: "It's 100% accurate because it uses pure algebra. However, remember to account for any 'weighted categories' your teacher might use. If your final is its own category worth 20%, this tool is your perfect North Star." }
+  ];
+
   const schemaData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -38,24 +43,14 @@ const FinalGradePage = () => {
       },
       {
         "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What score do I need on my final to get an A?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The score depends on your current grade and the weight of the final. For example, if you have an 85% and the final is 20%, you need an 110% on the final to reach a 90% overall (which is impossible without extra credit)."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How is final grade calculated?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Final Grade = (Current Grade × (100% - Final Weight)) + (Final Exam Score × Final Weight)."
-            }
+        "mainEntity": faqsData.map(faq => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a
           }
-        ]
+        }))
       }
     ]
   };
@@ -217,14 +212,12 @@ const FinalGradePage = () => {
            
            <h3 className="text-2xl font-black mt-12 mb-4 text-indigo-950">Final Exam Season FAQ</h3>
            <div className="space-y-6">
-             <div className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
-               <h4 className="font-black text-indigo-950 mb-2">What if the calculator says I need 110%?</h4>
-               <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">It happens to the best of us. This usually means your target grade is mathematically out of reach based on your current standing and the final exam's weight. Ask your professor if they offer bonus points or extra credit assignments to bridge the gap.</p>
-             </div>
-             <div className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
-               <h4 className="font-black text-indigo-950 mb-2">How accurate is the 2025 final grade formula?</h4>
-               <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">It's 100% accurate because it uses pure algebra. However, remember to account for any 'weighted categories' your teacher might use. If your final is its own category worth 20%, this tool is your perfect North Star.</p>
-             </div>
+             {faqsData.map((faq, i) => (
+               <div key={i} className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
+                 <h4 className="font-black text-indigo-950 mb-2">{faq.q}</h4>
+                 <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">{faq.a}</p>
+               </div>
+             ))}
            </div>
         </div>
       </div>
