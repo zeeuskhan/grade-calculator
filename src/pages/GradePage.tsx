@@ -288,7 +288,7 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                                 type="text" 
                                 value={a.name}
                                 onChange={(e) => updateAssignment(a.id, 'name', e.target.value)}
-                                className="w-full bg-transparent border-none focus:ring-0 font-black text-indigo-950 text-sm"
+                                className="w-full bg-indigo-50/50 border-2 border-transparent focus:border-indigo-600 rounded-xl px-4 py-3 font-black text-indigo-950 text-sm outline-none transition-all shadow-inner"
                               />
                             </Tooltip>
                           </td>
@@ -300,7 +300,7 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                                     type="number" 
                                     value={a.grade}
                                     onChange={(e) => updateAssignment(a.id, 'grade', Number(e.target.value))}
-                                    className="w-20 px-3 py-2 bg-indigo-50/50 border-none rounded-xl text-sm font-mono font-bold focus:ring-2 focus:ring-indigo-500 text-indigo-950"
+                                    className="w-24 px-4 py-3 bg-white border-2 border-indigo-200 rounded-xl text-sm font-mono font-black focus:ring-4 focus:ring-indigo-100 text-indigo-950 outline-none hover:border-indigo-400 transition-all shadow-sm"
                                   />
                                 </Tooltip>
                               ) : (
@@ -311,17 +311,17 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                                       value={a.receivedPoints}
                                       placeholder="Got"
                                       onChange={(e) => updateAssignment(a.id, 'receivedPoints', Number(e.target.value))}
-                                      className="w-16 px-2 py-2 bg-indigo-50/50 border border-transparent focus:border-indigo-500 rounded-xl text-sm font-mono font-black focus:ring-0 text-indigo-950"
+                                      className="w-20 px-3 py-3 bg-white border-2 border-indigo-200 focus:border-indigo-600 rounded-xl text-sm font-mono font-black focus:ring-4 focus:ring-indigo-100 text-indigo-950 outline-none transition-all shadow-sm"
                                     />
                                   </Tooltip>
-                                  <span className="text-indigo-400 font-black">/</span>
+                                  <span className="text-indigo-400 font-black text-xl">/</span>
                                   <Tooltip content="Total possible points">
                                     <input 
                                       type="number" 
                                       value={a.maxPoints}
                                       placeholder="Total"
                                       onChange={(e) => updateAssignment(a.id, 'maxPoints', Number(e.target.value))}
-                                      className="w-16 px-2 py-2 bg-indigo-50/50 border border-transparent focus:border-indigo-500 rounded-xl text-sm font-mono font-black focus:ring-0 text-indigo-950"
+                                      className="w-20 px-3 py-3 bg-white border-2 border-indigo-200 focus:border-indigo-600 rounded-xl text-sm font-mono font-black focus:ring-4 focus:ring-indigo-100 text-indigo-950 outline-none transition-all shadow-sm"
                                     />
                                   </Tooltip>
                                 </>
@@ -336,8 +336,10 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                                   value={a.weight}
                                   onChange={(e) => updateAssignment(a.id, 'weight', Number(e.target.value))}
                                   className={cn(
-                                    "w-20 px-3 py-2 bg-indigo-50/50 border-none rounded-xl text-sm font-mono font-bold focus:ring-2 text-indigo-950",
-                                    totalPossibleWeight > 100 ? "text-red-500 focus:ring-red-500" : "focus:ring-indigo-500"
+                                    "w-24 px-4 py-3 bg-white border-2 rounded-xl text-sm font-mono font-black focus:ring-4 transition-all shadow-sm outline-none",
+                                    totalPossibleWeight > 100 
+                                      ? "border-red-300 text-red-600 focus:border-red-500 focus:ring-red-100" 
+                                      : "border-indigo-200 text-indigo-950 focus:border-indigo-600 focus:ring-indigo-100"
                                   )}
                                 />
                               </Tooltip>
@@ -452,13 +454,13 @@ const GradePage = ({ title = "Grade Calculator" }) => {
                   <h3 className="text-2xl font-black mb-8 flex items-center gap-3 text-indigo-950">
                      <HelpCircle className="text-indigo-600" /> Frequently Asked Questions
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                     {[
-                       { q: "Is this grading calculator free?", a: "Yes, our site offers a 100% free online gradebook calculator for all students." },
-                       { q: "Can I use this for university grades?", a: "Absolutely. Our tools support US GPA (4.0) and custom weighted scales used in universities." },
-                       { q: "How do I calculate 18 out of 25 as a percentage?", a: "18 divided by 25 equals 0.72, which is 72.0%. In most US schools, this is a C-." },
-                       { q: "What is a 'calculator of grades' used for?", a: "It's used by teachers and students to track progress, predict final outcomes, and manage classroom scores." }
-                     ].map((faq, i) => (
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {[
+                        { q: "Is this class grade calculator accurate for finals?", a: "Yes. Use the 'Weighted' mode to set your final exam's specific weight (e.g., 20%). It will calculate exactly how your final performance impacts your overall grade." },
+                        { q: "What's the difference between Simple and Weighted Average?", a: "Simple Average treats every assignment as equal. Weighted Average respects that a 'Midterm' usually counts for more than a 'Quiz'. Most US universities use Weighted Average." },
+                        { q: "How do I calculate 'points' grades (e.g. 18/25)?", a: "Switch the input mode to 'Points'. Enter your score and the max points possible. We'll instantly convert it to a percentage (72% in this case) and factor it into your grade." },
+                        { q: "Can I save my gradebook for multiple classes?", a: "By default, your data is saved in your browser. For tracking multiple classes or syncing across devices, stay tuned for our 'Academic Dashboard' update!" }
+                      ].map((faq, i) => (
                        <div key={i} className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100 shadow-sm">
                           <h4 className="font-black text-indigo-950 mb-3">{faq.q}</h4>
                           <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">{faq.a}</p>

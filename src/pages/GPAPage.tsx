@@ -188,10 +188,10 @@ const GPAPage = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95 }}
-                      className="group flex flex-col sm:flex-row items-center gap-4 bg-white p-5 rounded-[24px] border border-indigo-50 hover:border-indigo-500/30 transition-all shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 group"
+                      className="group flex flex-col sm:flex-row items-center gap-4 bg-white p-5 rounded-[24px] border-2 border-indigo-50 hover:border-indigo-500/50 transition-all shadow-md hover:shadow-2xl hover:shadow-indigo-500/10 group"
                     >
                       <div className="flex-1 flex items-center gap-4 w-full">
-                        <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-300 shadow-inner group-hover:text-indigo-500 transition-colors">
+                        <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200 group-hover:scale-110 transition-transform">
                            <BookOpen size={20} />
                         </div>
                         <input 
@@ -199,7 +199,7 @@ const GPAPage = () => {
                           placeholder="e.g. Physics 101"
                           value={course.name}
                           onChange={(e) => updateCourse(course.id, 'name', e.target.value)}
-                          className="flex-1 bg-transparent border-none focus:ring-0 font-black text-indigo-950 placeholder:text-indigo-300"
+                          className="flex-1 bg-indigo-50/30 border-2 border-transparent focus:border-indigo-500 rounded-xl px-4 py-3 font-black text-indigo-950 placeholder:text-indigo-300 outline-none transition-all"
                         />
                       </div>
                       
@@ -208,7 +208,7 @@ const GPAPage = () => {
                           <select 
                             value={course.grade}
                             onChange={(e) => updateCourse(course.id, 'grade', e.target.value)}
-                            className="w-full sm:w-24 bg-indigo-50 border border-indigo-100 rounded-xl p-3 text-sm font-black text-indigo-600 focus:ring-2 focus:ring-indigo-500 appearance-none text-center cursor-pointer shadow-sm"
+                            className="w-full sm:w-28 bg-white border-2 border-indigo-200 rounded-xl p-3 text-sm font-black text-indigo-700 focus:ring-4 focus:ring-indigo-100 appearance-none text-center cursor-pointer shadow-sm outline-none hover:border-indigo-400 transition-all"
                           >
                             {Object.keys(gradeValues).map(g => (
                               <option key={g} value={g}>{g}</option>
@@ -220,12 +220,12 @@ const GPAPage = () => {
                             type="number" 
                             value={course.credits}
                             onChange={(e) => updateCourse(course.id, 'credits', Math.max(0, Number(e.target.value)))}
-                            className="w-20 bg-indigo-50/50 border-none rounded-xl p-3 text-sm font-black text-indigo-950 text-center focus:ring-2 focus:ring-indigo-500 shadow-inner"
+                            className="w-24 bg-white border-2 border-indigo-200 rounded-xl p-3 text-sm font-black text-indigo-950 text-center focus:ring-4 focus:ring-indigo-100 shadow-sm outline-none hover:border-indigo-400 transition-all"
                           />
                         </Tooltip>
                         <button 
                           onClick={() => removeCourse(course.id)}
-                          className="p-3 text-indigo-300 hover:text-red-500 transition-colors bg-indigo-50/50 rounded-xl"
+                          className="p-3 text-indigo-400 hover:text-white hover:bg-red-500 transition-all bg-indigo-50 rounded-xl border border-indigo-100 shadow-sm"
                         >
                           <Trash2 size={20} />
                         </button>
@@ -324,14 +324,12 @@ const GPAPage = () => {
                   <h3 className="text-3xl font-black text-indigo-950 mt-16 mb-8">Frequently Asked Questions</h3>
                   <div className="not-prose space-y-6">
                     {[
-                      { q: "How to calculate 8 cgpa in percentage?", a: "To convert 8 CGPA to percentage (CBSE), multiply by 9.5: 8 × 9.5 = 76%." },
-                      { q: "What is 8.2cgpa in percentage?", a: "Using the standard CBSE calculate cgpa formula, 8.2 CGPA is 77.9% (8.2 × 9.5). For 6 cgpa in percentage, it is 57%." },
-                      { q: "How to calculate cgpa online for SPPU & KTU?", a: "For SPPU (Pune University), use our specific calculate cgpa to percentage sppu mode. For KTU, use the calculate cgpa ktu engine which uses specific credit weightage." },
-                      { q: "What is the calculate cgpa formula from marks?", a: "The standard formula for calculate cgpa from marks involves dividing the sum of grade points obtained by the total number of subjects. To get percentage, use (CGPA × 9.5)." },
-                      { q: "Can I calculate overall cgpa of all semesters?", a: "Yes, our calculator for engineering allows you to calculate overall cgpa of all semesters by inputting each semester's SGPA and total credits." },
-                      { q: "What is the percentage of 9.8 cgpa?", a: "The percentage of 9.8 cgpa is 93.1%. Similarly, 9 cgpa in percentage is 85.5%." },
-                      { q: "How to convert 85 to cgpa?", a: "To convert 85 percentage to cgpa, divide by 9.5. So 85 to cgpa is approximately 8.95. For 84 percent in cgpa, it is 8.84." },
-                      { q: "How to calculate cgpa from gpa on a 4.0 scale?", a: "To calculate cgpa from gpa, you typically take a weighted average of your semester GPAs. A cgpa calculator out of 4 is standard for US universities." }
+                      { q: "How is my US GPA actually calculated?", a: "We use the weighted average method: (Grade Points × Credits) / Total Credits. An 'A' in a 4-credit course has more impact than an 'A' in a 1-credit lab. Our tool handles this weightage automatically!" },
+                      { q: "What's the difference between Weighted and Unweighted?", a: "Unweighted GPA scales everyone on a 4.0 max. Weighted GPA (often up to 5.0) rewards you for taking tougher classes like AP, IB, or Honors. You can simulate both by adjusting your grade values here." },
+                      { q: "How do I calculate my cumulative GPA (all semesters)?", a: "To find your overall CGPA, simply add all your courses from every semester into the list. The tool will calculate the total weighted average across your entire academic history." },
+                      { q: "Is a 3.5 GPA good for US college admissions?", a: "A 3.5 is a solid 'B+/A-' average. While 'good' depends on your target school, most selective US universities look for a 3.5 or higher. Use our tool to see how one more 'A' can boost your standing!" },
+                      { q: "Does this support the Indian CBSE 9.5 multiplier?", a: "Yes! If you switch to the India Scale, we use the official (CGPA × 9.5) formula to give you your percentage equivalent, perfect for study abroad applications." },
+                      { q: "Can I export this for my common app or resume?", a: "Definitely. Click 'Export Sheet' to get a clean PDF or CSV. It's a great way to double-check the 'Self-Reported Academic Record' (SRAR) section of your college applications." }
                     ].map((faq, i) => (
                       <div key={i} className="p-8 bg-white border border-indigo-100 rounded-[32px] shadow-sm">
                         <h4 className="font-black text-indigo-950 mb-3">{faq.q}</h4>

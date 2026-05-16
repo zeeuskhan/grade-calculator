@@ -9,35 +9,35 @@ const HomePage = () => {
   const tools = [
     {
       name: 'Grade Calculator',
-      description: 'Quickly calculate your weighted or simple grades with charts.',
+      description: 'The standard US weighted grade tool for high school and college courses.',
       path: '/grade-calculator',
       icon: Calculator,
       color: 'bg-blue-500',
     },
     {
       name: 'GPA Calculator',
-      description: 'Calculate your semester or cumulative GPA across US/Indian scales.',
+      description: 'Plan your 4.0 target with our semester and cumulative GPA estimator.',
       path: '/gpa-calculator',
       icon: GraduationCap,
       color: 'bg-cyan-500',
     },
     {
       name: 'Final Grade Predictor',
-      description: 'Find out exactly what you need on your final exam to pass or get an A.',
+      description: 'Eliminate finals week stress by calculating the exact score you need to pass.',
       path: '/final-grade-predictor',
       icon: Target,
       color: 'bg-orange-500',
     },
     {
       name: 'Percentage Calculator',
-      description: 'Convert marks to percentages and vice-versa instantly.',
+      description: 'Quickly find test score percentages like 18 out of 25 with a single click.',
       path: '/percentage-calculator',
       icon: Percent,
       color: 'bg-purple-500',
     },
     {
       name: 'AP GOV Score Predictor',
-      description: 'Estimate your AP Government exam score based on MCQ and FRQ results.',
+      description: 'Project your official 2025 AP Government exam score (1-5 scale) instantly.',
       path: '/ap-gov-calculator',
       icon: Target,
       color: 'bg-emerald-500',
@@ -176,20 +176,23 @@ const HomePage = () => {
               >
                 <Link 
                   to={tool.path}
-                  className="group flex flex-col p-10 bg-white rounded-[40px] border border-indigo-50 hover:border-indigo-500/30 hover:shadow-2xl hover:shadow-indigo-500/5 transition-all h-full"
+                  className="group flex flex-col p-10 bg-white rounded-[40px] border-2 border-indigo-50 hover:border-indigo-600/30 shadow-xl shadow-indigo-900/5 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all h-full relative overflow-hidden"
                 >
-                   <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-10 shadow-lg transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500", 
-                    idx === 0 ? "bg-indigo-600" : idx === 1 ? "bg-indigo-500" : idx === 2 ? "bg-violet-600" : "bg-fuchsia-600"
+                   <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                     <tool.icon size={80} />
+                   </div>
+                   <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-10 shadow-lg transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 relative z-10", 
+                    idx === 0 ? "bg-indigo-600" : idx === 1 ? "bg-indigo-500" : idx === 2 ? "bg-violet-600" : idx === 3 ? "bg-fuchsia-600" : "bg-emerald-600"
                   )}>
                     <tool.icon size={32} />
                   </div>
-                  <h3 className="text-2xl font-black text-indigo-950 mb-4 tracking-tight group-hover:text-indigo-600 transition-colors capitalize">
+                  <h3 className="text-2xl font-black text-indigo-950 mb-4 tracking-tight group-hover:text-indigo-600 transition-colors capitalize relative z-10">
                     {tool.name}
                   </h3>
-                  <p className="text-indigo-900/80 mb-10 leading-relaxed font-bold text-sm">
+                  <p className="text-indigo-900/80 mb-10 leading-relaxed font-bold text-sm relative z-10">
                     {tool.description}
                   </p>
-                  <div className="mt-auto flex items-center justify-between">
+                  <div className="mt-auto flex items-center justify-between relative z-10">
                     <span className="text-[10px] font-black uppercase tracking-widest text-indigo-400 group-hover:text-indigo-600 transition-colors">Start Tool</span>
                     <ArrowRight size={16} className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0" />
                   </div>

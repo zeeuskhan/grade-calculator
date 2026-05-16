@@ -81,8 +81,8 @@ const FinalGradePage = () => {
            >
              <Target size={40} />
            </motion.div>
-           <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter">CGPA <span className="text-indigo-400">Calculator.</span></h1>
-           <p className="text-indigo-100/80 text-lg md:text-xl font-black">The internet's most accurate calculator of cgpa for students.</p>
+           <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter">Final Grade <span className="text-indigo-400">Predictor.</span></h1>
+           <p className="text-indigo-100/80 text-lg md:text-xl font-black">The internet's most accurate final exam calculator.</p>
         </div>
       </div>
 
@@ -104,9 +104,9 @@ const FinalGradePage = () => {
                     type="number" 
                     value={currentGrade}
                     onChange={(e) => setCurrentGrade(Number(e.target.value))}
-                    className="w-full text-3xl md:text-4xl font-black bg-indigo-50 p-6 md:p-8 rounded-[24px] md:rounded-[32px] border-2 border-transparent focus:border-indigo-500 focus:bg-white transition-all outline-none text-indigo-950 shadow-sm"
+                    className="w-full text-3xl md:text-5xl font-black bg-white p-8 md:p-10 rounded-[24px] md:rounded-[32px] border-2 border-indigo-100 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none text-indigo-950 shadow-xl shadow-indigo-900/5"
                    />
-                   <span className="absolute right-6 md:right-8 top-1/2 -translate-y-1/2 text-2xl md:text-3xl font-black text-indigo-300">%</span>
+                   <span className="absolute right-8 md:right-10 top-1/2 -translate-y-1/2 text-2xl md:text-4xl font-black text-indigo-200">%</span>
                 </div>
               </div>
 
@@ -123,30 +123,30 @@ const FinalGradePage = () => {
                     type="number" 
                     value={targetGrade}
                     onChange={(e) => setTargetGrade(Number(e.target.value))}
-                    className="w-full text-3xl md:text-4xl font-black bg-indigo-50 p-6 md:p-8 rounded-[24px] md:rounded-[32px] border-2 border-transparent focus:border-indigo-500 focus:bg-white transition-all outline-none text-indigo-950 shadow-sm"
+                    className="w-full text-3xl md:text-5xl font-black bg-white p-8 md:p-10 rounded-[24px] md:rounded-[32px] border-2 border-indigo-100 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none text-indigo-950 shadow-xl shadow-indigo-900/5"
                    />
-                   <span className="absolute right-6 md:right-8 top-1/2 -translate-y-1/2 text-2xl md:text-3xl font-black text-indigo-300">%</span>
+                   <span className="absolute right-8 md:right-10 top-1/2 -translate-y-1/2 text-2xl md:text-4xl font-black text-indigo-200">%</span>
                 </div>
               </div>
 
               <div className="group">
-                <label className="block text-xs font-black text-indigo-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <label className="block text-xs font-black text-indigo-900 uppercase tracking-widest mb-4 flex items-center gap-2">
                    Final Exam Weight (%)
                    <Tooltip content="The percentage of your total grade that the final exam represents">
-                      <HelpCircle size={12} className="text-indigo-200 cursor-help" />
+                      <HelpCircle size={12} className="text-indigo-400 cursor-help" />
                    </Tooltip>
                    <div className="h-0.5 flex-1 bg-indigo-50" />
                 </label>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-6 p-6 bg-indigo-50/50 rounded-3xl border border-indigo-100/50">
                   <input 
                     type="range"
                     min="1"
                     max="100"
                     value={finalWeight}
                     onChange={(e) => setFinalWeight(Number(e.target.value))}
-                    className="flex-1 accent-indigo-600 h-2 bg-indigo-100 rounded-full"
+                    className="flex-1 accent-indigo-600 h-3 bg-white rounded-full appearance-none cursor-pointer border border-indigo-200"
                   />
-                  <div className="w-24 text-center p-4 bg-indigo-50 rounded-2xl font-black text-indigo-600 text-xl border border-indigo-100">
+                  <div className="w-28 text-center p-4 bg-indigo-600 rounded-2xl font-black text-white text-2xl shadow-lg shadow-indigo-200">
                     {finalWeight}%
                   </div>
                 </div>
@@ -156,8 +156,9 @@ const FinalGradePage = () => {
 
           {/* Result Block */}
           <div className="flex flex-col gap-8">
-            <div className="bg-white rounded-[40px] p-12 text-center flex flex-col justify-center items-center flex-1 border border-indigo-50 shadow-sm">
-               <div className="text-xs font-black uppercase tracking-[0.25em] text-indigo-300 mb-6">Required Score on Final</div>
+            <div className="bg-white rounded-[40px] p-12 text-center flex flex-col justify-center items-center flex-1 border-2 border-indigo-50 shadow-2xl shadow-indigo-950/5 relative overflow-hidden">
+               <div className="absolute top-0 left-0 w-full h-2 bg-indigo-600" />
+               <div className="text-xs font-black uppercase tracking-[0.25em] text-indigo-400 mb-6 font-mono">Required Score on Final</div>
                <motion.div 
                 key={requiredOnFinal}
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -167,7 +168,7 @@ const FinalGradePage = () => {
                  {requiredOnFinal > 200 ? '200+' : formatNum(Math.max(0, requiredOnFinal))}
                  <span className="text-4xl text-indigo-200 ml-1">%</span>
                </motion.div>
-               <div className={cn("px-6 py-2 rounded-2xl font-black text-sm uppercase tracking-widest", urgency.bg, urgency.color)}>
+               <div className={cn("px-8 py-3 rounded-2xl font-black text-sm uppercase tracking-[0.2em] shadow-lg", urgency.bg, urgency.color)}>
                   {urgency.label}
                </div>
 
@@ -214,16 +215,16 @@ const FinalGradePage = () => {
               Required = [Target - Current × (1 - Final Weight)] / Final Weight
            </div>
            
-           <h3 className="text-2xl font-black mt-12 mb-4 text-indigo-950">Final Grade FAQ</h3>
+           <h3 className="text-2xl font-black mt-12 mb-4 text-indigo-950">Final Exam Season FAQ</h3>
            <div className="space-y-6">
-                     <div className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
-                <h4 className="font-black text-indigo-950 mb-2">Can I get more than 100%?</h4>
-                <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">Only if your teacher offers extra credit on the final exam. Otherwise, if our calculator says you need 105%, you might need to adjust your target grade.</p>
-              </div>
-              <div className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
-                <h4 className="font-black text-indigo-950 mb-2">Is this accurate for weighted grades?</h4>
-                <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">Yes! This calculator assumes your final exam is a standalone weighted category. If your final counts as part of a larger 'Exams' category, the math is slightly different but this tool provides a very close estimation.</p>
-              </div>
+             <div className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
+               <h4 className="font-black text-indigo-950 mb-2">What if the calculator says I need 110%?</h4>
+               <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">It happens to the best of us. This usually means your target grade is mathematically out of reach based on your current standing and the final exam's weight. Ask your professor if they offer bonus points or extra credit assignments to bridge the gap.</p>
+             </div>
+             <div className="p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
+               <h4 className="font-black text-indigo-950 mb-2">How accurate is the 2025 final grade formula?</h4>
+               <p className="text-sm text-indigo-950/80 font-bold leading-relaxed">It's 100% accurate because it uses pure algebra. However, remember to account for any 'weighted categories' your teacher might use. If your final is its own category worth 20%, this tool is your perfect North Star.</p>
+             </div>
            </div>
         </div>
       </div>

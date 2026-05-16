@@ -178,45 +178,52 @@ Calculated at CalculatorOfGrades.com`;
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
                 {/* MCQ Section */}
-                <div className="space-y-10">
+                <div className="space-y-10 bg-indigo-50/30 p-8 rounded-[38px] border border-indigo-100/50 shadow-sm">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-indigo-50 rounded-xl text-indigo-600">
+                    <div className="p-3 bg-indigo-600 rounded-2xl text-white shadow-lg shadow-indigo-200">
                       <CheckCircle2 size={24} />
                     </div>
                     <h2 className="text-2xl font-black text-indigo-950 tracking-tight">Multiple Choice</h2>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <div className="flex justify-between items-end mb-2">
-                      <span className="text-sm font-black text-indigo-400 uppercase tracking-widest">Correct Answers</span>
-                      <span className="text-xl font-black text-indigo-600 bg-indigo-50 px-4 py-1 rounded-full">{mcqCorrect}/{TOTAL_MCQ}</span>
+                      <span className="text-sm font-black text-indigo-500 uppercase tracking-widest">Correct Answers</span>
+                      <span className="text-xl font-black text-white bg-indigo-600 px-5 py-1.5 rounded-full shadow-md">{mcqCorrect}/{TOTAL_MCQ}</span>
                     </div>
-                    <input 
-                      type="range" 
-                      min="0" 
-                      max="55" 
-                      value={mcqCorrect}
-                      onChange={(e) => setMcqCorrect(Number(e.target.value))}
-                      className="w-full h-3 bg-indigo-50 rounded-full appearance-none cursor-pointer accent-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100 transition-all"
-                    />
+                    
+                    <div className="relative group">
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="55" 
+                        value={mcqCorrect}
+                        onChange={(e) => setMcqCorrect(Number(e.target.value))}
+                        className="w-full h-4 bg-indigo-200/50 rounded-full appearance-none cursor-pointer accent-indigo-600 focus:outline-none focus:ring-4 focus:ring-indigo-100 transition-all border border-indigo-200"
+                      />
+                    </div>
+
                     <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-8 flex items-center pointer-events-none">
+                        <span className="text-indigo-300 font-black text-xl">#</span>
+                      </div>
                       <input 
                         type="number" 
                         min="0" 
                         max="55"
                         value={mcqCorrect}
                         onChange={(e) => setMcqCorrect(Math.min(55, Math.max(0, Number(e.target.value))))}
-                        className="w-full text-4xl font-black bg-indigo-50 p-8 rounded-[32px] border-2 border-transparent focus:border-indigo-500 focus:bg-white transition-all outline-none text-indigo-950 text-center shadow-inner"
+                        className="w-full text-4xl font-black bg-white p-8 pl-14 rounded-[32px] border-2 border-indigo-100 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-50 transition-all outline-none text-indigo-950 text-center shadow-xl shadow-indigo-900/5"
                       />
                     </div>
-                    <p className="text-[11px] text-indigo-400 font-bold text-center uppercase tracking-wider">Total MCQs: 55 (50% of Grade)</p>
+                    <p className="text-[11px] text-indigo-400 font-bold text-center uppercase tracking-wider bg-white/50 py-2 rounded-full border border-indigo-50/50">Total MCQs: 55 (50% of Grade)</p>
                   </div>
                 </div>
 
                 {/* FRQ Section */}
-                <div className="space-y-10">
+                <div className="space-y-10 bg-indigo-50/30 p-8 rounded-[38px] border border-indigo-100/50 shadow-sm">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-indigo-50 rounded-xl text-indigo-600">
+                    <div className="p-3 bg-indigo-600 rounded-2xl text-white shadow-lg shadow-indigo-200">
                       <BookOpen size={24} />
                     </div>
                     <h2 className="text-2xl font-black text-indigo-950 tracking-tight">Free Response</h2>
@@ -229,12 +236,12 @@ Calculated at CalculatorOfGrades.com`;
                       { id: 'frq3', label: 'FRQ 3', val: frq3, set: setFrq3, max: 6 },
                       { id: 'frq4', label: 'FRQ 4', val: frq4, set: setFrq4, max: 6 },
                     ].map((item) => (
-                      <div key={item.id} className="bg-indigo-50/50 p-4 rounded-3xl border border-indigo-100 text-center group transition-all hover:bg-white hover:shadow-xl hover:shadow-indigo-900/5">
+                      <div key={item.id} className="bg-white p-5 rounded-3xl border-2 border-indigo-50 text-center group transition-all hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-900/5 shadow-sm">
                         <label className="block text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-3">{item.label} (0-{item.max})</label>
                         <select 
                           value={item.val}
                           onChange={(e) => item.set(Number(e.target.value))}
-                          className="w-full bg-white text-2xl font-black p-3 rounded-2xl outline-none text-indigo-950 shadow-sm border-2 border-transparent focus:border-indigo-500 cursor-pointer"
+                          className="w-full bg-indigo-50/50 text-2xl font-black p-3 rounded-2xl outline-none text-indigo-950 shadow-inner border-2 border-transparent focus:border-indigo-600 cursor-pointer transition-all"
                         >
                           {Array.from({ length: item.max + 1 }, (_, i) => (
                             <option key={i} value={i}>{i}</option>
@@ -243,9 +250,9 @@ Calculated at CalculatorOfGrades.com`;
                       </div>
                     ))}
                   </div>
-                  <div className="p-5 bg-indigo-950 rounded-3xl text-center">
+                  <div className="p-6 bg-indigo-950 rounded-[32px] text-center shadow-xl shadow-indigo-900/20 border border-indigo-800">
                     <div className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-1">Total FRQ Score</div>
-                    <div className="text-3xl font-black text-white">{totalFrq} <span className="text-indigo-400 text-xl">/ {TOTAL_FRQ_POINTS}</span></div>
+                    <div className="text-4xl font-black text-white">{totalFrq} <span className="text-indigo-400 text-xl">/ {TOTAL_FRQ_POINTS}</span></div>
                   </div>
                 </div>
               </div>
@@ -520,16 +527,12 @@ Calculated at CalculatorOfGrades.com`;
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
               {[
-                { q: "How accurate is this AP GOV score calculator 2025?", a: "Extremely! We use the exact weighting from current College Board rubrics, similar to the albert io ap gov score calculator standards." },
-                { q: "What is a good score on AP Government?", a: "A 3 is passing, but elite universities often require a 4 or 5 for college credit." },
-                { q: "Does this AP score estimator include the 2025 curve?", a: "Yes, our calculator is updated with the latest trends and distributions expected for the 2025 exam cycle, building on the ap gov score calculator 2024 model." },
-                { q: "How many MCQs are on the AP Gov exam?", a: "There are exactly 55 multiple-choice questions focusing on data, foundations, and scenario analysis." },
-                { q: "How are the AP Gov FRQs graded?", a: "They are graded on a points-based rubric (0-24 total raw points) by specialized AP Readers in June." },
-                { q: "Should I use Knowt or Fiveable calculators?", a: "Both knowt ap gov score calculator and fiveable ap gov score calculator are great. Our tool provides a companion estimate to ensure your study plan is water-tight." },
-                { q: "What is the AP Gov passing composite score?", a: "Typically, a composite score of 45/100 is enough to earn a passing score of 3." },
-                { q: "How much is the Argumentative Essay worth?", a: "The essay (FRQ 4) is worth 6 points, roughly 12.5% of your total exam grade." },
-                { q: "Can I get a 5 if I miss 10 MCQs?", a: "Yes! If you perform exceptionally well on the FRQs (20+/24), you can still earn a 5 even with several MCQ errors." },
-                { q: "Can this calculator predict final class grades?", a: "This is specifically for the AP National Exam. For class grades, use our 'Weighting Calculator' on the home page." }
+                { q: "Is this AP Gov calculator officially from College Board?", a: "No, we are an independent academic tool. However, we use the official scoring rubrics and historical curves used by College Board to ensure our predictions are as accurate as possible for the 2025 exam." },
+                { q: "What constitutes a 'good' score in AP Gov?", a: "A 3 is a passing score and widely respected. However, if you're aiming for credit at top-tier US universities, you should target a 4 or a 5. Use our predictor to see how many MCQs you can safely miss to stay in that range!" },
+                { q: "Does the 2025 curve differ from previous years?", a: "Curves shift slightly every year based on global student performance. Our 2025 model factors in recent trends from 2023 and 2024 to give you the most reliable 'Safe Zone' for your target score." },
+                { q: "How much do the FRQs actually matter?", a: "They are 50% of your grade! You could get a perfect score on the Multiple Choice, but if you struggle with the Argumentative Essay or SCOTUS Comparison, it's very hard to earn a 5." },
+                { q: "Tips for the Argumentative Essay (FRQ 4)?", a: "Focus on your thesis statement and explicitly linking your evidence to your claim. This section is worth 6 raw points—missing a single point here is more costly than missing an MCQ." },
+                { q: "Can I use this for other AP exams?", a: "This specific tool is tuned for AP Government's 50/50 weighting and 24-point FRQ scale. Check our home page for other specialized AP calculators!" }
               ].map((faq, i) => (
                 <div key={i} className="p-8 bg-white/5 border border-white/10 rounded-[32px] backdrop-blur-sm group hover:bg-white/10 transition-colors">
                   <h4 className="font-black text-indigo-400 mb-3 flex items-center gap-2 group-hover:text-white transition-colors text-lg">
