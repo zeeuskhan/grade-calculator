@@ -174,8 +174,8 @@ const GradePage = ({ title = "Grade Calculator" }) => {
   return (
     <div className="min-h-screen bg-indigo-50/20 pb-20">
       <SEO 
-        title={`${title} | Professional Calculatorofgrade Tool`}
-        description={`Calculate your grades with our free calculatorofgrade tool. Supports ${isPercentageMode ? '18 out of 25 percentage' : 'weighted averages'} and detailed gradebook management.`}
+        title={`${title} | Free Academic Grading Tool`}
+        description={`Calculate your grades with our free ${title} tool. Supports ${isPercentageMode ? 'test score percentages like 18 out of 25' : 'weighted global averages'} and detailed gradebook management for students.`}
         schema={schemaData}
       />
 
@@ -183,9 +183,9 @@ const GradePage = ({ title = "Grade Calculator" }) => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 bg-white p-6 md:p-8 rounded-3xl border border-indigo-100/50 shadow-sm">
           <div>
             <h1 className="text-3xl md:text-4xl font-black text-indigo-950 mb-2 tracking-tight group flex items-center gap-3">
-              {title} <span className="text-indigo-600">Calculatorofgrade</span>
+              {title} <span className="text-indigo-600">Expert.</span>
             </h1>
-            <p className="text-indigo-950/70 font-bold text-sm md:text-base italic">Ultimate professional calculatorofgrade for precise score tracking.</p>
+            <p className="text-indigo-950/70 font-bold text-sm md:text-base italic">Professional academic grade tracking for precise score calculations.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Tooltip content="Switch between US 4.0 and Indian CBSE grading scales">

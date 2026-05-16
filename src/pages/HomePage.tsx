@@ -36,7 +36,7 @@ const HomePage = () => {
       color: 'bg-purple-500',
     },
     {
-      name: 'AP GOV Score Predictor',
+      name: 'AP GOV Score Calculator',
       description: 'Project your official 2025 AP Government exam score (1-5 scale) instantly.',
       path: '/ap-gov-calculator',
       icon: Target,

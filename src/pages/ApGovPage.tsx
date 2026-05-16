@@ -139,8 +139,9 @@ Calculated at CalculatorOfGrades.com`;
   return (
     <div className="min-h-screen bg-[#FDFDFF] pb-20">
       <SEO 
-        title="AP GOV Score Calculator 2025 - Predict Your AP Government Score"
-        description="Estimate your AP Government exam score with our premium AP GOV Score Calculator 2025. Accurate composite scores using data from 2024, 2023, and 2021 curves. Free & Professional."
+        title="AP GOV Score Calculator 2025 | Predict Your 1-5 Score"
+        description="The internet's #1 AP GOV Score Calculator. Accurate score predictor for the 2025 AP Government exam using official College Board scoring rubrics and historical curves."
+        keywords="AP GOV Score Calculator, ap gov score calculator 2025, ap government score predictor, ap gov exam scoring, composite score estimator"
         schema={schemaData}
       />
 
@@ -159,10 +160,10 @@ Calculated at CalculatorOfGrades.com`;
             <Calculator size={40} className="stroke-[2.5]" />
           </motion.div>
           <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter leading-tight">
-            AP GOV <span className="text-indigo-400">Score Calculator 2025.</span>
+            AP GOV <span className="text-indigo-400">Score Calculator.</span>
           </h1>
           <p className="text-indigo-100/80 text-lg md:text-xl font-bold max-w-2xl mx-auto leading-relaxed">
-            Predict your 2025 AP Government exam results with our premium composite score estimator.
+            The most accurate AP GOV Score Calculator updated for the 2025 exams. Predict your 1-5 score using our real-time composite estimator.
           </p>
         </div>
       </div>
@@ -495,6 +496,54 @@ Calculated at CalculatorOfGrades.com`;
                       </tr>
                     </tbody>
                   </table>
+                </div>
+              </div>
+
+              {/* Advanced Scoring Guide for SEO */}
+              <div className="py-20 border-t border-indigo-100">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                  <div>
+                    <h3 className="text-3xl md:text-5xl font-black text-indigo-950 mb-8 tracking-tighter leading-tight">
+                      How Does the <span className="text-indigo-600">AP GOV Score Calculator</span> Work?
+                    </h3>
+                    <div className="space-y-6 text-indigo-950/70 font-bold leading-relaxed">
+                      <p>
+                        The AP United States Government and Politics exam is scored on a weighted scale that splits your performance 50/50 between two sections: Multiple Choice Questions (MCQ) and Free Response Questions (FRQ).
+                      </p>
+                      <div className="space-y-4">
+                        <div className="flex gap-4 items-start">
+                          <div className="w-8 h-8 rounded-full bg-indigo-100 flex-shrink-0 flex items-center justify-center text-indigo-600 font-black">1</div>
+                          <p><span className="text-indigo-900 font-black">Section I (MCQ):</span> 55 questions in 80 minutes. This section accounts for exactly 50% of your total composite score. No points are deducted for wrong answers.</p>
+                        </div>
+                        <div className="flex gap-4 items-start">
+                          <div className="w-8 h-8 rounded-full bg-indigo-100 flex-shrink-0 flex items-center justify-center text-indigo-600 font-black">2</div>
+                          <p><span className="text-indigo-900 font-black">Section II (FRQ):</span> 4 questions in 100 minutes. This includes the Concept Application, Quantitative Analysis, SCOTUS Comparison, and the crucial Argumentative Essay. Total raw points available is 24.</p>
+                        </div>
+                      </div>
+                      <p>
+                        Our calculator uses the official 2025 weighting algorithm to combine these raw scores into a single composite value (out of 100). We then apply the historical curves from the <strong>College Board AP Gov exam cycles</strong> to estimate your final score from 1-5.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="bg-indigo-50 p-10 rounded-[48px] border border-indigo-100 space-y-8">
+                    <h4 className="text-xl font-black text-indigo-950">2025 Prediction Benchmarks</h4>
+                    <div className="space-y-4">
+                      {[
+                        { grade: '5', score: '75%+ Composite Points', color: 'bg-emerald-500' },
+                        { grade: '4', score: '60% - 74% Composite Points', color: 'bg-blue-500' },
+                        { grade: '3', score: '45% - 59% Composite Points', color: 'bg-indigo-500' },
+                        { grade: '2', score: '30% - 44% Composite Points', color: 'bg-slate-400' },
+                      ].map((bench, idx) => (
+                        <div key={idx} className="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm">
+                           <span className="font-black text-indigo-950">AP Score {bench.grade}</span>
+                           <span className={cn("px-4 py-1 rounded-full text-white text-xs font-black", bench.color)}>{bench.score}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-[10px] text-indigo-400 font-black uppercase tracking-widest text-center mt-6 uppercase">
+                      *Curves are estimated based on historical trends
+                    </p>
+                  </div>
                 </div>
               </div>
 
