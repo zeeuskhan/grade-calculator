@@ -18,6 +18,8 @@ import {
   Loader2
 } from 'lucide-react';
 import { cn } from './lib/utils';
+import { AdBanner } from './components/AdBanner';
+import { SidebarAd } from './components/SidebarAd';
 
 // Lazy Loaded Pages
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -211,27 +213,33 @@ export default function App() {
       <Router>
         <div className="min-h-screen flex flex-col selection:bg-indigo-500/30 selection:text-indigo-900">
           <Navigation />
-          <main className="flex-grow">
-            <Suspense fallback={<PageLoader />}>
-              <AnimatePresence mode="wait">
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/grade-calculator" element={<GradePage />} />
-                  <Route path="/gpa-calculator" element={<GPAPage />} />
-                  <Route path="/final-grade-predictor" element={<FinalGradePage />} />
-                  <Route path="/percentage-calculator" element={<GradePage title="Percentage" />} />
-                  <Route path="/ap-gov-calculator" element={<ApGovPage />} />
-                  <Route path="/blog" element={<BlogPage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/faq" element={<FAQPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/privacy" element={<PrivacyPage />} />
-                  <Route path="/terms" element={<TermsPage />} />
-                  <Route path="*" element={<div className="flex items-center justify-center h-96">404 - Not Found</div>} />
-                </Routes>
-              </AnimatePresence>
-            </Suspense>
-          </main>
+          <AdBanner />
+          <div className="flex justify-center max-w-[1600px] mx-auto w-full px-4 overflow-x-hidden">
+            <SidebarAd side="left" />
+            <main className="flex-grow min-w-0">
+              <Suspense fallback={<PageLoader />}>
+                <AnimatePresence mode="wait">
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/grade-calculator" element={<GradePage />} />
+                    <Route path="/gpa-calculator" element={<GPAPage />} />
+                    <Route path="/final-grade-predictor" element={<FinalGradePage />} />
+                    <Route path="/percentage-calculator" element={<GradePage title="Percentage" />} />
+                    <Route path="/ap-gov-calculator" element={<ApGovPage />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/faq" element={<FAQPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/privacy" element={<PrivacyPage />} />
+                    <Route path="/terms" element={<TermsPage />} />
+                    <Route path="*" element={<div className="flex items-center justify-center h-96">404 - Not Found</div>} />
+                  </Routes>
+                </AnimatePresence>
+              </Suspense>
+            </main>
+            <SidebarAd side="right" />
+          </div>
+          <AdBanner />
           <Footer />
         </div>
       </Router>
