@@ -30,6 +30,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
+const ApGovPage = lazy(() => import('./pages/ApGovPage'));
 
 const PageLoader = () => (
   <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4 text-indigo-600">
@@ -163,6 +164,7 @@ const Footer = () => (
           <li><Link to="/grade-calculator" className="hover:text-indigo-600 transition-all">Grade Calculator</Link></li>
           <li><Link to="/gpa-calculator" className="hover:text-indigo-600 transition-all">GPA Calculator</Link></li>
           <li><Link to="/final-grade-predictor" className="hover:text-indigo-600 transition-all">Final Grade Predictor</Link></li>
+          <li><Link to="/ap-gov-calculator" className="hover:text-indigo-600 transition-all font-black text-indigo-600 italic underline decoration-wavy underline-offset-4">AP GOV Calculator</Link></li>
           <li><Link to="/percentage-calculator" className="hover:text-indigo-600 transition-all">Percentage Calculator</Link></li>
         </ul>
       </div>
@@ -218,6 +220,7 @@ export default function App() {
                   <Route path="/gpa-calculator" element={<GPAPage />} />
                   <Route path="/final-grade-predictor" element={<FinalGradePage />} />
                   <Route path="/percentage-calculator" element={<GradePage title="Percentage" />} />
+                  <Route path="/ap-gov-calculator" element={<ApGovPage />} />
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/faq" element={<FAQPage />} />

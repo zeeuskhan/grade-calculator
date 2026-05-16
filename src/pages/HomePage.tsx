@@ -35,6 +35,13 @@ const HomePage = () => {
       icon: Percent,
       color: 'bg-purple-500',
     },
+    {
+      name: 'AP GOV Score Predictor',
+      description: 'Estimate your AP Government exam score based on MCQ and FRQ results.',
+      path: '/ap-gov-calculator',
+      icon: Target,
+      color: 'bg-emerald-500',
+    },
   ];
 
   return (
@@ -157,7 +164,7 @@ const HomePage = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tools.map((tool, idx) => (
               <motion.div
                 key={tool.name}
@@ -331,8 +338,11 @@ const HomePage = () => {
                 { name: "Calculator for Grading", path: "/grade-calculator" },
                 { name: "Grading Calculator Online", path: "/grade-calculator" },
                 { name: "Calculator of CGPA", path: "/gpa-calculator" },
+                { name: "AP GOV Score Calculator 2025", path: "/ap-gov-calculator" },
+                { name: "Albert AP Gov Score Calculator", path: "/ap-gov-calculator" },
+                { name: "AP Gov Score Calculator 2024", path: "/ap-gov-calculator" },
+                { name: "Knowt AP Gov Score Calculator", path: "/ap-gov-calculator" },
                 { name: "CGPA Calculator Online", path: "/gpa-calculator" },
-                { name: "Calculator of 7th CPC", path: "/grade-calculator" },
                 { name: "KTU CGPA Calculator", path: "/gpa-calculator" },
                 { name: "SPPU CGPA Calculator", path: "/gpa-calculator" }
               ].map((link, j) => (
@@ -349,15 +359,15 @@ const HomePage = () => {
               {[
                 "8 cgpa in percentage",
                 "8.2cgpa in percentage",
-                "6 cgpa in percentage",
+                "Albert IO AP Gov Score Calculator",
+                "Fiveable AP Gov Score Calculator",
                 "9 cgpa in percentage",
-                "CGPA of percentage",
+                "AP Gov Score Calculator Albert",
                 "what is 9.8 cgpa in percentage",
-                "77 percentage to cgpa",
-                "53 percentage to cgpa",
-                "69 percentage to cgpa",
-                "7 point cgpa to percentage",
-                "3 cgpa in percentage",
+                "AP Gov Score Calculator 2021",
+                "AP Gov Score Calculator 2019",
+                "AP Gov Score Calculator 2020",
+                "AP Gov Score Calculator 2023",
                 "4 cgpa to percentage"
               ].map((term, j) => (
                 <li key={j}>
