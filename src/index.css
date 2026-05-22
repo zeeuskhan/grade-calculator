@@ -19,6 +19,11 @@
   --foreground: #1e1b4b;
 }
 
+.dark {
+  --background: #030014;
+  --foreground: #f8fafc;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
@@ -27,7 +32,7 @@ body {
 
 @layer base {
   body {
-    @apply bg-[#fbfbfe] text-[#1e1b4b] transition-colors duration-300 antialiased;
+    @apply bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 antialiased;
   }
 }
 
