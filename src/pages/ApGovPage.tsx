@@ -160,7 +160,7 @@ Calculated at CalculatorOfGrades.com`;
             <Calculator size={40} className="stroke-[2.5]" />
           </motion.div>
           <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter leading-tight">
-            AP GOV <span className="text-indigo-400">Score Calculator.</span>
+            Albert AP GOV <span className="text-indigo-400">Score Calculator.</span>
           </h1>
           <p className="text-indigo-100/80 text-lg md:text-xl font-bold max-w-2xl mx-auto leading-relaxed">
             The ultimate free Albert AP Gov Score Calculator alternative updated for the 2025 exams. Predict your 1-5 score using our real-time composite estimator.
