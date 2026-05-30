@@ -22,7 +22,7 @@ export const AdBanner = () => {
       
       const script2 = document.createElement('script');
       script2.type = 'text/javascript';
-      script2.src = "//www.highperformanceformat.com/6b6777c4248ba9b31f1a7f8087ca4b49/invoke.js";
+      script2.src = "https://endedstrung.com/6b6777c4248ba9b31f1a7f8087ca4b49/invoke.js";
       
       adContainerRef.current.appendChild(script1);
       adContainerRef.current.appendChild(script2);
