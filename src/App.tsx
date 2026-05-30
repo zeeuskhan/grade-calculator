@@ -166,6 +166,9 @@ const Navigation = () => {
 
 const Footer = () => (
   <footer className="bg-white dark:bg-indigo-950 border-t border-indigo-100 dark:border-indigo-900/50 py-16 px-4 transition-colors duration-300">
+    <div className="max-w-7xl mx-auto mb-12">
+      <AdBanner />
+    </div>
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-1">
         <Link to="/" className="flex items-center gap-2 mb-6">
