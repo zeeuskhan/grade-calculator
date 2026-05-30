@@ -22,7 +22,6 @@ import {
 import { cn } from './lib/utils';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { AdBanner } from './components/AdBanner';
-import { SidebarAd } from './components/SidebarAd';
 import ScrollToTop from './components/ScrollToTop';
 import { BackToTop } from './components/BackToTop';
 
@@ -236,7 +235,6 @@ export default function App() {
           <Navigation />
           <AdBanner />
           <div className="flex justify-center max-w-[1600px] mx-auto w-full px-4 overflow-x-hidden">
-            <SidebarAd side="left" />
             <main className="flex-grow min-w-0">
               <Suspense fallback={<PageLoader />}>
                 <AnimatePresence mode="wait">
@@ -258,7 +256,6 @@ export default function App() {
                 </AnimatePresence>
               </Suspense>
             </main>
-            <SidebarAd side="right" />
           </div>
           <AdBanner />
           <Footer />
