@@ -153,24 +153,265 @@ const GradePage = ({ title = "Grade Calculator" }) => {
   };
 
   const exportPDF = () => {
-    const doc = new jsPDF();
-    doc.setFontSize(22);
-    doc.text('CalculatorOfGrades Report Card', 20, 20);
-    doc.setFontSize(14);
-    doc.text(`Result: ${formatNum(currentGrade)}% (${letterGrade})`, 20, 35);
-    doc.text(`Grading System: ${system === 'US' ? 'US 4.0' : 'Indian CBSE'}`, 20, 45);
+    // A4 dimensions: 210mm x 297mm
+    const doc = new jsPDF('p', 'mm', 'a4');
     
-    doc.line(20, 55, 190, 55);
+    // Theme Colors
+    const primaryColor = [30, 27, 75];    // #1e1b4b (Deep Indigo)
+    const secondaryColor = [79, 70, 229]; // #4f46e5 (Indigo Accent)
+    const textColor = [30, 27, 75];        // Main dark grey text
+    const grayText = [100, 116, 139];     // Slate Gray
+    const borderGray = [226, 232, 240];    // Border Light Gray
+    const lightBg = [248, 250, 252];      // Slate 50 (Row Alternating)
+    const accentRed = [239, 68, 68];      // Red alert color
+
+    // Page dimension helpers
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    const contentWidth = pageWidth - (margin * 2);
+
+    // 1. TOP BRANDING & HEADER
+    // Custom Accent top border strip
+    doc.setFillColor(79, 70, 229); // Indigo top bar accent
+    doc.rect(0, 0, pageWidth, 5, 'F');
+
+    // Title / Brand Name
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.setTextColor(30, 27, 75);
+    doc.text('CALCULATOR OF GRADES', margin, 22);
     
-    let y = 65;
-    doc.text('Assignments:', 20, y);
-    y += 10;
-    assignments.forEach((a, i) => {
-      doc.text(`${i+1}. ${a.name}: ${formatNum(a.grade)}% (Weight: ${a.weight}%)`, 25, y);
-      y += 10;
+    // Tagline
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(100, 116, 139);
+    doc.text('Professional Academic Performance Report', margin, 27);
+
+    // Timestamp with pill background
+    const now = new Date();
+    const timestampStr = now.toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
     });
     
-    doc.save('Calculator_Report.pdf');
+    doc.setFillColor(241, 245, 249); // slate-100
+    doc.roundedRect(pageWidth - margin - 75, 14, 75, 14, 2, 2, 'F');
+    
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(79, 70, 229);
+    doc.text('GENERATED SECURELY', pageWidth - margin - 70, 19);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(100, 116, 139);
+    doc.text(timestampStr, pageWidth - margin - 70, 24);
+
+    // Divider Line below Header
+    doc.setDrawColor(226, 232, 240);
+    doc.setLineWidth(0.5);
+    doc.line(margin, 34, pageWidth - margin, 34);
+
+    // 2. SUMMARY OVERVIEW BOX (Bento Design style)
+    const summaryBoxY = 38;
+    const summaryBoxHeight = 44;
+    doc.setFillColor(248, 250, 252); // slate-50
+    doc.setDrawColor(224, 231, 255); // indigo-100
+    doc.roundedRect(margin, summaryBoxY, contentWidth, summaryBoxHeight, 3, 3, 'FD');
+
+    // Left side: Big Letter Grade display panel
+    doc.setFillColor(79, 70, 229); // indigo dark background
+    doc.roundedRect(margin + 8, summaryBoxY + 8, 40, summaryBoxHeight - 16, 2, 2, 'F');
+    
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(255, 255, 255);
+    doc.text('GRADE SCALE', margin + 11, summaryBoxY + 16);
+    
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(28);
+    doc.setTextColor(255, 255, 255);
+    doc.text(letterGrade, margin + 28, summaryBoxY + 32, { align: 'center' });
+
+    // Center area: Numerical Grade details
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(100, 116, 139);
+    doc.text('CUMULATIVE PERFORMANCE', margin + 56, summaryBoxY + 16);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(24);
+    doc.setTextColor(30, 27, 75);
+    doc.text(`${formatNum(currentGrade)}%`, margin + 56, summaryBoxY + 28);
+
+    // Right side: Report metadata
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(100, 116, 139);
+    doc.text('Evaluation Method:', margin + 118, summaryBoxY + 16);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(30, 27, 75);
+    doc.text(method === 'WEIGHTED' ? 'Weighted Average' : 'Simple Average', margin + 152, summaryBoxY + 16);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 116, 139);
+    doc.text('Grading System:', margin + 118, summaryBoxY + 23);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(30, 27, 75);
+    doc.text(system === 'US' ? 'US GPA (4.0 Scale)' : 'Indian CBSE System', margin + 152, summaryBoxY + 23);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 116, 139);
+    doc.text('Total Records:', margin + 118, summaryBoxY + 30);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(30, 27, 75);
+    doc.text(`${assignments.length} Course Items`, margin + 152, summaryBoxY + 30);
+
+    // Validation or alert line at the bottom of Summary
+    if (method === 'WEIGHTED' && totalPossibleWeight !== 100) {
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(accentRed[0], accentRed[1], accentRed[2]);
+      doc.text(`Warning: Category weights total ${totalPossibleWeight}%. Standard calculations require 100%.`, margin + 56, summaryBoxY + 36);
+    } else {
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(16, 185, 129); // emerald green
+      doc.text('✓ All entries correspond to verified gradebook weight scales.', margin + 56, summaryBoxY + 36);
+    }
+
+    // 3. TABLE OF GRADED ACTIVITIES
+    let tableStartY = 92;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(30, 27, 75);
+    doc.text('ACADEMIC GRADEBOOK ENTRIES', margin, tableStartY);
+
+    // Table Header drawing
+    const headerY = tableStartY + 4;
+    const headerHeight = 10;
+    
+    doc.setFillColor(30, 27, 75); // Indigo dark background
+    doc.rect(margin, headerY, contentWidth, headerHeight, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(255, 255, 255);
+    
+    // Grid layout positions: No, Name, Mark, Weight/Contrib
+    const colIdx = margin + 4;
+    const colName = margin + 18;
+    const colScore = margin + 100;
+    const colWeight = margin + 140;
+
+    doc.text('NO.', colIdx, headerY + 6.5);
+    doc.text('ASSIGNMENT / CATEGORY', colName, headerY + 6.5);
+    doc.text(inputMode === 'PERCENT' ? 'SCORE / RATE' : 'RAW POINTS (REC/MAX)', colScore, headerY + 6.5);
+    doc.text(method === 'WEIGHTED' ? 'WEIGHT CONTRIB.' : 'RELATIVE WT', colWeight, headerY + 6.5);
+
+    // Render each assignment item
+    let currentY = headerY + headerHeight;
+    const rowHeight = 11;
+
+    assignments.forEach((a, index) => {
+      // Alternate light silver and lavender backgrounds for premium aesthetics
+      if (index % 2 === 0) {
+        doc.setFillColor(252, 251, 254);
+      } else {
+        doc.setFillColor(248, 250, 252);
+      }
+      doc.rect(margin, currentY, contentWidth, rowHeight, 'F');
+
+      // Light bottom borders separating rows
+      doc.setDrawColor(241, 245, 249);
+      doc.setLineWidth(0.3);
+      doc.line(margin, currentY + rowHeight, margin + contentWidth, currentY + rowHeight);
+
+      // Render cell text values
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(115, 115, 115); // medium gray index
+      doc.text(`${(index + 1).toString().padStart(2, '0')}`, colIdx, currentY + 7);
+
+      // Assignment Name text (Safely truncated to fit cleanly on Page width)
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(30, 27, 75);
+      const displayName = a.name.length > 40 ? a.name.substring(0, 37) + '...' : a.name;
+      doc.text(displayName, colName, currentY + 7);
+
+      // Performance Score / Percent
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(30, 27, 75);
+      if (inputMode === 'PERCENT') {
+        doc.text(`${formatNum(a.grade)}%`, colScore, currentY + 7);
+      } else {
+        const calculatedPercent = a.maxPoints > 0 ? (a.receivedPoints / a.maxPoints) * 100 : 0;
+        doc.text(`${a.receivedPoints} / ${a.maxPoints} (${formatNum(calculatedPercent)}%)`, colScore, currentY + 7);
+      }
+
+      // Weights contribution field
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(100, 116, 139);
+      if (method === 'WEIGHTED') {
+        doc.text(`${a.weight}%`, colWeight, currentY + 7);
+      } else {
+        doc.text(`${formatNum(100 / assignments.length)}%`, colWeight, currentY + 7);
+      }
+
+      currentY += rowHeight;
+    });
+
+    // 4. FOOTER FINE-PRINT & SIGNATURE ROW
+    // Position signature lines cleanly past the items grid, or lock elements on bottom margin
+    const footerStartY = Math.max(currentY + 15, pageHeight - 50);
+
+    // Left block: Official disclaimer and verification
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(79, 70, 229);
+    doc.text('TRANSCRIPT RATINGS & VERIFICATION', margin, footerStartY);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(100, 116, 139);
+    const disclaimerParas = [
+      'This report showcases academic progress metrics generated securely in real-time by the CalculatorOfGrades.',
+      'Weighted scores are evaluated continuously utilizing default mathematical averages compiled via school datasets.',
+      'Verify course syllabi weight proportions directly with administrators before official credit validations.'
+    ];
+    disclaimerParas.forEach((paragraphLine, idx) => {
+      doc.text(paragraphLine, margin, footerStartY + 5 + (idx * 3.5));
+    });
+
+    // Right block: Signature bar
+    const sigLineX = pageWidth - margin - 52;
+    doc.setDrawColor(161, 161, 170); // neutral-400 border line
+    doc.setLineWidth(0.4);
+    doc.line(sigLineX, footerStartY + 12, pageWidth - margin, footerStartY + 12);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(30, 27, 75);
+    doc.text('Student / Advisor Verification Seal', sigLineX + 2, footerStartY + 16);
+
+    // Bottom margin system watermark
+    doc.setDrawColor(241, 245, 249);
+    doc.line(margin, pageHeight - 12, pageWidth - margin, pageHeight - 12);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(161, 161, 170);
+    doc.text('Calculator of Grades — Dynamic Report System', margin, pageHeight - 7);
+    doc.text('Page 1 of 1', pageWidth - margin - 15, pageHeight - 7);
+
+    // Export the finalized document
+    const sanitTitle = title.replace(/\s+/g, '_');
+    doc.save(`${sanitTitle}_Report_Card.pdf`);
   };
 
   return (

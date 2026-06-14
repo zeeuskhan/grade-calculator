@@ -17,7 +17,8 @@ import {
   Mail,
   Loader2,
   Sun,
-  Moon
+  Moon,
+  ChevronDown
 } from 'lucide-react';
 import { cn } from './lib/utils';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
@@ -37,6 +38,16 @@ const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
 const ApGovPage = lazy(() => import('./pages/ApGovPage'));
+const VtuCgpaPage = lazy(() => import('./pages/VtuCgpaPage'));
+const AnnaUniversityCgpaPage = lazy(() => import('./pages/AnnaUniversityCgpaPage'));
+const MumbaiUniversityCgpaPage = lazy(() => import('./pages/MumbaiUniversityCgpaPage'));
+const AktuCgpaPage = lazy(() => import('./pages/AktuCgpaPage'));
+const JntuCgpaPage = lazy(() => import('./pages/JntuCgpaPage'));
+const SppuCgpaPage = lazy(() => import('./pages/SppuCgpaPage'));
+const RgpvCgpaPage = lazy(() => import('./pages/RgpvCgpaPage'));
+const DuCgpaPage = lazy(() => import('./pages/DuCgpaPage'));
+const SemesterGpaPage = lazy(() => import('./pages/SemesterGpaPage'));
+const AttendancePercentagePage = lazy(() => import('./pages/AttendancePercentagePage'));
 
 const PageLoader = () => (
   <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4 text-indigo-600">
@@ -64,6 +75,22 @@ const Navigation = () => {
     { name: 'Blog', path: '/blog', icon: FileText },
   ];
 
+  const universitySubItems = [
+    { name: "VTU CGPA", path: "/vtu-cgpa-to-percentage-calculator" },
+    { name: "Anna Uni CGPA", path: "/anna-university-cgpa-to-percentage-calculator" },
+    { name: "Mumbai Uni CGPA", path: "/mumbai-university-cgpa-to-percentage-calculator" },
+    { name: "AKTU CGPA", path: "/aktu-cgpa-to-percentage-calculator" },
+    { name: "JNTU CGPA", path: "/jntu-cgpa-to-percentage-calculator" },
+    { name: "SPPU CGPA", path: "/sppu-cgpa-to-percentage-calculator" },
+    { name: "RGPV CGPA", path: "/rgpv-cgpa-to-percentage-calculator" },
+    { name: "Delhi Uni CGPA", path: "/du-cgpa-to-percentage-calculator" }
+  ];
+
+  const toolsSubItems = [
+    { name: "Semester GPA", path: "/semester-gpa-calculator" },
+    { name: "Attendance %", path: "/attendance-percentage-calculator" }
+  ];
+
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-indigo-100 dark:border-indigo-900/50 bg-white/80 dark:bg-indigo-950/80 backdrop-blur-md transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,7 +108,7 @@ const Navigation = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="flex gap-8 font-black text-indigo-900 dark:text-indigo-100">
+            <div className="flex gap-6 items-center font-black text-indigo-900 dark:text-indigo-100 text-sm">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
@@ -96,6 +123,42 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
+
+              {/* University dropdown */}
+              <div className="relative group py-2">
+                <button className="flex items-center gap-1 hover:text-indigo-600 dark:hover:text-indigo-400 cursor-pointer">
+                  University CGPA <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
+                </button>
+                <div className="absolute right-0 top-full mt-1 w-56 bg-white dark:bg-indigo-950 border border-indigo-100 dark:border-indigo-900/50 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-1">
+                  {universitySubItems.map((sub) => (
+                    <Link
+                      key={sub.path}
+                      to={sub.path}
+                      className="block px-4 py-2 text-xs font-bold text-indigo-950 dark:text-indigo-100 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 rounded-xl transition-all"
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Related Tools dropdown */}
+              <div className="relative group py-2">
+                <button className="flex items-center gap-1 hover:text-indigo-600 dark:hover:text-indigo-400 cursor-pointer">
+                  Related <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
+                </button>
+                <div className="absolute right-0 top-full mt-1 w-52 bg-white dark:bg-indigo-950 border border-indigo-100 dark:border-indigo-900/50 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-1">
+                  {toolsSubItems.map((sub) => (
+                    <Link
+                      key={sub.path}
+                      to={sub.path}
+                      className="block px-4 py-2 text-xs font-bold text-indigo-950 dark:text-indigo-100 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 rounded-xl transition-all"
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
             
             <div className="flex items-center gap-4 ml-4">
@@ -137,25 +200,61 @@ const Navigation = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-indigo-950 border-b border-indigo-100 dark:border-indigo-900/50 overflow-hidden"
+            className="md:hidden bg-white dark:bg-indigo-950 border-b border-indigo-100 dark:border-indigo-900/50 overflow-y-auto max-h-[85vh]"
           >
-            <div className="px-4 py-6 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={cn(
-                    "flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold",
-                    location.pathname === item.path
-                    ? "bg-indigo-50 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400"
-                    : "text-indigo-900 dark:text-indigo-100 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/30"
-                  )}
-                >
-                  <item.icon size={20} />
-                  {item.name}
-                </Link>
-              ))}
+            <div className="px-4 py-6 space-y-4">
+              <div className="space-y-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold",
+                      location.pathname === item.path
+                      ? "bg-indigo-50 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400"
+                      : "text-indigo-900 dark:text-indigo-100 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/30"
+                    )}
+                  >
+                    <item.icon size={18} />
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Mobile University links */}
+              <div className="space-y-1">
+                <span className="block px-4 text-[10px] font-black uppercase tracking-widest text-indigo-400">University CGPA</span>
+                <div className="grid grid-cols-2 gap-1 px-2">
+                  {universitySubItems.map((sub) => (
+                    <Link
+                      key={sub.path}
+                      to={sub.path}
+                      onClick={() => setIsOpen(false)}
+                      className="block px-3 py-2 text-xs font-bold text-indigo-900 dark:text-indigo-200 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/30 rounded-lg"
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Mobile Related tools */}
+              <div className="space-y-1">
+                <span className="block px-4 text-[10px] font-black uppercase tracking-widest text-indigo-400 font-sans">Related Tools</span>
+                <div className="grid grid-cols-2 gap-1 px-2">
+                  {toolsSubItems.map((sub) => (
+                    <Link
+                      key={sub.path}
+                      to={sub.path}
+                      onClick={() => setIsOpen(false)}
+                      className="block px-3 py-2 text-xs font-bold text-indigo-900 dark:text-indigo-200 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/30 rounded-lg"
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
@@ -189,6 +288,8 @@ const Footer = () => (
           <li><Link to="/final-grade-predictor" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">Final Grade Predictor</Link></li>
           <li><Link to="/ap-gov-calculator" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-all font-black text-indigo-600 dark:text-indigo-400 italic underline decoration-wavy underline-offset-4">AP GOV Calculator</Link></li>
           <li><Link to="/percentage-calculator" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">Percentage Calculator</Link></li>
+          <li><Link to="/semester-gpa-calculator" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-all text-xs text-indigo-500/80">Semester GPA Suite</Link></li>
+          <li><Link to="/attendance-percentage-calculator" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-all text-xs text-indigo-500/80">Attendance Tracker</Link></li>
         </ul>
       </div>
       <div>
@@ -248,6 +349,16 @@ export default function App() {
                     <Route path="/final-grade-predictor" element={<FinalGradePage />} />
                     <Route path="/percentage-calculator" element={<GradePage title="Percentage" />} />
                     <Route path="/ap-gov-calculator" element={<ApGovPage />} />
+                    <Route path="/vtu-cgpa-to-percentage-calculator" element={<VtuCgpaPage />} />
+                    <Route path="/anna-university-cgpa-to-percentage-calculator" element={<AnnaUniversityCgpaPage />} />
+                    <Route path="/mumbai-university-cgpa-to-percentage-calculator" element={<MumbaiUniversityCgpaPage />} />
+                    <Route path="/aktu-cgpa-to-percentage-calculator" element={<AktuCgpaPage />} />
+                    <Route path="/jntu-cgpa-to-percentage-calculator" element={<JntuCgpaPage />} />
+                    <Route path="/sppu-cgpa-to-percentage-calculator" element={<SppuCgpaPage />} />
+                    <Route path="/rgpv-cgpa-to-percentage-calculator" element={<RgpvCgpaPage />} />
+                    <Route path="/du-cgpa-to-percentage-calculator" element={<DuCgpaPage />} />
+                    <Route path="/semester-gpa-calculator" element={<SemesterGpaPage />} />
+                    <Route path="/attendance-percentage-calculator" element={<AttendancePercentagePage />} />
                     <Route path="/blog" element={<BlogPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/faq" element={<FAQPage />} />

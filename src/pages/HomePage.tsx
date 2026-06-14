@@ -259,6 +259,57 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* CGPA Calculators by University Section */}
+      <section className="py-24 px-4 bg-white dark:bg-transparent transition-colors">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-5xl font-black text-indigo-950 dark:text-white mb-4 tracking-tighter">
+              University <span className="text-indigo-600 dark:text-indigo-400">CGPA Calculators.</span>
+            </h2>
+            <p className="text-indigo-900/60 dark:text-indigo-100/60 font-bold max-w-2xl mx-auto">
+              Find customized formulas and guidelines for top tier universities. Get fast, official conversions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { name: "VTU", path: "/vtu-cgpa-to-percentage-calculator", desc: "Visvesvaraya Technological University formula" },
+              { name: "Anna University", path: "/anna-university-cgpa-to-percentage-calculator", desc: "Official Chennai affiliation CBCS standard" },
+              { name: "Mumbai University", path: "/mumbai-university-cgpa-to-percentage-calculator", desc: "Maharashtra division CBCS score factors" },
+              { name: "AKTU", path: "/aktu-cgpa-to-percentage-calculator", desc: "Dr. A.P.J. Abdul Kalam Technical University" },
+              { name: "JNTU", path: "/jntu-cgpa-to-percentage-calculator", desc: "Jawaharlal Nehru Technological University standard" },
+              { name: "SPPU", path: "/sppu-cgpa-to-percentage-calculator", desc: "Savitribai Phule Pune University alignment" },
+              { name: "RGPV", path: "/rgpv-cgpa-to-percentage-calculator", desc: "Rajiv Gandhi Proudyogiki Vishwavidyalaya Bhopal" },
+              { name: "Delhi University", path: "/du-cgpa-to-percentage-calculator", desc: "University of Delhi 9.5x official factor" },
+            ].map((uni, idx) => (
+              <motion.div
+                key={uni.name}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05 }}
+              >
+                <Link
+                  to={uni.path}
+                  className="group block p-6 bg-indigo-50/30 dark:bg-indigo-900/10 hover:bg-indigo-50/70 border border-indigo-100/50 dark:border-indigo-800/80 hover:border-indigo-500/40 rounded-3xl transition-all"
+                >
+                  <h4 className="text-lg font-black text-indigo-950 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mb-1">
+                    {uni.name}
+                  </h4>
+                  <p className="text-xs text-indigo-900/60 dark:text-indigo-100/50 font-bold leading-relaxed">
+                    {uni.desc}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1.5 text-[10px] font-black text-indigo-400 group-hover:text-indigo-600 uppercase tracking-wider">
+                    <span>Calculate Now</span>
+                    <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Features List */}
       <section className="py-32 px-4 bg-indigo-50/20 dark:bg-indigo-950/20 transition-colors">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
