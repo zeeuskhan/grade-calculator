@@ -122,10 +122,13 @@ const GradePage = ({ title = "Grade Calculator" }) => {
   ], [currentGrade]);
 
   const addAssignment = () => {
+    const uniqueId = typeof crypto !== 'undefined' && crypto.randomUUID 
+      ? crypto.randomUUID() 
+      : Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
     setAssignments([
       ...assignments,
       { 
-        id: crypto.randomUUID(), 
+        id: uniqueId, 
         name: `Assignment ${assignments.length + 1}`, 
         grade: 0, 
         weight: 0,

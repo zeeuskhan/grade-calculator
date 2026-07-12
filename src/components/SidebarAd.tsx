@@ -14,7 +14,7 @@ export const SidebarAd = ({ side }: SidebarAdProps) => {
       const script1 = document.createElement('script');
       script1.type = 'text/javascript';
       script1.innerHTML = `
-        atOptions = {
+        window.atOptions = {
           'key' : '8a88a488fc0002bebafce38bde5ddaf7',
           'format' : 'iframe',
           'height' : 600,
@@ -25,7 +25,7 @@ export const SidebarAd = ({ side }: SidebarAdProps) => {
       
       const script2 = document.createElement('script');
       script2.type = 'text/javascript';
-      script2.src = "//www.highperformanceformat.com/8a88a488fc0002bebafce38bde5ddaf7/invoke.js";
+      script2.src = "https://www.highperformanceformat.com/8a88a488fc0002bebafce38bde5ddaf7/invoke.js";
       
       adContainerRef.current.appendChild(script1);
       adContainerRef.current.appendChild(script2);

@@ -65,7 +65,10 @@ const GPAPage = () => {
 
   const addCourse = () => {
     const defaultGrade = scale === 'US' ? 'A' : 'A1';
-    setCourses([...courses, { id: crypto.randomUUID(), name: '', grade: defaultGrade, credits: 3 }]);
+    const uniqueId = typeof crypto !== 'undefined' && crypto.randomUUID 
+      ? crypto.randomUUID() 
+      : Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
+    setCourses([...courses, { id: uniqueId, name: '', grade: defaultGrade, credits: 3 }]);
   };
 
   const removeCourse = (id: string) => {

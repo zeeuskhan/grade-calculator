@@ -37,7 +37,7 @@ const HomePage = () => {
     },
     {
       name: 'AP GOV Score Calculator',
-      description: 'Project your official 2025 AP Government exam score (1-5 scale) instantly.',
+      description: 'Project your official 2026 AP Government exam score using weighted MCQ and FRQ sections instantly.',
       path: '/ap-gov-calculator',
       icon: Target,
       color: 'bg-emerald-500',
@@ -82,8 +82,8 @@ const HomePage = () => {
   return (
     <div className="overflow-hidden">
       <SEO 
-        title="Calculatorofgrade | #1 Free Grading Calculator & GPA Tool Online"
-        description="The ultimate calculatorofgrade for students & teachers. Use our professional grading calculator online for precise class grades and GPA tracking."
+        title="Grade Calculator, GPA & CGPA Converter | Free Online Tools"
+        description="Calculate your grades, GPA, and cumulative CGPA with our professional online academic suite. Convert CGPA to percentage instantly and estimate final exam grades."
         schema={combinedSchema}
       />
 
@@ -106,13 +106,13 @@ const HomePage = () => {
               Trusted by 100k+ students
             </div>
             
-            <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-indigo-950 dark:text-white mb-6 md:mb-8 leading-[0.9] transition-all">
-              Top-Rated<br />
-              <span className="text-indigo-600 dark:text-indigo-400">Calculator of CGPA.</span>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-indigo-950 dark:text-white mb-6 md:mb-8 leading-[0.95] transition-all">
+              Grade Calculator,<br />
+              <span className="text-indigo-600 dark:text-indigo-400">GPA & CGPA Converter</span>
             </h1>
             
             <p className="max-w-xl text-lg md:text-xl text-indigo-950/80 dark:text-indigo-100/70 mb-8 md:mb-12 leading-relaxed font-bold font-sans">
-              The world's most trusted <strong>calculatorofgrade</strong> suite. Calculate grades, GPA, and exam strategies with surgical precision.
+              The world\'s most trusted <strong>calculatorofgrade</strong> suite. Calculate grades, GPA, and exam strategies with surgical precision.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -221,6 +221,36 @@ const HomePage = () => {
                 </Link>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured AP Government Section */}
+      <section className="py-12 px-4 bg-indigo-50/10 dark:bg-indigo-950/20 transition-colors">
+        <div className="max-w-7xl mx-auto">
+          <div className="p-8 md:p-12 bg-gradient-to-r from-emerald-50/50 to-indigo-50/50 dark:from-emerald-950/10 dark:to-indigo-950/10 border border-emerald-100/50 dark:border-emerald-900/30 rounded-3xl flex flex-col lg:flex-row justify-between items-center gap-8">
+            <div className="max-w-2xl text-left">
+              <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full text-[10px] font-black uppercase tracking-wider mb-3 inline-block">Featured AP Predictor</span>
+              <h3 className="text-2xl md:text-3xl font-black text-indigo-950 dark:text-white mb-3">AP US Government & Politics Exam Resource</h3>
+              <p className="text-sm font-medium text-indigo-900/70 dark:text-indigo-100/70 leading-relaxed">
+                Estimate your score on the AP US Gov exam using the official multiple-choice and free-response weighting. Calculate class score estimates, explore curve structures, and prepare with confidence using our comprehensive guides.
+              </p>
+            </div>
+            <div className="w-full lg:w-auto shrink-0 flex flex-col sm:flex-row gap-3">
+              <Link
+                to="/ap-gov-calculator"
+                className="px-6 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-black text-sm shadow-lg shadow-emerald-500/20 text-center transition-all flex items-center justify-center gap-2 active:scale-95"
+              >
+                Use AP Gov Score Calculator
+                <ArrowRight size={16} />
+              </Link>
+              <Link
+                to="/ap-gov-exam-guide"
+                className="px-6 py-4 bg-white dark:bg-indigo-950 border border-indigo-100 dark:border-indigo-800 text-indigo-950 dark:text-indigo-100 rounded-2xl font-black text-sm text-center transition-all flex items-center justify-center gap-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 active:scale-95"
+              >
+                Read AP Gov Exam Guide
+              </Link>
+            </div>
           </div>
         </div>
       </section>

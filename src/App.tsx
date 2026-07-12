@@ -38,6 +38,7 @@ const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
 const ApGovPage = lazy(() => import('./pages/ApGovPage'));
+const ApGovGuidePage = lazy(() => import('./pages/ApGovGuidePage'));
 const VtuCgpaPage = lazy(() => import('./pages/VtuCgpaPage'));
 const AnnaUniversityCgpaPage = lazy(() => import('./pages/AnnaUniversityCgpaPage'));
 const MumbaiUniversityCgpaPage = lazy(() => import('./pages/MumbaiUniversityCgpaPage'));
@@ -349,6 +350,7 @@ export default function App() {
                     <Route path="/final-grade-predictor" element={<FinalGradePage />} />
                     <Route path="/percentage-calculator" element={<GradePage title="Percentage" />} />
                     <Route path="/ap-gov-calculator" element={<ApGovPage />} />
+                    <Route path="/ap-gov-exam-guide" element={<ApGovGuidePage />} />
                     <Route path="/vtu-cgpa-to-percentage-calculator" element={<VtuCgpaPage />} />
                     <Route path="/anna-university-cgpa-to-percentage-calculator" element={<AnnaUniversityCgpaPage />} />
                     <Route path="/mumbai-university-cgpa-to-percentage-calculator" element={<MumbaiUniversityCgpaPage />} />
